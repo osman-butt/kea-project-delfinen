@@ -1,0 +1,37 @@
+/* -------- Root variables -------- */
+:root {
+  --black-shadow: rgba(0, 0, 0, 0.25);
+}
+
+/* -------- General styling -------- */
+body {
+  font-family: "Work Sans", sans-serif;
+  margin: 0;
+}
+
+footer,
+header {
+  background-color: black;
+  position: sticky;
+  top: 0;
+}
+
+h1 {
+  font-family: "Oswald", sans-serif;
+  text-align: center;
+  color: white;
+  margin: 0;
+  padding: 0.5em;
+}
+
+footer > h4 {
+  font-family: "Oswald", sans-serif;
+  text-align: center;
+  color: white;
+  margin: 0;
+  padding: 1em;
+}
+
+.hidden {
+  display: none;
+}
