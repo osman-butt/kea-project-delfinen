@@ -18,7 +18,7 @@
   </head>
 
   <body>
-    <section id="login-page">
+    <section id="login-page" class="hidden">
       <div id="login-body">
         <div class="login-container">
           <img src="images/Delfinen-logo.png" alt="Logo" class="logo" />
@@ -41,7 +41,7 @@
         </div>
       </div>
     </section>
-    <section id="admin-page">
+    <section id="admin-page" class="hidden">
       <!-- UI-Section -->
       <div class="main-container">
         <nav class="navbar">
@@ -54,9 +54,12 @@
           <a class="nav-link" href="#"
             ><i class="fas fa-trophy"></i>Svømmeresultater</a
           >
-          <a class="button" href="#"
+          <!-- <a class="button" href="#"
             ><i class="fas fa-sign-out-alt"></i>Log ud</a
-          >
+          > -->
+          <button id="signout-btn" class="button">
+            <i class="fas fa-sign-out-alt"></i>Log ud
+          </button>
         </nav>
         <div id="content"></div>
       </div>

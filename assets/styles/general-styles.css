@@ -43,23 +43,16 @@ footer > h4 {
 
 button {
   display: inline-block;
-  padding: 10px 20px;
+  padding: 1em;
   color: black;
   font-weight: bold;
   font-size: 16px;
-  border-radius: 20px;
+  border-radius: 1em;
   background: white;
   transition: background 0.5s ease, transform 0.5s ease;
-  margin-top: 20px;
   cursor: pointer;
 }
 
 button:hover {
   transform: scale(1.1);
-}
-
-#profileImg {
-  width: 3em;
-  height: 3em;
-  border-radius: 100%;
 }
