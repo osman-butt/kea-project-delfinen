@@ -1,13 +1,13 @@
 "use strict";
 
-window.onload = function () {
+function loadUI() {
   const navLinks = document.querySelectorAll(".nav-link");
   const contentDiv = document.getElementById("content");
   const loginContainer = document.querySelector(".login-container");
   const mainContainer = document.querySelector(".main-container");
 
-  navLinks.forEach((link) => {
-    link.addEventListener("click", (event) => {
+  navLinks.forEach(link => {
+    link.addEventListener("click", event => {
       event.preventDefault();
       loadContent(event.target);
     });
@@ -33,4 +33,6 @@ window.onload = function () {
   // To show UI and hide login form initially
   loginContainer.style.display = "none";
   mainContainer.style.display = "block";
-};
+}
+
+export { loadUI };
