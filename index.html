@@ -45,24 +45,31 @@
       <!-- UI-Section -->
       <div class="main-container">
         <nav class="navbar">
-          <a class="nav-link" href="#"
+          <a class="nav-link view-link" href="#home"
+            ><i class="fas fa-home"></i>Hjem</a
+          >
+          <a class="nav-link view-link" href="#members"
             ><i class="fas fa-user-plus"></i>Medlemsregistrering</a
           >
-          <a class="nav-link" href="#"
+          <a class="nav-link view-link" href="#subscription"
             ><i class="fas fa-dollar-sign"></i>Kontingentstyring</a
           >
-          <a class="nav-link" href="#"
+          <a class="nav-link view-link" href="#results"
             ><i class="fas fa-trophy"></i>Svømmeresultater</a
           >
-          <!-- <a class="button" href="#"
-            ><i class="fas fa-sign-out-alt"></i>Log ud</a
-          > -->
           <button id="signout-btn" class="button">
             <i class="fas fa-sign-out-alt"></i>Log ud
           </button>
         </nav>
-        <div id="content"></div>
       </div>
+      <section id="home" class="view-content">
+        <h2>BRUGER OPLYSNINGER</h2>
+      </section>
+      <section id="members" class="view-content"><h2>Medlems data</h2></section>
+      <section id="subscription" class="view-content">
+        <h2>Kontigent data</h2>
+      </section>
+      <section id="results" class="view-content"><h2>Resultater</h2></section>
     </section>
     <script src="./js/app.js" type="module"></script>
   </body>

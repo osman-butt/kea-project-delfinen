@@ -56,3 +56,23 @@ button {
 button:hover {
   transform: scale(1.1);
 }
+
+.view-content {
+  display: none;
+  /* padding: 248px 2em; */
+}
+
+@media (min-width: 600px) {
+  .view-content {
+    padding: 94px 2em;
+  }
+}
+
+.view-content.active {
+  display: block;
+}
+
+nav a.active {
+  background-color: blue;
+  border-radius: 1em;
+}

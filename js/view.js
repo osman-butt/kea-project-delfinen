@@ -1,4 +1,6 @@
 "use strict";
+//import modules
+import { initViews, setDefaultView } from "./view-controller.js";
 
 function displaySignedInUserPage() {
   const loginPage = document.querySelector("#login-page");
@@ -11,7 +13,8 @@ function displaySignedInUserPage() {
   const passwordForm = document.querySelector("#loginPassword");
   loginForm.value = "";
   passwordForm.value = "";
-  loadSignedInUI();
+  setDefaultView();
+  initViews();
 }
 function displaySignedOutPage() {
   const loginPage = document.querySelector("#login-page");
@@ -26,28 +29,28 @@ function displaySignedOutPage() {
   passwordForm.value = "";
 }
 
-function loadSignedInUI() {
-  const navLinks = document.querySelectorAll(".nav-link");
-  const contentDiv = document.getElementById("content");
-  const loginContainer = document.querySelector(".login-container");
-  const mainContainer = document.querySelector(".main-container");
+// function loadSignedInUI() {
+//   const navLinks = document.querySelectorAll(".nav-link");
+//   const contentDiv = document.getElementById("content");
+//   const loginContainer = document.querySelector(".login-container");
+//   const mainContainer = document.querySelector(".main-container");
 
-  navLinks.forEach(link => {
-    link.addEventListener("click", event => {
-      event.preventDefault();
-      loadContent(event.target);
-    });
-  });
+//   navLinks.forEach(link => {
+//     link.addEventListener("click", event => {
+//       event.preventDefault();
+//       loadContent(event.target);
+//     });
+//   });
 
-  function loadContent(target) {
-    if (target.innerHTML.includes("Medlemsregistrering")) {
-      contentDiv.innerHTML = "<h1>Velkommen til medlemsregistrering</h1>";
-    } else if (target.innerHTML.includes("Kontingentstyring")) {
-      contentDiv.innerHTML = "<h1>Velkommen til kontingentstyring</h1>";
-    } else if (target.innerHTML.includes("Svømmeresultater")) {
-      contentDiv.innerHTML = "<h1>Velkommen til svømmeresultater</h1>";
-    }
-  }
-}
+//   function loadContent(target) {
+//     if (target.innerHTML.includes("Medlemsregistrering")) {
+//       contentDiv.innerHTML = "<h1>Velkommen til medlemsregistrering</h1>";
+//     } else if (target.innerHTML.includes("Kontingentstyring")) {
+//       contentDiv.innerHTML = "<h1>Velkommen til kontingentstyring</h1>";
+//     } else if (target.innerHTML.includes("Svømmeresultater")) {
+//       contentDiv.innerHTML = "<h1>Velkommen til svømmeresultater</h1>";
+//     }
+//   }
+// }
 
 export { displaySignedInUserPage, displaySignedOutPage };
