@@ -7,14 +7,21 @@
     <link rel="stylesheet" href="./assets/styles/general-styles.css" />
     <link rel="stylesheet" href="./assets/styles/login-page-styles.css" />
     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Work+Sans:wght@100..900&display=swap"
       rel="stylesheet"
     />
     <title>Svømmeklubben Delfinen</title>
   </head>
 
+  <!--Login-Section -->
   <body class="login-body">
-    <div class="login-container">
+    <!--Midlertidigt -->
+    <div class="login-container" style="display: none">
+      <!--Midlertidigt -->
       <img src="images/Delfinen-logo.png" alt="Logo" class="logo" />
       <h2 class="login-title">Admin Login</h2>
       <form class="login-form">
@@ -32,6 +39,24 @@
         />
         <button class="button" type="submit">Log in</button>
       </form>
+    </div>
+
+    <!-- UI-Section -->
+    <!-- UI-Section -->
+    <div class="main-container">
+      <nav class="navbar">
+        <a class="nav-link" href="#"
+          ><i class="fas fa-user-plus"></i>Medlemsregistrering</a
+        >
+        <a class="nav-link" href="#"
+          ><i class="fas fa-dollar-sign"></i>Kontingentstyring</a
+        >
+        <a class="nav-link" href="#"
+          ><i class="fas fa-trophy"></i>Svømmeresultater</a
+        >
+        <a class="button" href="#"><i class="fas fa-sign-out-alt"></i>Log ud</a>
+      </nav>
+      <div id="content"></div>
     </div>
 
     <script src="./js/app.js" type="module"></script>
