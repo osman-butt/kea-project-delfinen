@@ -25,20 +25,12 @@
 }
 
 /*Login-form styling*/
-.login-body {
-  background: linear-gradient(
-    to right,
-    #0066ff,
-    #33ccff
-  ); /* Gradient background */
+#login-body {
   display: flex;
-  align-items: flex-start; /* Aligns items to the start of the container */
-  justify-content: center;
-  /* height: 100vh; */
+  /* align-items: flex-start;
+  justify-content: center; */
   margin: 0;
   height: 90vh;
-  /* padding-top: 10rem;  */
-  /* Adjust this value as needed */
 }
 
 /* Login container */
