@@ -7,6 +7,11 @@
 body {
   font-family: "Work Sans", sans-serif;
   margin: 0;
+  background: linear-gradient(
+    to right,
+    #0066ff,
+    #33ccff
+  ); /* Gradient background */
 }
 
 footer,
@@ -34,4 +39,27 @@ footer > h4 {
 
 .hidden {
   display: none;
+}
+
+button {
+  display: inline-block;
+  padding: 10px 20px;
+  color: black;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 20px;
+  background: white;
+  transition: background 0.5s ease, transform 0.5s ease;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+#profileImg {
+  width: 3em;
+  height: 3em;
+  border-radius: 100%;
 }
