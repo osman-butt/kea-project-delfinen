@@ -13,27 +13,34 @@
     <title>Svømmeklubben Delfinen</title>
   </head>
 
-  <body class="login-body">
-    <div class="login-container">
-      <img src="images/Delfinen-logo.png" alt="Logo" class="logo" />
-      <h2 class="login-title">Admin Login</h2>
-      <form class="login-form">
-        <input
-          type="text"
-          id="loginUsername"
-          name="loginUsername"
-          placeholder="Username"
-        />
-        <input
-          type="password"
-          id="loginPassword"
-          name="loginPassword"
-          placeholder="Password"
-        />
-        <button class="button" type="submit">Log in</button>
-      </form>
-    </div>
-
+  <body>
+    <section id="login-page">
+      <div id="login-body">
+        <div class="login-container">
+          <img src="images/Delfinen-logo.png" alt="Logo" class="logo" />
+          <h2 class="login-title">Admin Login</h2>
+          <form class="login-form">
+            <input
+              type="text"
+              id="loginUsername"
+              name="loginUsername"
+              placeholder="Username"
+            />
+            <input
+              type="password"
+              id="loginPassword"
+              name="loginPassword"
+              placeholder="Password"
+            />
+            <button class="button" type="submit">Log in</button>
+          </form>
+        </div>
+      </div>
+    </section>
+    <section id="admin-page">
+      <header><h1>HELLO</h1></header>
+      <button id="signout">Signout</button>
+    </section>
     <script src="./js/app.js" type="module"></script>
   </body>
 </html>
