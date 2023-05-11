@@ -20,19 +20,26 @@ import {
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAfVIy_ovBUPkWskqSrzaT2Adh-sbi2nOs",
-  authDomain: "auth-intro-app.firebaseapp.com",
+  apiKey: "AIzaSyD5UOGy34tOzBc7HoKaodJGuiUqh_3lCl0",
+  authDomain: "kea-delfinen.firebaseapp.com",
   databaseURL:
-    "https://auth-intro-app-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "auth-intro-app",
-  storageBucket: "auth-intro-app.appspot.com",
-  messagingSenderId: "794671497194",
-  appId: "1:794671497194:web:d2852f243c080191f53c93",
+    "https://kea-delfinen-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "kea-delfinen",
+  storageBucket: "kea-delfinen.appspot.com",
+  messagingSenderId: "138460549393",
+  appId: "1:138460549393:web:44eadb7f646fe37d35fcb0",
 };
 
-// // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth();
-const database = getDatabase(app);
-
-export { app, auth, database };
+export {
+  signInWithEmailAndPassword,
+  update,
+  ref,
+  createUserWithEmailAndPassword,
+  set,
+  signOut,
+  onAuthStateChanged,
+  initializeApp,
+  firebaseConfig,
+  getAuth,
+  getDatabase,
+};
