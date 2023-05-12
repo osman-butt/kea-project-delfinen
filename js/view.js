@@ -1,4 +1,6 @@
 "use strict";
+//import modules
+import { initViews, setDefaultView } from "./view-controller.js";
 
 function displaySignedInUserPage() {
   const loginPage = document.querySelector("#login-page");
@@ -11,6 +13,8 @@ function displaySignedInUserPage() {
   const passwordForm = document.querySelector("#loginPassword");
   loginForm.value = "";
   passwordForm.value = "";
+  setDefaultView();
+  initViews();
 }
 function displaySignedOutPage() {
   const loginPage = document.querySelector("#login-page");

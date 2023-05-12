@@ -9,7 +9,7 @@ const authUser = auth;
 async function initApp() {
   console.log("initApp: app.js is running 🎉");
   document.querySelector(".login-form").addEventListener("submit", signInUser);
-  document.querySelector("#signout").addEventListener("click", signOutUser);
+  document.querySelector("#signout-btn").addEventListener("click", signOutUser);
   onAuthStateChanged(auth, user => {
     if (user) {
       console.log(user);
