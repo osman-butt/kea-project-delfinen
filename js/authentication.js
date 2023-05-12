@@ -36,15 +36,26 @@ async function signInUser(event) {
         lastLogin: now,
       };
       update(ref(database, "users/" + user.uid), user_data);
-      // updateLastLogin(user.uid);
     })
     .catch(error => {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log("ERROR IN SIGN IN");
-      console.log(`Error code = ${errorCode}, error msg = ${errorMessage}`);
-      //   document.querySelector("#error-response").textContent =
-      //     "Wrong user id or password";
+      // console.log(`Error code = ${errorCode}, error msg = ${errorMessage}`);
+      if (
+        errorCode === "auth/wrong-password" ||
+        errorCode === "auth/user-not-found" ||
+        errorCode === "auth/invalid-email"
+      ) {
+        document.querySelector("#error-response").textContent =
+          "Wrong username or password!";
+      } else if (errorCode == "auth/user-disabled") {
+        document.querySelector("#error-response").textContent =
+          "User is disabled - contact admin";
+      } else {
+        document.querySelector("#error-response").textContent =
+          "Internal server error";
+      }
     });
 }
 

@@ -50,7 +50,7 @@
 /* Increase the size of the logo */
 .logo {
   width: 350px; /* Adjust as needed */
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 /* Login title */
@@ -88,4 +88,9 @@
 .login-form .button:hover {
   background: linear-gradient(to right, #33ccff, #0066ff);
   transform: scale(1.1);
+}
+
+#error-response {
+  color: red;
+  font-weight: bold;
 }
