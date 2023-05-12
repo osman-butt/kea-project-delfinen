@@ -27,12 +27,12 @@ async function displayMembers() {
   const tableHeader = /*html*/ `
    <tr>
     <th></th>
-    <th>Navn</th>
-    <th>Email</th>
-    <th>Fødselsdato</th>
-    <th>Alder</th>
-    <th>Aktivt medlem</th>
-    <th>Aktiviteter</th>
+    <th class="col1">Navn</th>
+    <th class="col2">Email</th>
+    <th class="col3">Fødselsdato</th>
+    <th class="col4">Alder</th>
+    <th class="col5">Aktivt medlem</th>
+    <th class="col6">Aktiviteter</th>
   </tr>`;
   table.insertAdjacentHTML("beforeend", tableHeader);
   const data = await getMembers(auth);
@@ -58,12 +58,12 @@ async function displayMember(listOfMembers) {
       <td><img src="${
         listOfMembers.profileImage
       }" alt="" style="object-fit: contain; width:2em; border-radius: 2em"/></td>
-      <td>${listOfMembers.name}</td>
-      <td>${listOfMembers.email}</td>
-      <td>${listOfMembers.dob}</td>
-      <td>${listOfMembers.age}</td>
-      <td>${listOfMembers.membershipActive ? "Ja" : "Nej"}</td>
-      <td>${listOfMembers.activity.sort().join(", ")}</td>
+      <td class="col1">${listOfMembers.name}</td>
+      <td class="col2">${listOfMembers.email}</td>
+      <td class="col3">${listOfMembers.dob}</td>
+      <td class="col4">${listOfMembers.age}</td>
+      <td class="col5">${listOfMembers.membershipActive ? "Ja" : "Nej"}</td>
+      <td class="col6">${listOfMembers.activity.sort().join(", ")}</td>
     </tr>
   `;
   members.insertAdjacentHTML("beforeend", html);
