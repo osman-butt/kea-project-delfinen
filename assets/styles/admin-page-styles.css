@@ -5,12 +5,11 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
+  /* position: fixed;
+  top: 0; */
+  /* left: 0; */
   width: 100%;
-  height: 60px;
-  padding: 20px 0;
+  padding: 0.4em;
   background: linear-gradient(
     to right,
     #0066ff,
@@ -22,9 +21,9 @@
   border-radius: 0 0 20px 20px;
 }
 
-#content {
+/* #content {
   padding-top: 60px;
-}
+} */
 
 /* Navbar link styles */
 .nav-link {
@@ -70,6 +69,7 @@ table {
   border-radius: 1em;
   padding: 1em;
   border-collapse: collapse;
+  margin: 0 1em 0 1em;
 }
 
 th {
@@ -123,4 +123,53 @@ tr:hover > td {
   padding: 0.7em;
   border-radius: 1em;
   border: none;
+}
+
+main {
+  margin-top: 1em;
+  background: linear-gradient(
+    to right,
+    #0066ff,
+    #33ccff
+  ); /* Gradient background */
+}
+
+.col2,
+.col3,
+.col4,
+.col6 {
+  display: none;
+}
+
+.view-content {
+  margin: 1em;
+}
+
+@media screen and (min-width: 600px) {
+  .col2 {
+    display: table-cell;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .col3 {
+    display: table-cell;
+  }
+  .navbar {
+    position: fixed;
+  }
+  main {
+    /* position: fixed; */
+    padding-top: 4em;
+  }
+}
+@media screen and (min-width: 900px) {
+  .col4 {
+    display: table-cell;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .col6 {
+    display: table-cell;
+  }
 }
