@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/styles/general-styles.css" />
     <link rel="stylesheet" href="./assets/styles/login-page-styles.css" />
+    <link rel="stylesheet" href="./assets/styles/admin-page-styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Work+Sans:wght@100..900&display=swap"
       rel="stylesheet"
@@ -14,7 +19,7 @@
   </head>
 
   <body>
-    <section id="login-page">
+    <section id="login-page" class="hidden">
       <div id="login-body">
         <div class="login-container">
           <img src="images/Delfinen-logo.png" alt="Logo" class="logo" />
@@ -37,9 +42,35 @@
         </div>
       </div>
     </section>
-    <section id="admin-page">
-      <header><h1>HELLO</h1></header>
-      <button id="signout">Signout</button>
+    <section id="admin-page" class="hidden">
+      <!-- UI-Section -->
+      <div class="main-container">
+        <nav class="navbar">
+          <a class="nav-link view-link" href="#home"
+            ><i class="fas fa-home"></i>Hjem</a
+          >
+          <a class="nav-link view-link" href="#members"
+            ><i class="fas fa-user-plus"></i>Medlemsregistrering</a
+          >
+          <a class="nav-link view-link" href="#subscription"
+            ><i class="fas fa-dollar-sign"></i>Kontingentstyring</a
+          >
+          <a class="nav-link view-link" href="#results"
+            ><i class="fas fa-trophy"></i>Svømmeresultater</a
+          >
+          <button id="signout-btn" class="button">
+            <i class="fas fa-sign-out-alt"></i>Log ud
+          </button>
+        </nav>
+      </div>
+      <section id="home" class="view-content">
+        <h2>BRUGER OPLYSNINGER</h2>
+      </section>
+      <section id="members" class="view-content"><h2>Medlems data</h2></section>
+      <section id="subscription" class="view-content">
+        <h2>Kontigent data</h2>
+      </section>
+      <section id="results" class="view-content"><h2>Resultater</h2></section>
     </section>
     <script src="./js/app.js" type="module"></script>
   </body>
