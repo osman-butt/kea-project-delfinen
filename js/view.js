@@ -41,11 +41,10 @@ async function displayMembers() {
 }
 
 function getAge(dateString) {
-  var today = new Date();
-  var birthDate = new Date(dateString);
-  var age = today.getFullYear() - birthDate.getFullYear();
-  var m = today.getMonth() - birthDate.getMonth();
-  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+  const today = new Date();
+  const dob = new Date(dateString);
+  let age = today.getFullYear() - dob.getFullYear();
+  if (today.getMonth() - dob.getMonth() < 0) {
     age--;
   }
   return age;
