@@ -52,3 +52,41 @@
     flex-direction: column;
   }
 }
+
+#members-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: auto;
+}
+
+#table {
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+table {
+  background-color: blue;
+  border-radius: 1em;
+  padding: 1em;
+  border-collapse: collapse;
+}
+
+th {
+  padding: 1em;
+  color: white;
+  text-align: left;
+}
+
+td {
+  padding: 1em;
+  /* border-radius: 1em; */
+  border-collapse: collapse;
+  background-color: white;
+}
+
+tr:hover > td {
+  cursor: pointer;
+  /* transform: scale(1.01); */
+  background-color: rgb(238, 238, 238);
+}
