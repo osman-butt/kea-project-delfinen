@@ -23,6 +23,7 @@
       <div id="login-body">
         <div class="login-container">
           <img src="images/Delfinen-logo.png" alt="Logo" class="logo" />
+          <p id="error-response"></p>
           <h2 class="login-title">Admin Login</h2>
           <form class="login-form">
             <input
@@ -30,12 +31,14 @@
               id="loginUsername"
               name="loginUsername"
               placeholder="Username"
+              autocomplete="on"
             />
             <input
               type="password"
               id="loginPassword"
               name="loginPassword"
               placeholder="Password"
+              autocomplete="off"
             />
             <button class="button" type="submit">Log in</button>
           </form>

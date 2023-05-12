@@ -13,6 +13,7 @@ function displaySignedInUserPage() {
   const passwordForm = document.querySelector("#loginPassword");
   loginForm.value = "";
   passwordForm.value = "";
+  document.querySelector("#error-response").textContent = "";
   setDefaultView();
   initViews();
 }
