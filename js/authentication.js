@@ -48,13 +48,13 @@ async function signInUser(event) {
         errorCode === "auth/invalid-email"
       ) {
         document.querySelector("#error-response").textContent =
-          "Wrong username or password!";
+          "Forkert brugernavn eller password!";
       } else if (errorCode == "auth/user-disabled") {
         document.querySelector("#error-response").textContent =
-          "User is disabled - contact admin";
+          "Brugeren er deaktiveret - kontakt admin";
       } else {
         document.querySelector("#error-response").textContent =
-          "Internal server error";
+          "Intern server fejl";
       }
     });
 }
