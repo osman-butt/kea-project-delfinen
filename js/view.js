@@ -2,7 +2,15 @@
 //import modules
 import { auth } from "./authentication.js";
 import { initViews, setDefaultView } from "./view-controller.js";
-import { getMembers } from "./rest-services.js";
+import { getMembers, createMember } from "./rest-services.js";
+
+//form references
+const memberForm = document.querySelector("#member-form");
+const nameInput = document.querySelector("#name");
+const emailInput = document.querySelector("#email");
+const dobInput = document.querySelector("#dob");
+const ageInput = document.querySelector("#age");
+const activitiesSelect = document.querySelector("#activities");
 
 function displaySignedInUserPage() {
   const loginPage = document.querySelector("#login-page");
@@ -18,6 +26,31 @@ function displaySignedInUserPage() {
   document.querySelector("#error-response").textContent = "";
   setDefaultView();
   initViews();
+  displayMembers();
+
+  //Eventlistener for form
+  memberForm.addEventListener("submit", formSubmitHandler);
+}
+
+async function formSubmitHandler(event) {
+  event.preventDefault();
+
+  //Get form data
+  const name = nameInput.value;
+  const email = emailInput.value;
+  const dob = dobInput.value;
+  const age = ageInput.value;
+  const activities = Array.from(activitiesSelect.selectedOptions).map(
+    (option) => option.value
+  );
+
+  //Call function to handle the form data
+  const newMember = await createMember(name, email, dob, age, activities);
+
+  //Close the form
+  memberForm.classList.add("hidden");
+
+  //Update the member display
   displayMembers();
 }
 
@@ -81,5 +114,20 @@ function displaySignedOutPage() {
   loginForm.value = "";
   passwordForm.value = "";
 }
+//Handle click event 'Opret Medlem'
+function openMemberForm() {
+  nameInput.value = "";
+  emailInput.value = "";
+  dobInput.value = "";
+  ageInput.value = "";
+  activitiesSelect.selectedIndex = -1; //deselect all options
+  //Show form
+  memberForm.classList.remove("hidden");
+}
+
+//Eventlistener for 'Opret medlem'
+document
+  .querySelector("#opret-medlem")
+  .addEventListener("click", openMemberForm);
 
 export { displaySignedInUserPage, displaySignedOutPage };
