@@ -77,6 +77,25 @@
             <div class="button-container">
               <button class="admin-button">Opret medlem</button>
             </div>
+            <!-- Medlemsform -->
+            <div id="member-form" class="hidden">
+              <input type="text" id="name" placeholder="Navn"/>
+              <input type="email" id="email" placeholder="Email"/>
+              <input type="date" id="dob" placeholder="Fødselsdag"/>
+              <input type="number" id="age" placeholder="Alder"/>
+              <select id="activities" multiple>
+                <option value="butterfly">Butterfly</option>
+                <option value="fri">Fri</option>
+                <option value="brystsvømning">Brystsvømning</option>
+                <option value="rygsvømning">Rygsvømning</option>
+              </select>
+
+              <button id="create-member">Opret Medlem</button>
+
+
+            </div>
+
+
             <div class="search-container">
               <input
                 id="member-search"
@@ -84,7 +103,7 @@
                 placeholder="Søg efter medlem"
               />
               <div class="button-container">
-                <button class="admin-button">Søg</button>
+                <button class="admin-button"><i class ="fas fa-search"></i>Søg</button>
               </div>
             </div>
             <div class="button-container">
