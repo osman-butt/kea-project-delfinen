@@ -125,10 +125,10 @@ function openMemberForm() {
   ageInput.value = "";
   activitiesSelect.selectedIndex = -1; //deselect all options
   //Show form
-  memberFormModal.classList.remove("hidden");
+  memberFormModal.style.display = "block";
 }
 
-//Handle click event 'Opret Medlem't
+//Handle click event 'Opret Medlem'
 document.addEventListener("DOMContentLoaded", function () {
   //Eventlistener for 'Opret medlem'
   document
@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //Event listener for close button
   document.querySelector("#close-form").addEventListener("click", function () {
-    document.querySelector("#member-form-modal").classList.add("hidden");
+    document.querySelector("#member-form-modal").style.display = "none";
   });
 });
 

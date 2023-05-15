@@ -1,34 +1,128 @@
+/* opret-medlem-form.css */
+
+#member-form-modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
 #member-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #f8f8f8;
+  background-color: #fefefe;
+  margin: 10% auto;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+  border: 1px solid #888;
+  width: 60%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
 }
 
 #member-form input,
-#member-form select {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: none;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-}
-
+#member-form select,
 #member-form button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  display: block;
+  width: 90%; /* Full width */
+  padding: 10px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
 }
 
-#member-form button:hover {
-  background-color: #0056b3;
+#member-admin-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+}
+
+#opret-medlem {
+  margin-right: 20px;
+  background-color: #0066ff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+#opret-medlem:hover {
+  background-color: white;
+  color: black;
+  border: 2px solid #0066ff;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+#member-search {
+  padding: 10px;
+  font-size: 17px;
+  border: none;
+  border-radius: 5px;
+  margin-right: 10px; /* added space between search input and button */
+}
+
+.admin-button {
+  background-color: #0066ff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.admin-button:hover {
+  background-color: white;
+  color: black;
+  border: 2px solid #0066ff;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+  #member-form {
+    width: 90%;
+  }
+
+  #member-admin-container {
+    flex-direction: column;
+  }
+
+  .button-container {
+    margin-top: 10px;
+  }
+
+  #member-search {
+    margin-bottom: 10px;
+  }
 }
