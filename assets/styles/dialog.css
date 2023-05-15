@@ -8,6 +8,10 @@ dialog > form > h2 {
   display: inline;
 }
 
+.dialog-delete-member {
+  text-align: center;
+}
+
 .close-btn {
   border: none;
   padding: 1em;
@@ -53,10 +57,16 @@ dialog > form > h2 {
   dialog {
     width: 80%;
   }
+  .dialog-delete-member {
+    width: 70%;
+  }
 }
 
 @media screen and (min-width: 1000px) {
   dialog {
     width: 800px;
+  }
+  .dialog-delete-member {
+    width: 600px;
   }
 }
