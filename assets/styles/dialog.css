@@ -34,6 +34,10 @@ dialog > form > h2 {
   cursor: pointer;
 }
 
+.dialog-btn.cancel {
+  background-color: grey;
+}
+
 .dialog-container {
   display: grid;
   grid-template-columns: 1fr;

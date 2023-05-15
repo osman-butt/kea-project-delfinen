@@ -1,34 +1,19 @@
 "use strict";
 
 //import modules
-import { getMembers } from "./rest-services.js";
+import { getMembers, getMembersUpdate, deleteMember } from "./rest-services.js";
+import { getAge, membersUI } from "./helpers.js";
 
 async function displayMembers() {
-  const table = document.querySelector("#member-table");
-  table.textContent = "";
-  const tableHeader = /*html*/ `
-   <tr>
-    <th></th>
-    <th class="col1">Navn</th>
-    <th class="col2">Email</th>
-    <th class="col3">Fødselsdato</th>
-    <th class="col4">Alder</th>
-    <th class="col5">Aktivt medlem</th>
-    <th class="col6">Aktiviteter</th>
-  </tr>`;
-  table.insertAdjacentHTML("beforeend", tableHeader);
+  membersUI();
   const data = await getMembers();
   data.forEach(displayMember);
 }
 
-function getAge(dateString) {
-  const today = new Date();
-  const dob = new Date(dateString);
-  let age = today.getFullYear() - dob.getFullYear();
-  if (today.getMonth() - dob.getMonth() < 0) {
-    age--;
-  }
-  return age;
+async function displayMembersUpdated() {
+  membersUI();
+  const data = await getMembersUpdate();
+  data.forEach(displayMember);
 }
 
 async function displayMember(memberObj) {
@@ -58,7 +43,31 @@ async function displayMember(memberObj) {
     .addEventListener("click", () => showReadMemberDialog(memberObj));
 }
 
+function showDeleteDialog(memberObj) {
+  document.querySelector(".dialog-delete-member").showModal();
+  document
+    .querySelector("#open-delete-member-dialog")
+    .removeEventListener("click", showDeleteDialog);
+  document
+    .querySelector("#delete-member")
+    .addEventListener("click", deleteMemberClicked);
+}
+
+async function deleteMemberClicked() {
+  const id = document.querySelector(".dialog-delete-member").getAttribute("id");
+  console.log("MEMBER WITH ID=" + id + " IS DELETED");
+  await deleteMember(id);
+  displayMembersUpdated();
+  document.querySelector("#dialog-read-member").close();
+}
+
 function showReadMemberDialog(memberObj) {
+  document
+    .querySelector(".dialog-delete-member")
+    .setAttribute("id", memberObj.id);
+  document
+    .querySelector("#open-delete-member-dialog")
+    .addEventListener("click", showDeleteDialog);
   document.querySelector("#dialog-read-member-img").src =
     memberObj.profileImage;
   document.querySelector("#dialog-read-member-name").textContent =

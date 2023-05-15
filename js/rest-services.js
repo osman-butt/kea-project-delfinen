@@ -15,6 +15,18 @@ async function getMembers() {
     await fetchMembers(auth);
     console.log("FETCHED Members data");
   }
+  console.log(listOfMembers);
+  return listOfMembers;
+}
+
+async function getMembersUpdate() {
+  const now = Date.now();
+
+  if (now - lastFetch > 1 || listOfMembers.length === 0) {
+    await fetchMembers(auth);
+    console.log("FETCHED Members data");
+  }
+  console.log(listOfMembers);
   return listOfMembers;
 }
 
@@ -35,14 +47,27 @@ async function fetchMembers(auth) {
 
 function prepareData(dataObject) {
   console.log("---prepareData---");
-  const flashCards = [];
+  const dataList = [];
   for (const key in dataObject) {
-    const flashCard = dataObject[key];
-    flashCard.id = key;
-    flashCards.push(flashCard);
+    const data = dataObject[key];
+    data.id = key;
+    dataList.push(data);
   }
   lastFetch = Date.now();
-  return flashCards;
+  return dataList;
 }
 
-export { getMembers };
+// delete
+async function deleteMember(id) {
+  console.log("---deleteMember()---");
+  const token = auth.currentUser.stsTokenManager.accessToken;
+  const url = `${endpoint}/members/${id}.json?auth=${token}`;
+  const response = await fetch(url, { method: "DELETE" });
+  if (response.ok) {
+    console.log("deleteMember status " + response.status);
+  } else {
+    console.log(response.status, response.statusText);
+  }
+}
+
+export { getMembers, getMembersUpdate, deleteMember };

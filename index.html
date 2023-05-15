@@ -109,15 +109,23 @@
             <p>Køn: <span id="dialog-read-member-gender"></span></p>
             <p>Email: <span id="dialog-read-member-email"></span></p>
             <p>Aktivt medlem: <span id="dialog-read-member-membershipActive"></span></p>
-            <p>Medlems siden: <span id="dialog-read-member-membershipDate"></span></p>
+            <p>Medlem siden: <span id="dialog-read-member-membershipDate"></span></p>
             <p>Discipliner: <span id="dialog-read-member-activity"></span></p>
             <p>Medlemstype: <span id="dialog-read-member-membershipType"></span></p>
             <p>Medlemsniveau: <span id="dialog-read-member-membershipLevel"></span></p>
           </section>
           <div class="dialog-btn-container">
-            <button class="dialog-btn"><i class="fas fa-trash"></i> Slet</button>
+            <button class="dialog-btn" id="open-delete-member-dialog"><i class="fas fa-trash"></i> Slet</button>
             <button class="dialog-btn"><i class="fas fa-pen"></i> Opdater</button>
           </div>
+        </dialog>
+        <dialog class="dialog-delete-member">
+          <h3>Ønsker du at slette medlemmet fra klubben?</h3>
+          <p>Alt data vil blive slettet, og kan ikke genskabes!</p>
+          <form id="delete-form" method="dialog">
+            <button class="dialog-btn cancel">Nej</button>
+            <button class="dialog-btn" id="delete-member">Ja</button>
+          </form>
         </dialog>
       </section>
       <section id="subscription" class="view-content">
