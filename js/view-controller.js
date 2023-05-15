@@ -1,6 +1,7 @@
 "use strict";
 
-// This module is copied from https://github.com/cederdorff/simple-spa
+// This module is inspired by https://github.com/cederdorff/simple-spa
+import { displayMembers } from "./view-members.js";
 
 function initViews() {
   window.addEventListener("hashchange", viewChange); // whenever the hash changes (you hit a link or change the hash)
@@ -13,6 +14,10 @@ function viewChange() {
   if (location.hash) {
     // if there's a hash value, use as link
     hashLink = location.hash;
+  }
+
+  if (hashLink == "#members") {
+    displayMembers();
   }
 
   hideAllViews(); // hide all views
