@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./assets/styles/general-styles.css" />
     <link rel="stylesheet" href="./assets/styles/login-page-styles.css" />
     <link rel="stylesheet" href="./assets/styles/admin-page-styles.css" />
+    <link rel="stylesheet" href="./assets/styles/dialog.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
@@ -91,8 +92,33 @@
               <!-- <button class="admin-button">Opret medlem</button> -->
             </div>
           </section>
-          <table id="member-table"></table>
+          <table id="member-table">
+            <!-------- MEMBER DATA GOES HERE -------->
+          </table>
         </section>
+        <dialog id="dialog-read-member" >
+          <form method="dialog">
+            <button class="close-btn"><i class="fas fa-times"></i></button>
+            <h2>Medlems info</h2>
+          </form>
+          <section class="dialog-container">
+            <img id="dialog-read-member-img" src="" alt="profil-billede" style="width: 3em; border-radius: 3em;">
+            <h4 id="dialog-read-member-name"></h4>
+            <p>Fødselsdato: <span id="dialog-read-member-dob"></span></p>
+            <p>Alder: <span id="dialog-read-member-age"></span></p>
+            <p>Køn: <span id="dialog-read-member-gender"></span></p>
+            <p>Email: <span id="dialog-read-member-email"></span></p>
+            <p>Aktivt medlem: <span id="dialog-read-member-membershipActive"></span></p>
+            <p>Medlems siden: <span id="dialog-read-member-membershipDate"></span></p>
+            <p>Discipliner: <span id="dialog-read-member-activity"></span></p>
+            <p>Medlemstype: <span id="dialog-read-member-membershipType"></span></p>
+            <p>Medlemsniveau: <span id="dialog-read-member-membershipLevel"></span></p>
+          </section>
+          <div class="dialog-btn-container">
+            <button class="dialog-btn"><i class="fas fa-trash"></i> Slet</button>
+            <button class="dialog-btn"><i class="fas fa-pen"></i> Opdater</button>
+          </div>
+        </dialog>
       </section>
       <section id="subscription" class="view-content">
         <h2>Kontigent data</h2>

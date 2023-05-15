@@ -50,23 +50,55 @@ function getAge(dateString) {
   return age;
 }
 
-async function displayMember(listOfMembers) {
+async function displayMember(memberObj) {
   const members = document.querySelector("#member-table");
-  listOfMembers.age = getAge(listOfMembers.dob);
+  memberObj.age = getAge(memberObj.dob);
+  memberObj.membershipType = memberObj.age < 18 ? "Junior" : "Senior";
   const html = /*html*/ `
-    <tr>
+  <article>
+    <tr class="member-table-row">
       <td><img src="${
-        listOfMembers.profileImage
+        memberObj.profileImage
       }" alt="" style="object-fit: contain; width:2em; border-radius: 2em"/></td>
-      <td class="col1">${listOfMembers.name}</td>
-      <td class="col2">${listOfMembers.email}</td>
-      <td class="col3">${listOfMembers.dob}</td>
-      <td class="col4">${listOfMembers.age}</td>
-      <td class="col5">${listOfMembers.membershipActive ? "Ja" : "Nej"}</td>
-      <td class="col6">${listOfMembers.activity.sort().join(", ")}</td>
+      <td class="col1">${memberObj.name}</td>
+      <td class="col2">${memberObj.email}</td>
+      <td class="col3">${memberObj.dob}</td>
+      <td class="col4">${memberObj.age}</td>
+      <td class="col5">${memberObj.membershipActive}</td>
+      <td class="col6">${memberObj.activity.sort().join(", ")}</td>
     </tr>
+  </article>
   `;
   members.insertAdjacentHTML("beforeend", html);
+
+  // Show dialog
+  document
+    .querySelector("#member-table tbody:last-child")
+    .addEventListener("click", () => showReadMemberDialog(memberObj));
+}
+
+function showReadMemberDialog(memberObj) {
+  document.querySelector("#dialog-read-member-img").src =
+    memberObj.profileImage;
+  document.querySelector("#dialog-read-member-name").textContent =
+    memberObj.name;
+  document.querySelector("#dialog-read-member-dob").textContent = memberObj.dob;
+  document.querySelector("#dialog-read-member-age").textContent = memberObj.age;
+  document.querySelector("#dialog-read-member-gender").textContent =
+    memberObj.gender;
+  document.querySelector("#dialog-read-member-email").textContent =
+    memberObj.email;
+  document.querySelector("#dialog-read-member-membershipActive").textContent =
+    memberObj.membershipActive;
+  document.querySelector("#dialog-read-member-membershipDate").textContent =
+    memberObj.membershipDate;
+  document.querySelector("#dialog-read-member-activity").textContent =
+    memberObj.activity.join(", ");
+  document.querySelector("#dialog-read-member-membershipType").textContent =
+    memberObj.membershipType;
+  document.querySelector("#dialog-read-member-membershipLevel").textContent =
+    memberObj.membershipLevel;
+  document.querySelector("#dialog-read-member").showModal();
 }
 
 function displaySignedOutPage() {
