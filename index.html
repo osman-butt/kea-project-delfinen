@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./assets/styles/general-styles.css" />
     <link rel="stylesheet" href="./assets/styles/login-page-styles.css" />
     <link rel="stylesheet" href="./assets/styles/admin-page-styles.css" />
+    <link rel="stylesheet" href="./assets/styles/opret-medlem-form.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
@@ -75,25 +76,25 @@
           <!-- <h2>Medlems data</h2> -->
           <section id="member-admin-container">
             <div class="button-container">
-              <button class="admin-button">Opret medlem</button>
+              <button id="opret-medlem" class="admin-button">Opret medlem</button>
             </div>
             <!-- Medlemsform -->
-            <div id="member-form" class="hidden">
-              <input type="text" id="name" placeholder="Navn"/>
-              <input type="email" id="email" placeholder="Email"/>
-              <input type="date" id="dob" placeholder="Fødselsdag"/>
-              <input type="number" id="age" placeholder="Alder"/>
-              <select id="activities" multiple>
-                <option value="butterfly">Butterfly</option>
-                <option value="fri">Fri</option>
-                <option value="brystsvømning">Brystsvømning</option>
-                <option value="rygsvømning">Rygsvømning</option>
-              </select>
-
-              <button id="create-member">Opret Medlem</button>
-
-
-            </div>
+            <div id="member-form-modal" class="hidden">
+      <div id="member-form">
+        <input type="text" id="name" placeholder="Navn"/>
+        <input type="email" id="email" placeholder="Email"/>
+        <input type="date" id="dob" placeholder="Fødselsdag"/>
+        <input type="number" id="age" placeholder="Alder"/>
+        <select id="activities" multiple>
+          <option value="butterfly">Butterfly</option>
+          <option value="fri">Fri</option>
+          <option value="brystsvømning">Brystsvømning</option>
+          <option value="rygsvømning">Rygsvømning</option>
+        </select>
+        <button id="create-member">Opret Medlem</button>
+        <button id="close-form" class="admin-button">Close</button>
+      </div>
+    </div>
 
 
             <div class="search-container">

@@ -29,8 +29,6 @@ function prepareData(dataObject) {
   return flashCards;
 }
 
-export { getMembers };
-
 //CREATE
 async function createMember(name, email, dob, age, activities) {
   console.log("---createMember()---");

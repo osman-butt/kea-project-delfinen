@@ -114,20 +114,31 @@ function displaySignedOutPage() {
   loginForm.value = "";
   passwordForm.value = "";
 }
-//Handle click event 'Opret Medlem'
+
 function openMemberForm() {
+  console.log("openMemberForm was called");
+  let memberFormModal = document.querySelector("#member-form-modal");
+  let memberForm = document.querySelector("#member-form");
   nameInput.value = "";
   emailInput.value = "";
   dobInput.value = "";
   ageInput.value = "";
   activitiesSelect.selectedIndex = -1; //deselect all options
   //Show form
-  memberForm.classList.remove("hidden");
+  memberFormModal.classList.remove("hidden");
 }
 
-//Eventlistener for 'Opret medlem'
-document
-  .querySelector("#opret-medlem")
-  .addEventListener("click", openMemberForm);
+//Handle click event 'Opret Medlem't
+document.addEventListener("DOMContentLoaded", function () {
+  //Eventlistener for 'Opret medlem'
+  document
+    .querySelector("#opret-medlem")
+    .addEventListener("click", openMemberForm);
+
+  //Event listener for close button
+  document.querySelector("#close-form").addEventListener("click", function () {
+    document.querySelector("#member-form-modal").classList.add("hidden");
+  });
+});
 
 export { displaySignedInUserPage, displaySignedOutPage };
