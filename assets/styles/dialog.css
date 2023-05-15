@@ -1,5 +1,5 @@
 dialog {
-  width: 800px;
+  width: 100%;
   border: none;
   border-radius: 1em;
 }
@@ -36,5 +36,23 @@ dialog > form > h2 {
 
 .dialog-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
+}
+
+@media screen and (min-width: 600px) {
+  .dialog-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  dialog {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  dialog {
+    width: 800px;
+  }
 }
