@@ -1,6 +1,5 @@
 "use strict";
 //import modules
-import { auth } from "./authentication.js";
 import { initViews, setDefaultView } from "./view-controller.js";
 import { getMembers, createMember } from "./rest-services.js";
 
@@ -13,6 +12,7 @@ const ageInput = document.querySelector("#age");
 const activitiesSelect = document.querySelector("#activities");
 
 function displaySignedInUserPage() {
+  console.log("---displaySignedInUserPage()---");
   const loginPage = document.querySelector("#login-page");
   const adminPage = document.querySelector("#admin-page");
   loginPage.offsetHeight;
@@ -41,7 +41,7 @@ async function formSubmitHandler(event) {
   const dob = dobInput.value;
   const age = ageInput.value;
   const activities = Array.from(activitiesSelect.selectedOptions).map(
-    (option) => option.value
+    option => option.value
   );
 
   // Call function to handle the form data

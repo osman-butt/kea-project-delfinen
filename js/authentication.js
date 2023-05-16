@@ -59,18 +59,18 @@ async function signInUser(event) {
     });
 }
 
-async function updateLastLogin(user) {
-  const now = new Date(Date.now()).toISOString();
-  const obj = {
-    lastLogin: now,
-  };
-  const endpoint =
-    "https://kea-delfinen-default-rtdb.europe-west1.firebasedatabase.app/users/";
-  const res = await fetch(endpoint + user + ".json", {
-    method: "PUT",
-    body: JSON.stringify(obj),
-  });
-}
+// async function updateLastLogin(user) {
+//   const now = new Date(Date.now()).toISOString();
+//   const obj = {
+//     lastLogin: now,
+//   };
+//   const endpoint =
+//     "https://kea-delfinen-default-rtdb.europe-west1.firebasedatabase.app/users/";
+//   const res = await fetch(endpoint + user + ".json", {
+//     method: "PUT",
+//     body: JSON.stringify(obj),
+//   });
+// }
 
 function signOutUser() {
   signOut(auth)
