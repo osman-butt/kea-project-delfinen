@@ -2,6 +2,7 @@
 //import modules
 import { initViews, setDefaultView } from "./view-controller.js";
 import { getMembers, createMember } from "./rest-services.js";
+import { auth } from "./authentication.js";
 
 //form references
 const memberForm = document.querySelector("#member-form");
@@ -77,7 +78,7 @@ async function displayMembers() {
   </tr>`;
   table.insertAdjacentHTML("beforeend", tableHeader);
   const data = await getMembers(auth);
-  console.log(`Fetched members: ${JSON.stringify(data)}`);
+  // console.log(`Fetched members: ${JSON.stringify(data)}`);
   console.log(data);
   data.forEach(displayMember);
 }

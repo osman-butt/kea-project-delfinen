@@ -1,6 +1,6 @@
-import { getAuth } from "./firebase-sdk.js";
+// import { getAuth } from "./firebase-sdk.js";
 
-("use strict");
+"use strict";
 
 import { auth } from "./authentication.js";
 const endpoint =
@@ -35,8 +35,7 @@ async function getMembersUpdate() {
 // READ
 async function fetchMembers(auth) {
   console.log("---getMembers()---");
-
-  const auth = getAuth(); // use getAuth to get the auth instance
+  // use getAuth to get the auth instance
   const token = auth.currentUser?.stsTokenManager.accessToken;
   const response = await fetch(`${endpoint}/members.json?auth=${token}`);
   if (response.ok) {
@@ -78,8 +77,8 @@ async function deleteMember(id) {
 async function createMember(name, email, dob, age, activities) {
   console.log("---createMember()---");
 
-  const auth = getAuth(); // use getAuth to get the auth instance
-  const token = auth.currentUser?.stsTokenManager.accessToken;
+  // const auth = getAuth(); // use getAuth to get the auth instance
+  const token = auth.currentUser.stsTokenManager.accessToken;
 
   const newMember = {
     name,
@@ -109,4 +108,4 @@ async function createMember(name, email, dob, age, activities) {
   }
 }
 
-export { getMembers, createMember };
+export { getMembers, getMembersUpdate, createMember, deleteMember };
