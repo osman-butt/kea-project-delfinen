@@ -20,18 +20,19 @@ async function displayMember(memberObj) {
   const members = document.querySelector("#member-table");
   memberObj.age = getAge(memberObj.dob);
   memberObj.membershipType = memberObj.age < 18 ? "Junior" : "Senior";
+  let activities = Array.isArray(memberObj.activity)
+    ? memberObj.activity.sort().join(", ")
+    : "N/A";
   const html = /*html*/ `
   <article>
     <tr class="member-table-row">
-      <td><img src="${
-        memberObj.profileImage
-      }" alt="" style="object-fit: contain; width:2em; border-radius: 2em"/></td>
+      <td><img src="${memberObj.profileImage}" alt="" style="object-fit: contain; width:2em; border-radius: 2em"/></td>
       <td class="col1">${memberObj.name}</td>
       <td class="col2">${memberObj.email}</td>
       <td class="col3">${memberObj.dob}</td>
       <td class="col4">${memberObj.age}</td>
       <td class="col5">${memberObj.membershipActive}</td>
-      <td class="col6">${memberObj.activity.sort().join(", ")}</td>
+      <td class="col6">${activities}</td>
     </tr>
   </article>
   `;
@@ -60,7 +61,6 @@ async function deleteMemberClicked() {
   displayMembersUpdated();
   document.querySelector("#dialog-read-member").close();
 }
-
 function showReadMemberDialog(memberObj) {
   document
     .querySelector(".dialog-delete-member")

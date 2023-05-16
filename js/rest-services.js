@@ -74,7 +74,14 @@ async function deleteMember(id) {
 }
 
 //CREATE
-async function createMember(name, email, dob, age, activities) {
+async function createMember(
+  name,
+  email,
+  dob,
+  age,
+  activities,
+  membershipActive
+) {
   console.log("---createMember()---");
 
   // const auth = getAuth(); // use getAuth to get the auth instance
@@ -86,6 +93,7 @@ async function createMember(name, email, dob, age, activities) {
     dob,
     age,
     activities,
+    membershipActive,
   };
 
   console.log(`Creating member: ${JSON.stringify(newMember)}`);

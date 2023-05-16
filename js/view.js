@@ -41,9 +41,15 @@ async function formSubmitHandler(event) {
   const email = emailInput.value;
   const dob = dobInput.value;
   const age = ageInput.value;
-  const activities = Array.from(activitiesSelect.selectedOptions).map(
-    option => option.value
+
+  // Get checked activities
+  const activitiesInputs = document.querySelectorAll(
+    'input[name="activities"]:checked'
   );
+  let activities = [];
+  activitiesInputs.forEach((input) => {
+    activities.push(input.value);
+  });
 
   // Call function to handle the form data
   const newMember = await createMember(name, email, dob, age, activities);
@@ -78,7 +84,6 @@ async function displayMembers() {
   </tr>`;
   table.insertAdjacentHTML("beforeend", tableHeader);
   const data = await getMembers(auth);
-  // console.log(`Fetched members: ${JSON.stringify(data)}`);
   console.log(data);
   data.forEach(displayMember);
 }
@@ -136,7 +141,6 @@ function openMemberForm() {
   nameInput.value = "";
   emailInput.value = "";
   dobInput.value = "";
-  ageInput.value = "";
   activitiesSelect.selectedIndex = -1; //deselect all options
   //Show form
   memberFormModal.style.display = "block";

@@ -9,14 +9,34 @@ export function attachCreateMemberListener() {
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
     const dob = document.getElementById("dob").value;
-    const age = document.getElementById("age").value;
+    const gender = document.getElementById("gender").value;
+    const membershipActive = document.getElementById("membershipActive").value;
+    const membershipLevel = document.getElementById("membershipLevel").value;
     const activities = Array.from(
-      document.getElementById("activities").selectedOptions
-    ).map((option) => option.value);
+      document.querySelectorAll('input[name="activities"]:checked')
+    ).map((checkbox) => checkbox.value);
+    const profileImage = document.getElementById("profileImage").files[0];
 
-    console.log(name, email, dob, age, activities);
+    console.log(
+      name,
+      email,
+      dob,
+      gender,
+      membershipActive,
+      membershipLevel,
+      activities
+    );
 
-    const newMember = await createMember(name, email, dob, age, activities);
+    const newMember = await createMember(
+      name,
+      email,
+      dob,
+      gender,
+      membershipActive,
+      membershipLevel,
+      activities,
+      profileImage
+    );
     console.log(`New Member: ${JSON.stringify(newMember)}`);
   });
 }

@@ -80,23 +80,34 @@
               <button id="opret-medlem" class="admin-button">
                <i class="fas fa-user-plus"></i>Opret medlem</button>
             </div>
-            <!-- Medlemsform -->
-            <div id="member-form-modal" class="hidden">
+         <div id="member-form-modal" class="hidden">
       <div id="member-form">
-        <input type="text" id="name" placeholder="Navn"/>
-        <input type="email" id="email" placeholder="Email"/>
-        <input type="date" id="dob" placeholder="Fødselsdag"/>
-        <input type="number" id="age" placeholder="Alder"/>
-        <select id="activities" multiple>
-          <option value="butterfly">Butterfly</option>
-          <option value="fri">Fri</option>
-          <option value="brystsvømning">Brystsvømning</option>
-          <option value="rygsvømning">Rygsvømning</option>
-        </select>
+        <input type="text" id="name" name="name" placeholder="Navn"/>
+        <input type="email" id="email" name="email" placeholder="Email"/>
+        <input type="date" id="dob" name="dob" placeholder="Fødselsdag"/>
+        <input type="text" id="gender" name="gender" placeholder="Køn"/>
+      <select id="membershipActive" name="membershipActive">
+        <option value="true">Active</option>
+        <option value="false">Inactive</option>
+      </select>
+      <select id="membershipLevel" name="membershipLevel">
+        <option value="beginner">Beginner</option>
+        <option value="intermediate">Intermediate</option>
+        <option value="advanced">Advanced</option>
+      </select>
+      <fieldset id="activities">
+        <legend>Activities</legend>
+        <label><input type="checkbox" name="activities" value="butterfly"> Butterfly</label>
+        <label><input type="checkbox" name="activities" value="fri"> Fri</label>
+        <label><input type="checkbox" name="activities" value="brystsvømning"> Brystsvømning</label>
+        <label><input type="checkbox" name="activities" value="rygsvømning"> Rygsvømning</label>
+      </fieldset>
+     <input type="file" id="profileImage" name="profileImage" accept="image/*" />
         <button id="create-member">Opret Medlem</button>
         <button id="close-form" class="admin-button">Close</button>
-      </div>
-    </div>
+  </div>
+             </div>
+
 
 
             <div class="search-container">
