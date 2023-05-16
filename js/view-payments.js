@@ -8,7 +8,8 @@ async function displayPayments() {
   paymentsUI();
   const payments = await getPayments();
   const members = await getMembers();
-  const mergedList = mergeArrays(payments, members);
+  const mergedList = calcSum(mergeArrays(payments, members));
+  mergedList.sort((a, b) => b.sum - a.sum);
   console.log("MERGED LIST");
   console.log(mergedList);
   mergedList.forEach(displayPayment);
@@ -19,18 +20,24 @@ async function displayPayment(paymentObj) {
   const html = /*html*/ `
   <article>
     <tr class="payment-table-row">
-      <td><img src="${
-        paymentObj.member.profileImage
-      }" alt="" style="object-fit: contain; width:2em; border-radius: 2em"/></td>
-      <td class="col2">${paymentObj.member.name}</td>
-      <td class="col3">${Object.values(paymentObj.payments).reduce(
-        (a, b) => a + b,
-        0
-      )}</td>
+      <td><img src="${paymentObj.member.profileImage}" alt="" style="object-fit: contain; width:2em; border-radius: 2em"/></td>
+      <td class="col1">${paymentObj.member.name}</td>
+      <td class="col3">${paymentObj.member.membershipActive}</td>
+      <td class="col2">${paymentObj.sum}</td>
     </tr>
   </article>
   `;
   members.insertAdjacentHTML("beforeend", html);
+}
+
+function calcSum(list) {
+  for (const obj of list) {
+    obj.sum = Object.values(obj.payments).reduce(
+      (sum, entry) => sum + entry,
+      0
+    );
+  }
+  return list;
 }
 
 function mergeArrays(arr1, arr2) {
