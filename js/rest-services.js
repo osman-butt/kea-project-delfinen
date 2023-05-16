@@ -1,12 +1,16 @@
-"use strict";
+import { getAuth } from "./firebase-sdk.js";
+
+("use strict");
 
 const endpoint =
   "https://kea-delfinen-default-rtdb.europe-west1.firebasedatabase.app/";
 
 // READ
-async function getMembers(auth) {
+async function getMembers() {
   console.log("---getMembers()---");
-  const token = auth.currentUser.stsTokenManager.accessToken;
+
+  const auth = getAuth(); // use getAuth to get the auth instance
+  const token = auth.currentUser?.stsTokenManager.accessToken;
   const response = await fetch(`${endpoint}/members.json?auth=${token}`);
   if (response.ok) {
     console.log("getMembers status " + response.status);
@@ -32,7 +36,9 @@ function prepareData(dataObject) {
 //CREATE
 async function createMember(name, email, dob, age, activities) {
   console.log("---createMember()---");
-  const token = auth.currentUser.stsTokenManager.accessToken;
+
+  const auth = getAuth(); // use getAuth to get the auth instance
+  const token = auth.currentUser?.stsTokenManager.accessToken;
 
   const newMember = {
     name,
@@ -41,6 +47,8 @@ async function createMember(name, email, dob, age, activities) {
     age,
     activities,
   };
+
+  console.log(`Creating member: ${JSON.stringify(newMember)}`);
 
   const response = await fetch(`${endpoint}/members.json?auth=${token}`, {
     method: "POST",
@@ -52,7 +60,9 @@ async function createMember(name, email, dob, age, activities) {
 
   if (response.ok) {
     console.log("createMember status" + response.status);
-    return await response.json();
+    const jsonResponse = await response.json();
+    console.log(`Response: ${JSON.stringify(jsonResponse)}`);
+    return jsonResponse;
   } else {
     console.log(response.status, response.statusText);
   }

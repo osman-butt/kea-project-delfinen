@@ -37,15 +37,22 @@ async function formSubmitHandler(event) {
 
   //Get form data
   const name = nameInput.value;
+  console.log(`Name: ${name}`);
   const email = emailInput.value;
+  console.log(`Email: ${email}`);
   const dob = dobInput.value;
+  console.log(`DOB: ${dob}`);
   const age = ageInput.value;
+  console.log(`Age: ${age}`);
   const activities = Array.from(activitiesSelect.selectedOptions).map(
     (option) => option.value
   );
 
+  console.log(`Activities: ${activities}`);
+
   //Call function to handle the form data
   const newMember = await createMember(name, email, dob, age, activities);
+  console.log(`New Member: ${JSON.stringify(newMember)}`);
 
   //Close the form
   memberForm.classList.add("hidden");
@@ -69,6 +76,7 @@ async function displayMembers() {
   </tr>`;
   table.insertAdjacentHTML("beforeend", tableHeader);
   const data = await getMembers(auth);
+  console.log(`Fetched members: ${JSON.stringify(data)}`);
   console.log(data);
   data.forEach(displayMember);
 }
@@ -96,7 +104,11 @@ async function displayMember(listOfMembers) {
       <td class="col3">${listOfMembers.dob}</td>
       <td class="col4">${listOfMembers.age}</td>
       <td class="col5">${listOfMembers.membershipActive ? "Ja" : "Nej"}</td>
-      <td class="col6">${listOfMembers.activity.sort().join(", ")}</td>
+      <td class="col6">${
+        listOfMembers.activities
+          ? listOfMembers.activities.sort().join(", ")
+          : ""
+      }</td>
     </tr>
   `;
   members.insertAdjacentHTML("beforeend", html);
