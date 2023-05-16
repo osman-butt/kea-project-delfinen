@@ -26,4 +26,6 @@ function membersUI() {
   table.insertAdjacentHTML("beforeend", tableHeader);
 }
 
-export { getAge, membersUI };
+function paymentsUI() {}
+
+export { getAge, membersUI, paymentsUI };

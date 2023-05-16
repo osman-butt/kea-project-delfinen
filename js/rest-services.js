@@ -4,14 +4,16 @@ import { auth } from "./authentication.js";
 const endpoint =
   "https://kea-delfinen-default-rtdb.europe-west1.firebasedatabase.app/";
 
+let lastMemberFetch = 0;
 let listOfMembers = [];
-let lastFetch = 0;
+let lastPaymentFetch = 0;
+let listOfPayments = [];
 
 // Caching data - fetch can be performed every 10sec
 async function getMembers() {
   const now = Date.now();
 
-  if (now - lastFetch > 10_000 || listOfMembers.length === 0) {
+  if (now - lastMemberFetch > 10_000 || listOfMembers.length === 0) {
     await fetchMembers(auth);
     console.log("FETCHED Members data");
   }
@@ -22,12 +24,35 @@ async function getMembers() {
 async function getMembersUpdate() {
   const now = Date.now();
 
-  if (now - lastFetch > 1 || listOfMembers.length === 0) {
+  if (now - lastMemberFetch > 1 || listOfMembers.length === 0) {
     await fetchMembers(auth);
     console.log("FETCHED Members data");
   }
   console.log(listOfMembers);
   return listOfMembers;
+}
+
+// Caching data - fetch can be performed every 10sec
+async function getPayments() {
+  const now = Date.now();
+
+  if (now - lastPaymentFetch > 10_000 || listOfPayments.length === 0) {
+    await fetchPayments(auth);
+    console.log("FETCHED Payments data");
+  }
+  console.log(listOfPayments);
+  return listOfPayments;
+}
+
+async function getPaymentsUpdate() {
+  const now = Date.now();
+
+  if (now - lastPaymentFetch > 1 || listOfPayments.length === 0) {
+    await fetchPayments(auth);
+    console.log("FETCHED Payments data");
+  }
+  console.log(listOfPayments);
+  return listOfPayments;
 }
 
 // READ
@@ -39,7 +64,23 @@ async function fetchMembers(auth) {
     console.log("getMembers status " + response.status);
     const data = await response.json();
     listOfMembers = prepareData(data);
+    lastMemberFetch = Date.now();
     return listOfMembers;
+  } else {
+    console.log(response.status, response.statusText);
+  }
+}
+
+async function fetchPayments(auth) {
+  console.log("---fetchPayments()---");
+  const token = auth.currentUser.stsTokenManager.accessToken;
+  const response = await fetch(`${endpoint}/payments.json?auth=${token}`);
+  if (response.ok) {
+    console.log("getMembers status " + response.status);
+    const data = await response.json();
+    listOfPayments = prepareData(data);
+    lastPaymentFetch = Date.now();
+    return listOfPayments;
   } else {
     console.log(response.status, response.statusText);
   }
@@ -53,7 +94,6 @@ function prepareData(dataObject) {
     data.id = key;
     dataList.push(data);
   }
-  lastFetch = Date.now();
   return dataList;
 }
 
@@ -70,4 +110,10 @@ async function deleteMember(id) {
   }
 }
 
-export { getMembers, getMembersUpdate, deleteMember };
+export {
+  getMembers,
+  getMembersUpdate,
+  deleteMember,
+  getPayments,
+  getPaymentsUpdate,
+};
