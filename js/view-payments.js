@@ -9,3 +9,5 @@ async function displayPayments() {
   const data = await getPayments();
   data.forEach(displayMember);
 }
+
+export { displayPayments };
