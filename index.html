@@ -56,7 +56,7 @@
           <a class="nav-link view-link" href="#members"
             ><i class="fas fa-user-plus"></i>Medlemmer
           </a>
-          <a class="nav-link view-link" href="#subscription"
+          <a class="nav-link view-link" href="#payments"
             ><i class="fas fa-dollar-sign"></i>Kontingent</a
           >
           <a class="nav-link view-link" href="#results"
@@ -128,8 +128,32 @@
           </form>
         </dialog>
       </section>
-      <section id="subscription" class="view-content">
-        <h2>Kontigent data</h2>
+      <section id="payments" class="view-content">
+        <section id="payments-container">
+          <table id="payments-table">
+            <!-------- MEMBER DATA GOES HERE -------->
+          </table>
+        </section>
+        <dialog id="dialog-read-payment">
+          <form method="dialog">
+            <button class="close-btn"><i class="fas fa-times"></i></button>
+            <h2>Kontoudtog</h2>
+          </form>
+          <section class="dialog-container">
+            <img id="dialog-read-payment-img" src="" alt="profil-billede" style="width: 3em; border-radius: 3em;">
+            <h3 id="dialog-read-payment-name"></h3>
+            <p>Aktivt medlem: <span id="dialog-read-payment-membershipActive"></span></p>
+            <p>Medlem siden: <span id="dialog-read-payment-membershipDate"></span></p>
+            <article id="payment-movement">
+              <table id="payment-movement-table">
+                <!-------- PAYMENT MOVEMENTS -------->
+              </table>
+            </article>
+          </section>
+          <!-- <div class="dialog-btn-container"> -->
+            <button class="dialog-btn" id="payment-btn"><i class="fas fa-pen"></i> Registrer betaling</button>
+          <!-- </div> -->
+        </dialog>
       </section>
       <section id="results" class="view-content"><h2>Resultater</h2></section>
     </section>

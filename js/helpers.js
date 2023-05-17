@@ -26,4 +26,18 @@ function membersUI() {
   table.insertAdjacentHTML("beforeend", tableHeader);
 }
 
-export { getAge, membersUI };
+function paymentsUI() {
+  const table = document.querySelector("#payments-table");
+  table.textContent = "";
+  const tableHeader = /*html*/ `
+   <tr>
+    <th></th>
+    <th class="col1">Navn</th>
+    <th class="col3">Aktivt medlem</th>
+    <th class="col4">Medlem siden</th>
+    <th class="col2">Skyldigt beløb</th>
+  </tr>`;
+  table.insertAdjacentHTML("beforeend", tableHeader);
+}
+
+export { getAge, membersUI, paymentsUI };

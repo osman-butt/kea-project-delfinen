@@ -2,6 +2,7 @@
 
 // This module is inspired by https://github.com/cederdorff/simple-spa
 import { displayMembers } from "./view-members.js";
+import { displayPayments } from "./view-payments.js";
 
 function initViews() {
   window.addEventListener("hashchange", viewChange); // whenever the hash changes (you hit a link or change the hash)
@@ -18,6 +19,8 @@ function viewChange() {
 
   if (hashLink == "#members") {
     displayMembers();
+  } else if (hashLink == "#payments") {
+    displayPayments();
   }
 
   hideAllViews(); // hide all views
