@@ -1,5 +1,4 @@
 import { createMember } from "./rest-services.js";
-
 export function attachCreateMemberListener() {
   const createMemberButton = document.getElementById("create-member");
 
@@ -10,7 +9,10 @@ export function attachCreateMemberListener() {
     const email = document.getElementById("email").value;
     const dob = document.getElementById("dob").value;
     const gender = document.getElementById("gender").value;
-    const membershipActive = document.getElementById("membershipActive").value;
+    const membershipActive =
+      document.getElementById("membershipActive").value === "true"
+        ? "Ja"
+        : "Nej";
     const membershipLevel = document.getElementById("membershipLevel").value;
     const activities = Array.from(
       document.querySelectorAll('input[name="activities"]:checked')

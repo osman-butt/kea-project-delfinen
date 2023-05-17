@@ -78,22 +78,25 @@ async function createMember(
   name,
   email,
   dob,
-  age,
+  gender,
+  membershipActive,
+  membershipLevel,
   activities,
-  membershipActive
+  profileImage
 ) {
   console.log("---createMember()---");
 
-  // const auth = getAuth(); // use getAuth to get the auth instance
   const token = auth.currentUser.stsTokenManager.accessToken;
 
   const newMember = {
     name,
     email,
     dob,
-    age,
-    activities,
+    gender,
     membershipActive,
+    membershipLevel,
+    activities,
+    profileImage, // Assuming that profileImage is a URL or some reference to an image
   };
 
   console.log(`Creating member: ${JSON.stringify(newMember)}`);

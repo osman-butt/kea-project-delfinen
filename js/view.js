@@ -33,42 +33,6 @@ function displaySignedInUserPage() {
   memberForm.addEventListener("submit", formSubmitHandler);
 }
 
-async function formSubmitHandler(event) {
-  event.preventDefault();
-
-  // Get form data
-  const name = nameInput.value;
-  const email = emailInput.value;
-  const dob = dobInput.value;
-  const age = ageInput.value;
-
-  // Get checked activities
-  const activitiesInputs = document.querySelectorAll(
-    'input[name="activities"]:checked'
-  );
-  let activities = [];
-  activitiesInputs.forEach((input) => {
-    activities.push(input.value);
-  });
-
-  // Call function to handle the form data
-  const newMember = await createMember(name, email, dob, age, activities);
-
-  // Check if member was created successfully
-  if (newMember.name) {
-    console.log(`New Member Created: ${JSON.stringify(newMember)}`);
-    alert("Bruger er oprettet");
-
-    // Close the form
-    memberForm.classList.add("hidden");
-
-    // Update the member display
-    displayMembers();
-  } else {
-    console.log("Error creating new member.");
-  }
-}
-
 async function displayMembers() {
   const table = document.querySelector("#member-table");
   table.textContent = "";
@@ -98,6 +62,53 @@ function getAge(dateString) {
   return age;
 }
 
+async function formSubmitHandler(event) {
+  event.preventDefault();
+
+  // Get form data
+  const name = nameInput.value;
+  const email = emailInput.value;
+  const dob = dobInput.value;
+  const gender = genderInput.value;
+  const membershipActive =
+    membershipActiveInput.value === "true" ? "Ja" : "Nej";
+  const membershipLevel = membershipLevelInput.value;
+
+  // Get checked activities
+  const activitiesInputs = document.querySelectorAll(
+    'input[name="activities"]:checked'
+  );
+  let activities = [];
+  activitiesInputs.forEach((input) => {
+    activities.push(input.value);
+  });
+
+  // Call function to handle the form data
+  const newMember = await createMember(
+    name,
+    email,
+    dob,
+    gender,
+    membershipActive,
+    membershipLevel,
+    activities
+  );
+
+  // Check if member was created successfully
+  if (newMember.name) {
+    console.log(`New Member Created: ${JSON.stringify(newMember)}`);
+    alert("Bruger er oprettet");
+
+    // Close the form
+    memberForm.classList.add("hidden");
+
+    // Update the member display
+    displayMembers();
+  } else {
+    console.log("Error creating new member.");
+  }
+}
+
 async function displayMember(listOfMembers) {
   const members = document.querySelector("#member-table");
   listOfMembers.age = getAge(listOfMembers.dob);
@@ -110,7 +121,7 @@ async function displayMember(listOfMembers) {
       <td class="col2">${listOfMembers.email}</td>
       <td class="col3">${listOfMembers.dob}</td>
       <td class="col4">${listOfMembers.age}</td>
-      <td class="col5">${listOfMembers.membershipActive ? "Ja" : "Nej"}</td>
+      <td class="col5">${listOfMembers.membershipActive}</td>
       <td class="col6">${
         listOfMembers.activities
           ? listOfMembers.activities.sort().join(", ")
