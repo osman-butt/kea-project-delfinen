@@ -34,6 +34,7 @@ function paymentsUI() {
     <th></th>
     <th class="col1">Navn</th>
     <th class="col3">Aktivt medlem</th>
+    <th class="col4">Medlem siden</th>
     <th class="col2">Skyldigt beløb</th>
   </tr>`;
   table.insertAdjacentHTML("beforeend", tableHeader);

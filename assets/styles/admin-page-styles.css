@@ -52,7 +52,8 @@
   }
 }
 
-#members-container {
+#members-container,
+#payments-container {
   display: grid;
   grid-template-columns: 1fr;
   margin: auto;
@@ -172,4 +173,31 @@ main {
   .col6 {
     display: table-cell;
   }
+}
+
+.currency-format {
+  text-align: right;
+}
+
+.currency-format::after {
+  content: " kr";
+}
+
+#payment-movement {
+  grid-column: span 2;
+}
+
+#payment-movement-table {
+  /* background-color: grey; */
+  font-size: 14px;
+  margin: auto;
+  width: 100%;
+}
+
+#payment-btn {
+  width: 14em;
+}
+
+.col-right {
+  text-align: right;
 }
