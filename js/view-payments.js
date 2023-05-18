@@ -18,6 +18,10 @@ async function displayPayments() {
   console.log("MERGED LIST");
   console.log(mergedList);
   mergedList.forEach(displayPayment);
+  console.log(
+    "SUM OF ALL " +
+      mergedList.reduce((partialSum, obj) => partialSum + obj.sum, 0)
+  );
 }
 
 async function displayPaymentsUpdated() {
@@ -29,6 +33,10 @@ async function displayPaymentsUpdated() {
   console.log("MERGED LIST");
   console.log(mergedList);
   mergedList.forEach(displayPayment);
+  console.log(
+    "SUM OF ALL " +
+      mergedList.reduce((partialSum, obj) => partialSum + obj.sum, 0)
+  );
 }
 
 async function displayPayment(paymentObj) {
@@ -87,7 +95,8 @@ function addPayment() {
   const dateFormated = now.toISOString().substring(0, 10);
   const addNewRow = /*html*/ `
       <tr class="newRow">
-      <td>${dateFormated}</td>
+      <td><input type="date"
+      id="inputDate"/></td>
       <td>
         <select name="payment-type" id="payment-type">
           <option value="Betaling">Betaling</option>
@@ -114,21 +123,21 @@ async function addPaymentClicked(event) {
       document.querySelector("#payment-type").value === "Regning"
         ? document.querySelector("#inputAmount").value
         : "-" + document.querySelector("#inputAmount").value;
-    await createPayment(id, amount);
+    const date = document.querySelector("#inputDate").value;
+    await createPayment(id, date, amount);
     console.log("CREATED PAYMENT");
     document
       .querySelector("#add-payment-btn")
       .addEventListener("click", addPayment);
-    closeInputPayment(amount);
+    closeInputPayment(date, amount);
   }
 }
 
-function closeInputPayment(amount) {
+function closeInputPayment(date, amount) {
   const table = document.querySelector("#payment-movement-table");
-  const today = new Date().toISOString().substring(0, 10);
   const row = /*html*/ `
     <tr>
-      <td>${today}</td>
+      <td>${date}</td>
       <td>${amount >= 0 ? "Regning" : "Betaling"}</td>
       <td class="col2 currency-format">${amount}</td>
     </tr>
