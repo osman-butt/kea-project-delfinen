@@ -98,12 +98,12 @@ function prepareData(dataObject) {
 }
 
 // create
-async function createPayment(auth, uid, amount) {
+async function createPayment(uid, amount) {
   const token = auth.currentUser.stsTokenManager.accessToken;
   const now = new Date(Date.now());
   const paymentId = now.toISOString().replaceAll(":", "").replaceAll(".", "");
   const body = {};
-  body[paymentId] = amount;
+  body[paymentId] = Number(amount);
   const response = await fetch(
     `${endpoint}/payments/${uid}/payments.json?auth=${token}`,
     {
