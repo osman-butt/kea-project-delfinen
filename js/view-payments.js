@@ -92,11 +92,10 @@ function addPayment() {
   const table = document.querySelector("#payment-movement-table");
   document.querySelector("#payment-movement-table tbody:last-child").remove();
   const now = new Date(Date.now());
-  const dateFormated = now.toISOString().substring(0, 10);
   const addNewRow = /*html*/ `
       <tr class="newRow">
       <td><input type="date"
-      id="inputDate"/></td>
+      id="inputDate" required/></td>
       <td>
         <select name="payment-type" id="payment-type">
           <option value="Betaling">Betaling</option>
@@ -104,7 +103,7 @@ function addPayment() {
         </select>
       </td>
       <td class="col2 currency-format" style="font-weight: bold;"><input type="number"
-      id="inputAmount" placeholder="Indtast beløb" /></td>
+      id="inputAmount" placeholder="Indtast beløb" required/></td>
     </tr>
   `;
   table.insertAdjacentHTML("beforeend", addNewRow);
@@ -118,18 +117,42 @@ async function addPaymentClicked(event) {
   const id = document
     .querySelector("#dialog-read-payment")
     .getAttribute("data-id");
-  if (event.key === "Enter") {
+
+  const inputAmount = document.querySelector("#inputAmount");
+  const inputDate = document.querySelector("#inputDate");
+  const check =
+    inputDate.value !== "" &&
+    inputAmount.value !== "" &&
+    Number(inputAmount.value) > 0;
+  if (event.key === "Enter" && check) {
     const amount =
       document.querySelector("#payment-type").value === "Regning"
-        ? document.querySelector("#inputAmount").value
-        : "-" + document.querySelector("#inputAmount").value;
-    const date = document.querySelector("#inputDate").value;
+        ? inputAmount.value
+        : "-" + inputAmount.value;
+    const date = inputDate.value;
     await createPayment(id, date, amount);
     console.log("CREATED PAYMENT");
     document
       .querySelector("#add-payment-btn")
       .addEventListener("click", addPayment);
     closeInputPayment(date, amount);
+  } else if (event.key === "Enter") {
+    const table = document.querySelector("#payment-movement-table");
+    document.querySelector("#payment-movement-table tbody:last-child").remove();
+    const sum = document
+      .querySelector("#dialog-read-payment")
+      .getAttribute("data-sum");
+    const sumRow = /*html*/ `
+    <tr id="sumRow">
+      <td></td>
+      <td style="font-weight: bold;">Saldo</td>
+      <td class="col2 currency-format" style="font-weight: bold;">${sum}</td>
+    </tr>
+  `;
+    table.insertAdjacentHTML("beforeend", sumRow);
+    document
+      .querySelector("#add-payment-btn")
+      .addEventListener("click", addPayment);
   }
 }
 
