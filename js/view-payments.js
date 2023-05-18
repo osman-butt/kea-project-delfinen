@@ -1,12 +1,28 @@
 "use strict";
 
 //import modules
-import { getPayments, getMembers } from "./rest-services.js";
+import {
+  getPayments,
+  getMembers,
+  createPayment,
+  getPaymentsUpdate,
+} from "./rest-services.js";
 import { paymentsUI } from "./helpers.js";
 
 async function displayPayments() {
   paymentsUI();
   const payments = await getPayments();
+  const members = await getMembers();
+  const mergedList = calcSum(mergeArrays(payments, members));
+  mergedList.sort((a, b) => b.sum - a.sum);
+  console.log("MERGED LIST");
+  console.log(mergedList);
+  mergedList.forEach(displayPayment);
+}
+
+async function displayPaymentsUpdated() {
+  paymentsUI();
+  const payments = await getPaymentsUpdate();
   const members = await getMembers();
   const mergedList = calcSum(mergeArrays(payments, members));
   mergedList.sort((a, b) => b.sum - a.sum);
@@ -37,6 +53,12 @@ async function displayPayment(paymentObj) {
 }
 
 function showReadPaymentDialog(paymentObj) {
+  // Set uid attribute
+  // Add payment
+  document
+    .querySelector("#add-payment-btn")
+    .addEventListener("click", addPayment);
+  console.log("Show read payments");
   document.querySelector("#dialog-read-payment-img").src =
     paymentObj.member.profileImage;
   document.querySelector("#dialog-read-payment-name").textContent =
@@ -47,6 +69,92 @@ function showReadPaymentDialog(paymentObj) {
     paymentObj.member.membershipDate;
   displayPaymentMovements(paymentObj);
   document.querySelector("#dialog-read-payment").showModal();
+  document
+    .querySelector("#dialog-read-payment")
+    .setAttribute("data-id", paymentObj.id);
+  document
+    .querySelector("#dialog-read-payment")
+    .setAttribute("data-sum", paymentObj.sum);
+}
+
+function addPayment() {
+  document
+    .querySelector("#add-payment-btn")
+    .removeEventListener("click", addPayment);
+  const table = document.querySelector("#payment-movement-table");
+  document.querySelector("#payment-movement-table tbody:last-child").remove();
+  const now = new Date(Date.now());
+  const dateFormated = now.toISOString().substring(0, 10);
+  const addNewRow = /*html*/ `
+      <tr class="newRow">
+      <td>${dateFormated}</td>
+      <td>
+        <select name="payment-type" id="payment-type">
+          <option value="Betaling">Betaling</option>
+          <option value="Regning">Regning</option>
+        </select>
+      </td>
+      <td class="col2 currency-format" style="font-weight: bold;"><input type="number"
+      id="inputAmount" placeholder="Indtast beløb" /></td>
+    </tr>
+  `;
+  table.insertAdjacentHTML("beforeend", addNewRow);
+  console.log("ONE ROW ADDED");
+  document
+    .querySelector("#inputAmount")
+    .addEventListener("keypress", addPaymentClicked);
+}
+
+async function addPaymentClicked(event) {
+  const id = document
+    .querySelector("#dialog-read-payment")
+    .getAttribute("data-id");
+  if (event.key === "Enter") {
+    const amount =
+      document.querySelector("#payment-type").value === "Regning"
+        ? document.querySelector("#inputAmount").value
+        : "-" + document.querySelector("#inputAmount").value;
+    await createPayment(id, amount);
+    console.log("CREATED PAYMENT");
+    document
+      .querySelector("#add-payment-btn")
+      .addEventListener("click", addPayment);
+    closeInputPayment(amount);
+  }
+}
+
+function closeInputPayment(amount) {
+  const table = document.querySelector("#payment-movement-table");
+  const today = new Date().toISOString().substring(0, 10);
+  const row = /*html*/ `
+    <tr>
+      <td>${today}</td>
+      <td>${amount >= 0 ? "Regning" : "Betaling"}</td>
+      <td class="col2 currency-format">${amount}</td>
+    </tr>
+    `;
+  // Remove input row
+  document.querySelector("#payment-movement-table tbody:last-child").remove();
+  table.insertAdjacentHTML("beforeend", row);
+  // Add sum row
+  const sumBefore = document
+    .querySelector("#dialog-read-payment")
+    .getAttribute("data-sum");
+  const newSum = Number(sumBefore) + Number(amount);
+  const sumRow = /*html*/ `
+    <tr id="sumRow">
+      <td></td>
+      <td style="font-weight: bold;">Saldo</td>
+      <td class="col2 currency-format" style="font-weight: bold;">${newSum}</td>
+    </tr>
+  `;
+  table.insertAdjacentHTML("beforeend", sumRow);
+  document
+    .querySelector("#dialog-read-payment")
+    .setAttribute("data-sum", newSum);
+  document
+    .querySelector("#dialog-read-payment")
+    .addEventListener("close", displayPaymentsUpdated);
 }
 
 function displayPaymentMovements(paymentObj) {
@@ -72,14 +180,14 @@ function displayPaymentMovements(paymentObj) {
       table.insertAdjacentHTML("beforeend", row);
     }
   }
-  const lastRow = /*html*/ `
-    <tr>
+  const sumRow = /*html*/ `
+    <tr id="sumRow">
       <td></td>
-      <td></td>
+      <td style="font-weight: bold;">Saldo</td>
       <td class="col2 currency-format" style="font-weight: bold;">${paymentObj.sum}</td>
     </tr>
   `;
-  table.insertAdjacentHTML("beforeend", lastRow);
+  table.insertAdjacentHTML("beforeend", sumRow);
 }
 
 function calcSum(list) {
