@@ -89,7 +89,7 @@
 }
 
 .admin-button {
-  background-color: #0066ff;
+  background-color: blue
   color: white;
   border: none;
   padding: 10px 20px;
@@ -129,4 +129,58 @@
 #member-form button:hover {
   transform: scale(1.02); /* Slightly enlarges the element */
   transition: transform 0.3s ease-in-out; /* Smooth transition */
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+  #member-form {
+    width: 90%;
+    padding: 15px;
+  }
+
+  #member-form input,
+  #member-form select,
+  #member-form button {
+    width: 100%;
+  }
+
+  #member-admin-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .button-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .search-container {
+    width: 100%;
+  }
+
+  #member-search {
+    width: 80%;
+  }
+}
+
+.form-header {
+  text-align: center;
+  font-size: 24px;
+  color: #ffffff;
+  background-color: #007bff;
+  font-family: "Oswald", sans-serif;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+}
+
+.form-header::after {
+  content: "";
+  display: block;
+  margin: 10px auto;
+  width: 50px;
+  height: 3px;
+  background-color: #fff;
 }
