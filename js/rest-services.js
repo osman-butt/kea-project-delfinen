@@ -96,7 +96,7 @@ async function createMember(
     membershipActive,
     membershipLevel,
     activities,
-    profileImage, // Assuming that profileImage is a URL or some reference to an image
+    profileImage,
   };
 
   console.log(`Creating member: ${JSON.stringify(newMember)}`);
