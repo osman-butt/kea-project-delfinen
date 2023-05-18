@@ -97,6 +97,29 @@ function prepareData(dataObject) {
   return dataList;
 }
 
+// create
+async function createPayment(uid, date, amount) {
+  const token = auth.currentUser.stsTokenManager.accessToken;
+  const now = new Date(Date.now());
+  const paymentId =
+    date +
+    now.toISOString().replaceAll(":", "").replaceAll(".", "").substring(10);
+  const body = {};
+  body[paymentId] = Number(amount);
+  const response = await fetch(
+    `${endpoint}/payments/${uid}/payments.json?auth=${token}`,
+    {
+      method: "PATCH",
+      body: JSON.stringify(body),
+    }
+  );
+  if (response.ok) {
+    console.log(response.status, response.statusText);
+  } else {
+    console.log(response.status, response.statusText);
+  }
+}
+
 // delete
 async function deleteMember(id) {
   console.log("---deleteMember()---");
@@ -116,4 +139,5 @@ export {
   deleteMember,
   getPayments,
   getPaymentsUpdate,
+  createPayment,
 };
