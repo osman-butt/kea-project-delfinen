@@ -1,3 +1,4 @@
+/
 // import { getAuth } from "./firebase-sdk.js";
 
 "use strict";
@@ -81,7 +82,7 @@ async function createMember(
   gender,
   membershipActive,
   membershipLevel,
-  activities,
+  activity,
   profileImage
 ) {
   console.log("---createMember()---");
@@ -95,7 +96,7 @@ async function createMember(
     gender,
     membershipActive,
     membershipLevel,
-    activities,
+    activity, // Updated this line
     profileImage,
   };
 

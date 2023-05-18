@@ -86,22 +86,29 @@
         <input type="text" id="name" name="name" placeholder="Navn"/>
         <input type="email" id="email" name="email" placeholder="Email"/>
         <input type="date" id="dob" name="dob" placeholder="Fødselsdag"/>
-        <input type="text" id="gender" name="gender" placeholder="Køn"/>
+       <select id="gender" name="gender">
+    <option value="">Vælg køn</option>
+    <option value="male">Mand</option>
+    <option value="female">Kvinde</option>
+</select>
+
       <select id="membershipActive" name="membershipActive">
+        <option value="">Aktivt Medlem?</option>
         <option value="true">Ja</option>
         <option value="false">Nej</option>
       </select>
       <select id="membershipLevel" name="membershipLevel">
-        <option value="beginner">Beginner</option>
-        <option value="intermediate">Intermediate</option>
+        <option value="medlemstype">Medlemstype</option>
+        <option value="beginner">Junior</option>
+        <option value="senior">Senior</option>
         <option value="advanced">Advanced</option>
       </select>
-      <fieldset id="activities">
+      <fieldset id="activity">
         <legend>Activities</legend>
-        <label><input type="checkbox" name="activities" value="butterfly"> Butterfly</label>
-        <label><input type="checkbox" name="activities" value="fri"> Fri</label>
-        <label><input type="checkbox" name="activities" value="brystsvømning"> Brystsvømning</label>
-        <label><input type="checkbox" name="activities" value="rygsvømning"> Rygsvømning</label>
+        <label><input type="checkbox" name="activity" value="butterfly"> Butterfly</label>
+        <label><input type="checkbox" name="activity" value="fri"> Fri</label>
+        <label><input type="checkbox" name="activity" value="brystsvømning"> Brystsvømning</label>
+        <label><input type="checkbox" name="activity" value="rygsvømning"> Rygsvømning</label>
       </fieldset>
      <input type="file" id="profileImage" name="profileImage" accept="image/*" />
         <button id="create-member">Opret Medlem</button>

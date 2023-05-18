@@ -123,9 +123,7 @@ async function displayMember(listOfMembers) {
       <td class="col4">${listOfMembers.age}</td>
       <td class="col5">${listOfMembers.membershipActive}</td>
       <td class="col6">${
-        listOfMembers.activities
-          ? listOfMembers.activities.sort().join(", ")
-          : ""
+        listOfMembers.activitity ? listOfMembers.activity.sort().join(", ") : ""
       }</td>
     </tr>
   `;
