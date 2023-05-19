@@ -8,6 +8,8 @@ let lastMemberFetch = 0;
 let listOfMembers = [];
 let lastPaymentFetch = 0;
 let listOfPayments = [];
+let listOfResults = [];
+let lastResultFetch = 0;
 
 // Caching data - fetch can be performed every 10sec
 async function getMembers() {
@@ -54,6 +56,28 @@ async function getPaymentsUpdate() {
   console.log(listOfPayments);
   return listOfPayments;
 }
+// Caching data - fetch can be performed every 10sec
+async function getResults() {
+  const now = Date.now();
+
+  if (now - lastResultFetch > 10_000 || listOfResults.length === 0) {
+    await fetchResults(auth);
+    console.log("FETCHED Results data");
+  }
+  console.log(listOfResults);
+  return listOfResults;
+}
+
+async function getResultsUpdate() {
+  const now = Date.now();
+
+  if (now - lastResultFetch > 1 || listOfResults.length === 0) {
+    await fetchResults(auth);
+    console.log("FETCHED Results data");
+  }
+  console.log(listOfResults);
+  return listOfResults;
+}
 
 // READ
 async function fetchMembers(auth) {
@@ -76,11 +100,26 @@ async function fetchPayments(auth) {
   const token = auth.currentUser.stsTokenManager.accessToken;
   const response = await fetch(`${endpoint}/payments.json?auth=${token}`);
   if (response.ok) {
-    console.log("getMembers status " + response.status);
+    console.log("getPayments status " + response.status);
     const data = await response.json();
     listOfPayments = prepareData(data);
     lastPaymentFetch = Date.now();
     return listOfPayments;
+  } else {
+    console.log(response.status, response.statusText);
+  }
+}
+
+async function fetchResults(auth) {
+  console.log("---fetchPayments()---");
+  const token = auth.currentUser.stsTokenManager.accessToken;
+  const response = await fetch(`${endpoint}/results.json?auth=${token}`);
+  if (response.ok) {
+    console.log("getResults status " + response.status);
+    const data = await response.json();
+    listOfResults = prepareData(data);
+    lastResultFetch = Date.now();
+    return listOfResults;
   } else {
     console.log(response.status, response.statusText);
   }
@@ -140,4 +179,6 @@ export {
   getPayments,
   getPaymentsUpdate,
   createPayment,
+  getResults,
+  getResultsUpdate,
 };

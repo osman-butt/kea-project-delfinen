@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./assets/styles/login-page-styles.css" />
     <link rel="stylesheet" href="./assets/styles/admin-page-styles.css" />
     <link rel="stylesheet" href="./assets/styles/dialog.css" />
+    <link rel="stylesheet" href="./assets/styles/results-page-styles.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
@@ -155,7 +156,94 @@
           <!-- </div> -->
         </dialog>
       </section>
-      <section id="results" class="view-content"><h2>Resultater</h2></section>
+      <section id="results" class="view-content">
+        <h2 style="text-align: center;">Top 5 Resultater</h2>
+        <section id="results-filter-container">
+          <div id="team-filter-container">
+            <label for="team-filter">Vælg hold:</label>
+            <select name="team-filter" id="team-filter" class="result-filter">
+              <option value="">Vælg</option>
+              <option value="senior">Senior</option>
+              <option value="junior">Ungdom</option>
+            </select>
+          </div>
+          <div id="gender-filter-container">
+            <label for="gender-filter">Vælg køn:</label>
+            <select name="gender-filter" id="gender-filter" class="result-filter">
+              <option value="">Vælg</option>
+              <option value="Kvinde">Kvinde</option>
+              <option value="Mand">Mand</option>
+            </select>
+          </div>
+        </section>
+        <section id="results-container">
+        <div class="result-grid-item">
+          <h3>Butterfly resultater</h3>
+          <table id="butterfly-table">
+            <tbody>
+                <tr>
+                <th class="col1-result">#</th>
+                <th class="col2-result">Navn</th>
+                <th class="col3-result">Tid</th>
+                <th class="col4-result">Stævne</th>
+                <th class="col5-result">Distance</th>
+                <th class="col6-result">Placering</th>
+                </tr>
+            </tbody>
+            <!-------- RESULT DATA GOES HERE -------->
+          </table>
+        </div>
+        <div class="result-grid-item">
+          <h3>Crawl resultater</h3>
+          <table id="crawl-table">
+            <tbody>
+              <tr>
+              <th class="col1-result">#</th>
+              <th class="col2-result">Navn</th>
+              <th class="col3-result">Tid</th>
+              <th class="col4-result">Stævne</th>
+              <th class="col5-result">Distance</th>
+              <th class="col6-result">Placering</th>
+              </tr>
+            </tbody>
+            <!-------- RESULT DATA GOES HERE -------->
+          </table>
+        </div>
+        <div class="result-grid-item">
+          <h3>Rygcrawl resultater</h3>
+          <table id="rygcrawl-table">
+            <tbody>
+              <tr>
+              <th class="col1-result">#</th>
+              <th class="col2-result">Navn</th>
+              <th class="col3-result">Tid</th>
+              <th class="col4-result">Stævne</th>
+              <th class="col5-result">Distance</th>
+              <th class="col6-result">Placering</th>
+              </tr>
+            </tbody>
+            <!-------- RESULT DATA GOES HERE -------->
+          </table>
+        </div>
+        <div class="result-grid-item">
+          <h3>Brystsvømning resultater</h3>
+          <table id="bryst-table">
+            <tbody>
+              <tr>
+              <th class="col1-result">#</th>
+              <th class="col2-result">Navn</th>
+              <th class="col3-result">Tid</th>
+              <th class="col4-result">Stævne</th>
+              <th class="col5-result">Distance</th>
+              <th class="col6-result">Placering</th>
+              </tr>
+            </tbody>
+            <!-------- RESULT DATA GOES HERE -------->
+          </table>
+        </div>
+        </section>
+      </section>
+      </section>
     </section>
       </main>
     <script src="./js/app.js" type="module"></script>
