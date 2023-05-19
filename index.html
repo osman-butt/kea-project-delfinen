@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./assets/styles/login-page-styles.css" />
     <link rel="stylesheet" href="./assets/styles/admin-page-styles.css" />
     <link rel="stylesheet" href="./assets/styles/dialog.css" />
+    <link rel="stylesheet" href="./assets/styles/results-page-styles.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
@@ -155,7 +156,41 @@
           <!-- </div> -->
         </dialog>
       </section>
-      <section id="results" class="view-content"><h2>Resultater</h2></section>
+      <section id="results" class="view-content">
+        <h2>Top 5</h2>
+        <section id="results-filter-container">
+          <div id="team-filter-container">
+            <label for="team-filter">Vælg hold:</label>
+            <select name="team-filter" id="team-filter">
+              <option value="">Ungdom</option>
+              <option value="">Senior</option>
+            </select>
+          </div>
+          <div id="activity-filter-container">
+            <label for="team-filter">Vælg disciplin:</label>
+            <select name="team-filter" id="team-filter">
+              <option value="butterfly">Butterfly</option>
+              <option value="crawl">Crawl</option>
+              <option value="rygcrawl">Rygcrawl</option>
+              <option value="brystsvømning">Brystsvømning</option>
+            </select>
+          </div>
+          <div id="type-filter-container">
+            <label for="team-filter">Træning/stævne:</label>
+            <select name="team-filter" id="team-filter">
+              <option value="butterfly">Alle resultater</option>
+              <option value="crawl">Stævne</option>
+              <option value="rygcrawl">Træning</option>
+            </select>
+          </div>
+        </section>
+      </section>
+      <section id="results-container">
+          <table id="results-table">
+            <!-------- RESULT DATA GOES HERE -------->
+          </table>
+        </section>
+      </section>
     </section>
       </main>
     <script src="./js/app.js" type="module"></script>
