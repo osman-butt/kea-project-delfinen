@@ -3,10 +3,12 @@
 //import modules
 import {
   getMembers,
+  createResult,
   getMembersUpdate,
   getResults,
   getResultsUpdate,
 } from "./rest-services.js";
+import { updateDisplayResults } from "./view-results.js";
 
 function openAddResultDialog() {
   document
@@ -19,9 +21,9 @@ function openAddResultDialog() {
   document
     .querySelectorAll(".competition-result")
     .forEach(el => el.setAttribute("readonly", ""));
-  document
-    .querySelectorAll(".member-dropdown-option")
-    .forEach(row => row.remove());
+  // document
+  //   .querySelectorAll(".member-dropdown-option")
+  //   .forEach(row => row.remove());
   dropdown.addEventListener("change", () => {
     dialog.setAttribute("data-id", dropdown.value);
     document
@@ -78,4 +80,32 @@ function activityDropdownOption(activity) {
   dropdown.insertAdjacentHTML("beforeend", option);
 }
 
+async function saveResultClicked(event) {
+  event.preventDefault();
+  const resultType = document.querySelector("#choose-type").value;
+  const resultObj = {
+    memberId: document
+      .querySelector("#add-result-dialog")
+      .getAttribute("data-id"),
+    activity: document.querySelector("#choose-activity").value,
+    time: document.querySelector("#time-result").value,
+    date: document.querySelector("#date-result").value,
+    distance: document.querySelector("#choose-distance").value,
+    meet:
+      resultType === "Ja"
+        ? document.querySelector("#competition-name").value
+        : "Træning",
+    location:
+      resultType === "Ja"
+        ? document.querySelector("#competition-venue").value
+        : "",
+    placement:
+      resultType === "Ja"
+        ? document.querySelector("#competition-placement").value
+        : "",
+  };
+  await createResult(resultObj);
+  document.querySelector("#add-result-dialog").close();
+  updateDisplayResults();
+}
 export { openAddResultDialog };
