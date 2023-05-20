@@ -68,6 +68,7 @@ function toggleMemberChange() {
 }
 
 function toggleTypeChange() {
+  const type = document.querySelector("#choose-type");
   if (type.value === "Ja") {
     document
       .querySelectorAll(".competition-result")
