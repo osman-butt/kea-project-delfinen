@@ -35,33 +35,49 @@ function openAddResultDialog() {
     .querySelectorAll(".team-dropdown-option")
     .forEach(row => row.remove());
 
-  dropdown.addEventListener("change", () => {
-    dialog.setAttribute("data-id", dropdown.value);
-    document
-      .querySelectorAll(".activity-dropdown-option")
-      .forEach(row => row.remove());
-    document
-      .querySelectorAll(".team-dropdown-option")
-      .forEach(row => row.remove());
-    activityDropdown();
-    teamDropdown();
-  });
+  dropdown.addEventListener("change", toggleMemberChange);
 
-  type.addEventListener("change", () => {
-    if (type.value === "Ja") {
-      document
-        .querySelectorAll(".competition-result")
-        .forEach(el => el.removeAttribute("readonly"));
-    } else {
-      document.querySelectorAll(".competition-result").forEach(el => {
-        el.setAttribute("readonly", "");
-        el.value = "";
-      });
-    }
-  });
+  type.addEventListener("change", toggleTypeChange);
 
   dialog.showModal();
   membersDropdown();
+
+  // REMOVE EVENTLISTENER WHEN CLOSING DIALOG
+  dialog.addEventListener("close", () => {
+    dropdown.removeEventListener("change", toggleMemberChange);
+    type.removeEventListener("change", toggleTypeChange);
+    document
+      .querySelector("#submit-result")
+      .removeEventListener("click", saveResultClicked);
+  });
+}
+
+function toggleMemberChange() {
+  const dropdown = document.querySelector("#choose-member");
+  const dialog = document.querySelector("#add-result-dialog");
+  const type = document.querySelector("#choose-type");
+  dialog.setAttribute("data-id", dropdown.value);
+  document
+    .querySelectorAll(".activity-dropdown-option")
+    .forEach(row => row.remove());
+  document
+    .querySelectorAll(".team-dropdown-option")
+    .forEach(row => row.remove());
+  activityDropdown();
+  teamDropdown();
+}
+
+function toggleTypeChange() {
+  if (type.value === "Ja") {
+    document
+      .querySelectorAll(".competition-result")
+      .forEach(el => el.removeAttribute("readonly"));
+  } else {
+    document.querySelectorAll(".competition-result").forEach(el => {
+      el.setAttribute("readonly", "");
+      el.value = "";
+    });
+  }
 }
 
 async function membersDropdown() {
