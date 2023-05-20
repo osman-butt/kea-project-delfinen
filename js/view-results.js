@@ -7,12 +7,34 @@ import {
   getResults,
   getResultsUpdate,
 } from "./rest-services.js";
+import { openAddResultDialog } from "./add-result.js";
 // import { resultsUI } from "./helpers.js";
 
 async function displayResults() {
-  //   resultsUI();
+  document
+    .querySelector("#add-result-btn")
+    .addEventListener("click", openAddResultDialog);
   const results = await getResults();
   const members = await getMembers();
+  const mergedList = mergeArrays(results, members);
+  document.querySelectorAll(".result-table-row").forEach(row => row.remove());
+  displayButterflyResults(mergedList);
+  displayCrawlResults(mergedList);
+  displayRygcrawlResults(mergedList);
+  displayBrystResults(mergedList);
+  document
+    .querySelectorAll(".result-filter")
+    .forEach(elem =>
+      elem.addEventListener("change", () => showFilteredResults(mergedList))
+    );
+}
+
+async function updateDisplayResults() {
+  document
+    .querySelector("#add-result-btn")
+    .addEventListener("click", openAddResultDialog);
+  const results = await getResultsUpdate();
+  const members = await getMembersUpdate();
   const mergedList = mergeArrays(results, members);
   document.querySelectorAll(".result-table-row").forEach(row => row.remove());
   displayButterflyResults(mergedList);
@@ -91,7 +113,7 @@ function displayButterflyResult(resultObj, index) {
         <td class="col1 -result">${index + 1}</td>
         <td class="col2-result">${resultObj.member.name}</td>
         <td class="col3-result">${resultObj.time}</td>
-        <td class="col4-result">${resultObj.location}</td>
+        <td class="col4-result">${resultObj.meet}</td>
         <td class="col5-result">${resultObj.distance}</td>
         <td class="col6-result">${resultObj.placement}</td>
     </td>`;
@@ -105,7 +127,7 @@ function displayCrawlResult(resultObj, index) {
         <td class="col1-result">${index + 1}</td>
         <td class="col2-result">${resultObj.member.name}</td>
         <td class="col3-result">${resultObj.time}</td>
-        <td class="col4-result">${resultObj.location}</td>
+        <td class="col4-result">${resultObj.meet}</td>
         <td class="col5-result">${resultObj.distance}</td>
         <td class="col6-result">${resultObj.placement}</td>
     </td>`;
@@ -119,7 +141,7 @@ function displayRygcrawlResult(resultObj, index) {
         <td class="col1-result">${index + 1}</td>
         <td class="col2-result">${resultObj.member.name}</td>
         <td class="col3-result">${resultObj.time}</td>
-        <td class="col4-result">${resultObj.location}</td>
+        <td class="col4-result">${resultObj.meet}</td>
         <td class="col5-result">${resultObj.distance}</td>
         <td class="col6-result">${resultObj.placement}</td>
     </td>`;
@@ -133,7 +155,7 @@ function displayBrystResult(resultObj, index) {
         <td class="col1-result">${index + 1}</td>
         <td class="col2-result">${resultObj.member.name}</td>
         <td class="col3-result">${resultObj.time}</td>
-        <td class="col4-result">${resultObj.location}</td>
+        <td class="col4-result">${resultObj.meet}</td>
         <td class="col5-result">${resultObj.distance}</td>
         <td class="col6-result">${resultObj.placement}</td>
     </td>`;
@@ -169,4 +191,4 @@ function mergeArrays(arr1, arr2) {
   return res;
 }
 
-export { displayResults };
+export { displayResults, updateDisplayResults };

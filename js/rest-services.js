@@ -172,6 +172,27 @@ async function deleteMember(id) {
   }
 }
 
+// create
+async function createResult(resultObj) {
+  console.log("---createResult()---");
+  const token = auth.currentUser.stsTokenManager.accessToken;
+  const url = `${endpoint}/results.json?auth=${token}`;
+  const response = await fetch(url, {
+    method: "POST",
+    body: JSON.stringify(resultObj),
+  });
+  if (response.ok) {
+    console.log("The Result was saved succesfully");
+  } else {
+    console.log(
+      "Saving RESULT gave an error: " +
+        response.status +
+        " " +
+        response.statusText
+    );
+  }
+}
+
 export {
   getMembers,
   getMembersUpdate,
@@ -181,4 +202,5 @@ export {
   createPayment,
   getResults,
   getResultsUpdate,
+  createResult,
 };

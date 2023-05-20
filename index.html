@@ -159,6 +159,9 @@
       <section id="results" class="view-content">
         <h2 style="text-align: center;">Top 5 Resultater</h2>
         <section id="results-filter-container">
+          <div class="button-container">
+            <button id="add-result-btn" class="admin-button">Tilføj resultat</button>
+          </div>
           <div id="team-filter-container">
             <label for="team-filter">Vælg hold:</label>
             <select name="team-filter" id="team-filter" class="result-filter">
@@ -242,6 +245,51 @@
           </table>
         </div>
         </section>
+        <dialog id="add-result-dialog">
+          <form method="dialog">
+            <button class="close-btn"><i class="fas fa-times"></i></button>
+            <h2>Tilføj resultat</h2>
+          </form>
+          <form id="add-result-form">
+            <section id="add-result-form-container">
+              <label for="choose-member">Vælg medlem</label>
+              <select name="choose-member" id="choose-member">
+                <option value="">Vælg</option>
+              </select>
+              <label for="choose-team">Vælg hold</label>
+              <select name="choose-team" id="choose-team">
+                <option value="">Vælg</option>
+              </select>
+              <label for="choose-activity">Vælg disciplin</label>
+              <select name="choose-activity" id="choose-activity">
+                <option value="">Vælg</option>
+              </select>
+              <label for="choose-type">Stævne resultat?</label>
+              <select name="choose-type" id="choose-type">
+                <option value="Nej">Nej</option>
+                <option value="Ja">Ja</option>
+              </select>
+              <label for="time-result">Tid</label>
+              <input type="text" id="time-result" name="time-result" pattern="[0-9]{2}:[0-9]{2}:[0-9]{3}" placeholder="MM:SS:sss" title="Angiv følgende format: MM:SS:sss">
+              <label for="date-result">Dato</label>
+              <input type="date" id="date-result" name="date-result">
+              <label for="choose-distance">Vælg distance</label>
+              <select name="choose-distance" id="choose-distance">
+                <option value="50m">50m</option>
+                <option value="100m">100m</option>
+              </select>
+              <label for="competition-name">Stævne</label>
+              <input class="competition-result" type="text" id="competition-name" placeholder="Stævne navn" readonly>
+              <label for="competition-venue">Sted</label>
+              <input class="competition-result" type="text" id="competition-venue" placeholder="fx 'København'" readonly>
+              <label for="competition-placement">Stævne resultat</label>
+              <input class="competition-result" type="number" id="competition-placement" min="1" placeholder="fx '1'" readonly>
+            </section>
+            <div id="submit-result-container">
+              <button id="submit-result" class="admin-button" type="submit">Gem resultat</button>
+            </div> 
+          </form>
+        </dialog>
       </section>
       </section>
     </section>
