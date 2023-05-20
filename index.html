@@ -159,6 +159,9 @@
       <section id="results" class="view-content">
         <h2 style="text-align: center;">Top 5 Resultater</h2>
         <section id="results-filter-container">
+          <div class="button-container">
+            <button id="add-result-btn" class="admin-button">Tilføj resultat</button>
+          </div>
           <div id="team-filter-container">
             <label for="team-filter">Vælg hold:</label>
             <select name="team-filter" id="team-filter" class="result-filter">
@@ -242,6 +245,18 @@
           </table>
         </div>
         </section>
+        <dialog id="add-result-dialog">
+          <form method="dialog">
+            <button class="close-btn"><i class="fas fa-times"></i></button>
+            <h2>Tilføj resultat</h2>
+          </form>
+          <form id="add-result-form">
+            <section id="add-result-form-container">
+              <label for="choose-member">Vælg medlem</label>
+              <select name="choose-member" id="choose-member"></select>
+            </section>
+          </form>
+        </dialog>
       </section>
       </section>
     </section>

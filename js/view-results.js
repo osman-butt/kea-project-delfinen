@@ -1,16 +1,14 @@
 "use strict";
 
 //import modules
-import {
-  getMembers,
-  getMembersUpdate,
-  getResults,
-  getResultsUpdate,
-} from "./rest-services.js";
+import { getMembers, getResults } from "./rest-services.js";
+import { openAddResultDialog } from "./add-result.js";
 // import { resultsUI } from "./helpers.js";
 
 async function displayResults() {
-  //   resultsUI();
+  document
+    .querySelector("#add-result-btn")
+    .addEventListener("click", openAddResultDialog);
   const results = await getResults();
   const members = await getMembers();
   const mergedList = mergeArrays(results, members);
