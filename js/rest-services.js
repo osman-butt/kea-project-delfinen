@@ -1,4 +1,4 @@
-/
+//rest.services.js
 // import { getAuth } from "./firebase-sdk.js";
 
 "use strict";
@@ -83,7 +83,7 @@ async function createMember(
   membershipActive,
   membershipLevel,
   activity,
-  profileImage
+  profileImage = "https://www.pngitem.com/pimgs/m/30-307416_profile-icon-png-image-free-download-searchpng-employee.png"
 ) {
   console.log("---createMember()---");
 
@@ -96,7 +96,7 @@ async function createMember(
     gender,
     membershipActive,
     membershipLevel,
-    activity, // Updated this line
+    activity,
     profileImage,
   };
 

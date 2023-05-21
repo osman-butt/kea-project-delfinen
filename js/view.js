@@ -123,7 +123,9 @@ async function displayMember(listOfMembers) {
       <td class="col4">${listOfMembers.age}</td>
       <td class="col5">${listOfMembers.membershipActive}</td>
       <td class="col6">${
-        listOfMembers.activitity ? listOfMembers.activity.sort().join(", ") : ""
+        listOfMembers.activities
+          ? listOfMembers.activities.sort().join(", ")
+          : ""
       }</td>
     </tr>
   `;
@@ -150,7 +152,7 @@ function openMemberForm() {
   nameInput.value = "";
   emailInput.value = "";
   dobInput.value = "";
-  activitiesSelect.selectedIndex = -1; //deselect all options
+
   //Show form
   memberFormModal.style.display = "block";
 }

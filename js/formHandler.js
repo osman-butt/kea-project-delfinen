@@ -1,6 +1,10 @@
 import { createMember } from "./rest-services.js";
+
 export function attachCreateMemberListener() {
+  const opretMedlemButton = document.getElementById("opret-medlem");
   const createMemberButton = document.getElementById("create-member");
+  const formModal = document.getElementById("member-form-modal");
+  const adminMessages = document.getElementById("admin-messages");
 
   createMemberButton.addEventListener("click", async function (event) {
     event.preventDefault();
@@ -41,6 +45,26 @@ export function attachCreateMemberListener() {
       activities,
       profileImage
     );
+
     console.log(`New Member: ${JSON.stringify(newMember)}`);
+
+    // Show the success message
+    adminMessages.textContent = `New Member: ${JSON.stringify(newMember)}`;
+    adminMessages.classList.remove("hidden");
+
+    // Hide the message after 5 seconds
+    setTimeout(() => {
+      adminMessages.textContent = "";
+      adminMessages.classList.add("hidden");
+    }, 5000);
+
+    // Close the form
+    formModal.style.display = "none";
+
+    // Reset the form
+    formModal.querySelector("form").reset();
+
+    // Force page reload
+    location.reload();
   });
 }

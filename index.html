@@ -82,6 +82,7 @@
             </div>
          <div id="member-form-modal" class="hidden">
       <div id="member-form">
+        <div id="admin-messages" class="hidden">Ny Bruger Oprettet!</div>
         <div class="form-header">Opret Ny Bruger</div>
         <input type="text" id="name" name="name" placeholder="Navn"/>
         <input type="email" id="email" name="email" placeholder="Email"/>
@@ -99,16 +100,15 @@
       </select>
       <select id="membershipLevel" name="membershipLevel">
         <option value="medlemstype">Medlemstype</option>
-        <option value="beginner">Junior</option>
-        <option value="senior">Senior</option>
-        <option value="advanced">Advanced</option>
+        <option value="motionist">Motionist</option>
+        <option value="konkurrence">Konkurrence</option>
       </select>
-      <fieldset id="activity">
+      <fieldset id="Activities">
         <legend>Activities</legend>
-        <label><input type="checkbox" name="activity" value="butterfly"> Butterfly</label>
-        <label><input type="checkbox" name="activity" value="fri"> Fri</label>
-        <label><input type="checkbox" name="activity" value="brystsvømning"> Brystsvømning</label>
-        <label><input type="checkbox" name="activity" value="rygsvømning"> Rygsvømning</label>
+        <label><input type="checkbox" name="activities" value="butterfly"> Butterfly</label>
+        <label><input type="checkbox" name="activities" value="fri"> Fri</label>
+        <label><input type="checkbox" name="activities" value="brystsvømning"> Brystsvømning</label>
+        <label><input type="checkbox" name="activities" value="rygsvømning"> Rygsvømning</label>
       </fieldset>
      <input type="file" id="profileImage" name="profileImage" accept="image/*" />
         <button id="create-member">Opret Medlem</button>
