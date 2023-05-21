@@ -3,6 +3,7 @@
 import { auth, signInUser, signOutUser } from "./authentication.js";
 import { onAuthStateChanged } from "./firebase-sdk.js";
 import { displaySignedInUserPage, displaySignedOutPage } from "./view.js";
+import { createAutomaticInvoice } from "./create-invoice.js";
 
 window.addEventListener("load", initApp);
 
@@ -14,6 +15,7 @@ async function initApp() {
     if (user) {
       console.log(user);
       console.log("USER IS LOGGED IN");
+      createAutomaticInvoice();
       displaySignedInUserPage();
     } else {
       console.log("USER IS NOT LOGGED IN");
