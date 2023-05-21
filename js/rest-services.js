@@ -125,6 +125,40 @@ async function fetchResults(auth) {
   }
 }
 
+async function fetchCreatedInvoices() {
+  console.log("---fetchCreatedInvoices()---");
+  const token = auth.currentUser.stsTokenManager.accessToken;
+  const response = await fetch(
+    `${endpoint}/createdInvoices.json?auth=${token}`
+  );
+  if (response.ok) {
+    console.log("getResults status " + response.status);
+    const data = await response.json();
+    return data;
+  } else {
+    console.log(response.status, response.statusText);
+  }
+}
+
+async function setCreatedInvoice(year) {
+  console.log("---setCreatedInvoice()---");
+  const token = auth.currentUser.stsTokenManager.accessToken;
+  const body = {};
+  body[year] = true;
+  const response = await fetch(
+    `${endpoint}/createdInvoices.json?auth=${token}`,
+    {
+      method: "PATCH",
+      body: JSON.stringify(body),
+    }
+  );
+  if (response.ok) {
+    console.log(response.status, response.statusText);
+  } else {
+    console.log(response.status, response.statusText);
+  }
+}
+
 function prepareData(dataObject) {
   console.log("---prepareData---");
   const dataList = [];
@@ -203,4 +237,6 @@ export {
   getResults,
   getResultsUpdate,
   createResult,
+  fetchCreatedInvoices,
+  setCreatedInvoice,
 };
