@@ -251,6 +251,26 @@ async function createResult(resultObj) {
   }
 }
 
+async function updateMember(id, body) {
+  console.log("---updateMember()---");
+  const token = auth.currentUser.stsTokenManager.accessToken;
+  const url = `${endpoint}/members/${id}.json?auth=${token}`;
+  const response = await fetch(url, {
+    method: "PUT",
+    body: JSON.stringify(body),
+  });
+  if (response.ok) {
+    console.log("Member was updated succesfully");
+  } else {
+    console.log(
+      "Updating member gave an error: " +
+        response.status +
+        " " +
+        response.statusText
+    );
+  }
+}
+
 export {
   getMembers,
   getMembersUpdate,
@@ -265,4 +285,5 @@ export {
   setCreatedInvoice,
   deletePayments,
   deleteResults,
+  updateMember,
 };

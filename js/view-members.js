@@ -10,6 +10,7 @@ import {
   deleteResults,
 } from "./rest-services.js";
 import { getAge, membersUI } from "./helpers.js";
+import { showUpdateDialog } from "./update-member.js";
 
 async function displayMembers() {
   membersUI();
@@ -61,7 +62,9 @@ function showDeleteDialog(memberObj) {
 }
 
 async function deleteMemberClicked() {
-  const id = document.querySelector(".dialog-delete-member").getAttribute("id");
+  const id = document
+    .querySelector(".dialog-delete-member")
+    .getAttribute("data-id");
   console.log("MEMBER WITH ID=" + id + " IS DELETED");
   await deleteMember(id);
   await deletePayments(id);
@@ -77,10 +80,16 @@ async function deleteMemberClicked() {
 function showReadMemberDialog(memberObj) {
   document
     .querySelector(".dialog-delete-member")
-    .setAttribute("id", memberObj.id);
+    .setAttribute("data-id", memberObj.id);
+  document
+    .querySelector("#dialog-update-member")
+    .setAttribute("data-id", memberObj.id);
   document
     .querySelector("#open-delete-member-dialog")
     .addEventListener("click", showDeleteDialog);
+  document
+    .querySelector("#open-update-member-dialog")
+    .addEventListener("click", showUpdateDialog);
   document.querySelector("#dialog-read-member-img").src =
     memberObj.profileImage;
   document.querySelector("#dialog-read-member-name").textContent =
@@ -104,4 +113,4 @@ function showReadMemberDialog(memberObj) {
   document.querySelector("#dialog-read-member").showModal();
 }
 
-export { displayMembers };
+export { displayMembers, displayMembersUpdated };

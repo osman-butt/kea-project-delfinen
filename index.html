@@ -121,7 +121,7 @@
           </section>
           <div class="dialog-btn-container">
             <button class="dialog-btn" id="open-delete-member-dialog"><i class="fas fa-trash"></i> Slet</button>
-            <button class="dialog-btn"><i class="fas fa-pen"></i> Opdater</button>
+            <button class="dialog-btn" id="open-update-member-dialog"><i class="fas fa-pen"></i> Opdater</button>
           </div>
         </dialog>
         <dialog class="dialog-delete-member">
@@ -129,7 +129,53 @@
           <p>Alt data (stamdata, betalinger og resultater) vil blive slettet, og kan ikke genskabes!</p>
           <form id="delete-form" method="dialog">
             <button class="dialog-btn cancel">Nej</button>
-            <button class="dialog-btn" id="delete-member">Ja</button>
+            <button class="dialog-btn" >Ja</button>
+          </form>
+        </dialog>
+        <dialog id="dialog-update-member">
+              <form method="dialog">
+            <button class="close-btn"><i class="fas fa-times"></i></button>
+            <h2>Opdater stamoplysninger</h2>
+          </form>
+          <form id="update-form">
+            <label for="update-name">Navn:</label>
+            <input type="text" name="update-name" id="update-name">
+            <label for="update-dob">Fødselsdato:</label>
+            <input type="date" name="update-dob" id="update-dob">
+            <label for="update-mail">E-mail:</label>
+            <input type="mail" name="update-mail" id="update-mail">
+            <label for="update-active">Aktiv medlem:</label>
+            <select name="update-active" id="update-active">
+              <option value="Ja">Ja</option>
+              <option value="Nej">Nej</option>
+            </select>
+            <!-- <input type="text" name="update-active" id="update-active"> -->
+            <label for="update-membershipdate">Medlem siden:</label>
+            <input type="text" name="update-membershipdate" id="update-membershipdate" readonly>
+            <label for="update-gender">Køn:</label>
+            <select name="update-gender" id="update-gender">
+              <option value="Mand">Mand</option>
+              <option value="Kvinde">Kvinde</option>
+            </select>
+            <!-- <input type="text" name="update-gender" id="update-gender"> -->
+            <label for="update-membershiplevel">Medlemsniveau:</label>
+            <input type="text" name="update-membershiplevel" id="update-membershiplevel">
+            <p style="margin-top: 0;">Disciplin:</p>
+            <div id="update-activity">
+              <input type="checkbox" id="activity-breast" name="activity-breast" value="brystsvømning">
+              <label for="activity-breast">Brystsvømning</label>
+              <input type="checkbox" id="activity-butterfly" name="activity-butterfly" value="butterfly">
+              <label for="activity-butterfly">Butterfly</label>
+              <input type="checkbox" id="activity-crawl" name="activity-crawl" value="crawl">
+              <label for="activity-crawl">Crawl</label>
+              <input type="checkbox" id="activity-rygcrawl" name="activity-rygcrawl" value="rygcrawl ">
+              <label for="activity-rygcrawl">Rygcrawl </label>
+            </div>
+            <label for="update-img">Profilbillede:</label>
+            <input type="url" name="update-img" id="update-img">
+            <div style="text-align: center; grid-column: span 2;">
+               <button type="submit" class="dialog-btn" id="update-member-btn">Gem</button>
+            </div>
           </form>
         </dialog>
       </section>
