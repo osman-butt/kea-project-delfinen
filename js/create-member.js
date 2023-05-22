@@ -24,7 +24,8 @@ async function createMemberClicked(event) {
     activity.push("crawl");
   if (document.querySelector("#create-activity-rygcrawl").checked)
     activity.push("rygcrawl");
-  console.log(activity);
+
+  // create member obj
   const newMember = {
     name: document.querySelector("#create-name").value,
     dob: document.querySelector("#create-dob").value,
@@ -39,31 +40,26 @@ async function createMemberClicked(event) {
         : document.querySelector("#create-img").value,
     activity: activity,
   };
+
+  // Add member to database
   const uid = await createMember(newMember);
+
   // Calculate payment for rest of year
-  const startYear = new Date(
-    document
-      .querySelector("#create-membershipdate")
-      .valueAsDate.getFullYear()
-      .toString() + "-01-01"
-  );
-  const endYear = new Date(
-    document
-      .querySelector("#create-membershipdate")
-      .valueAsDate.getFullYear()
-      .toString() + "-12-31"
-  );
-  const memberDate = document.querySelector(
+  const membershipDate = document.querySelector(
     "#create-membershipdate"
   ).valueAsDate;
-  const paymentFraction = (endYear - memberDate) / (endYear - startYear);
+  const startYear = new Date(
+    membershipDate.getFullYear().toString() + "-01-01"
+  );
+  const endYear = new Date(membershipDate.getFullYear().toString() + "-12-31");
+  const paymentFraction = (endYear - membershipDate) / (endYear - startYear);
   newMember.age = getAge(newMember.dob);
   getPrice(newMember);
-
   const payment = Math.ceil(newMember.price * paymentFraction);
-  const memberDateString = memberDate.toISOString().substring(0, 10);
+  const memberDateString = membershipDate.toISOString().substring(0, 10);
   await createPayment(uid, memberDateString, payment);
 
+  // Close dialog, reset and update UI
   document.querySelector("#dialog-create-member").close();
   document.querySelector("#create-form").reset();
   displayMembersUpdated();
