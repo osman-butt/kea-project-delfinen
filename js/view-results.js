@@ -11,6 +11,8 @@ import { openAddResultDialog } from "./add-result.js";
 // import { resultsUI } from "./helpers.js";
 
 async function displayResults() {
+  document.querySelector("#team-filter").value = "";
+  document.querySelector("#gender-filter").value = "";
   document
     .querySelector("#add-result-btn")
     .addEventListener("click", openAddResultDialog);
@@ -30,6 +32,8 @@ async function displayResults() {
 }
 
 async function updateDisplayResults() {
+  document.querySelector("#team-filter").value = "";
+  document.querySelector("#gender-filter").value = "";
   document
     .querySelector("#add-result-btn")
     .addEventListener("click", openAddResultDialog);
