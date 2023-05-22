@@ -1,7 +1,14 @@
 "use strict";
 
 //import modules
-import { getMembers, getMembersUpdate, deleteMember } from "./rest-services.js";
+import {
+  getMembers,
+  getMembersUpdate,
+  getResults,
+  deleteMember,
+  deletePayments,
+  deleteResults,
+} from "./rest-services.js";
 import { getAge, membersUI } from "./helpers.js";
 
 async function displayMembers() {
@@ -57,6 +64,12 @@ async function deleteMemberClicked() {
   const id = document.querySelector(".dialog-delete-member").getAttribute("id");
   console.log("MEMBER WITH ID=" + id + " IS DELETED");
   await deleteMember(id);
+  await deletePayments(id);
+  const results = await getResults();
+  const memberResults = results.filter(row => row.memberId === id);
+  memberResults.forEach(async function (row) {
+    await deleteResults(row.id);
+  });
   displayMembersUpdated();
   document.querySelector("#dialog-read-member").close();
 }

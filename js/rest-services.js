@@ -206,6 +206,30 @@ async function deleteMember(id) {
   }
 }
 
+async function deletePayments(id) {
+  console.log("---deleteMember()---");
+  const token = auth.currentUser.stsTokenManager.accessToken;
+  const url = `${endpoint}/payments/${id}.json?auth=${token}`;
+  const response = await fetch(url, { method: "DELETE" });
+  if (response.ok) {
+    console.log("deletePayments status " + response.status);
+  } else {
+    console.log(response.status, response.statusText);
+  }
+}
+
+async function deleteResults(id) {
+  console.log("---deleteResults()---");
+  const token = auth.currentUser.stsTokenManager.accessToken;
+  const url = `${endpoint}/results/${id}.json?auth=${token}`;
+  const response = await fetch(url, { method: "DELETE" });
+  if (response.ok) {
+    console.log("deleteResults status " + response.status);
+  } else {
+    console.log(response.status, response.statusText);
+  }
+}
+
 // create
 async function createResult(resultObj) {
   console.log("---createResult()---");
@@ -239,4 +263,6 @@ export {
   createResult,
   fetchCreatedInvoices,
   setCreatedInvoice,
+  deletePayments,
+  deleteResults,
 };
