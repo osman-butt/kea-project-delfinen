@@ -13,10 +13,10 @@ function showUpdateDialog() {
   document
     .querySelector("#update-member-btn")
     .addEventListener("click", updateMemberClicked);
-  displayMemberDate();
+  displayMemberData();
 }
 
-async function displayMemberDate() {
+async function displayMemberData() {
   const id = document
     .querySelector("#dialog-update-member")
     .getAttribute("data-id");
