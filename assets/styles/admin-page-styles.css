@@ -154,7 +154,8 @@ main {
   row-gap: 1em;
 }
 
-#dialog-update-member {
+#dialog-update-member,
+#dialog-create-member {
   width: 400px;
 }
 
@@ -220,7 +221,8 @@ main {
   text-align: right;
 }
 
-#update-activity {
+#update-activity,
+#create-activity {
   display: grid;
   grid-template-columns: 2em auto;
 }

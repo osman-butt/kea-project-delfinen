@@ -181,7 +181,7 @@
          <dialog id="dialog-create-member">
               <form method="dialog">
             <button class="close-btn"><i class="fas fa-times"></i></button>
-            <h2>Tilføj medlem</h2>
+            <h2>Opret medlem</h2>
           </form>
           <form id="create-form">
             <label for="create-name">Navn:</label>
@@ -196,7 +196,7 @@
               <option value="Nej">Nej</option>
             </select>
             <!-- <input type="text" name="create-active" id="create-active"> -->
-            <label for="create-membershipdate">Medlem siden:</label>
+            <label for="create-membershipdate">Indmeldings dato:</label>
             <input type="date" name="create-membershipdate" id="create-membershipdate">
             <label for="create-gender">Køn:</label>
             <select name="create-gender" id="create-gender">
@@ -205,17 +205,21 @@
             </select>
             <!-- <input type="text" name="create-gender" id="create-gender"> -->
             <label for="create-membershiplevel">Medlemsniveau:</label>
-            <input type="text" name="create-membershiplevel" id="create-membershiplevel">
+            <select name="create-membershiplevel" id="create-membershiplevel">
+              <option value="Motionist">Motionist</option>
+              <option value="Konkurrence">Konkurrence</option>
+            </select>
+            <!-- <input type="text" name="create-membershiplevel" id="create-membershiplevel"> -->
             <p style="margin-top: 0;">Disciplin:</p>
             <div id="create-activity">
-              <input type="checkbox" id="activity-breast" name="activity-breast" value="brystsvømning">
-              <label for="activity-breast">Brystsvømning</label>
-              <input type="checkbox" id="activity-butterfly" name="activity-butterfly" value="butterfly">
-              <label for="activity-butterfly">Butterfly</label>
-              <input type="checkbox" id="activity-crawl" name="activity-crawl" value="crawl">
-              <label for="activity-crawl">Crawl</label>
-              <input type="checkbox" id="activity-rygcrawl" name="activity-rygcrawl" value="rygcrawl ">
-              <label for="activity-rygcrawl">Rygcrawl </label>
+              <input type="checkbox" id="create-activity-breast" name="create-activity-breast" value="brystsvømning">
+              <label for="create-activity-breast">Brystsvømning</label>
+              <input type="checkbox" id="create-activity-butterfly" name="create-activity-butterfly" value="butterfly">
+              <label for="create-activity-butterfly">Butterfly</label>
+              <input type="checkbox" id="create-activity-crawl" name="create-activity-crawl" value="crawl">
+              <label for="create-activity-crawl">Crawl</label>
+              <input type="checkbox" id="create-activity-rygcrawl" name="create-activity-rygcrawl" value="rygcrawl ">
+              <label for="create-activity-rygcrawl">Rygcrawl </label>
             </div>
             <label for="create-img">Profilbillede:</label>
             <input type="url" name="create-img" id="create-img">
