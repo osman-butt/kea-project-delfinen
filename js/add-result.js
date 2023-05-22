@@ -57,6 +57,10 @@ function toggleMemberChange() {
   const dialog = document.querySelector("#add-result-dialog");
   const type = document.querySelector("#choose-type");
   dialog.setAttribute("data-id", dropdown.value);
+  dialog.setAttribute(
+    "data-gender",
+    dropdown.options[dropdown.options.selectedIndex].getAttribute("data-gender")
+  );
   document
     .querySelectorAll(".activity-dropdown-option")
     .forEach(row => row.remove());
@@ -93,7 +97,7 @@ async function membersDropdown() {
 function memberDropdownOption(memberObj) {
   const dropdown = document.querySelector("#choose-member");
   const option = /*html*/ `
-    <option class="member-dropdown-option" value="${memberObj.id}">${memberObj.name}</option>
+    <option class="member-dropdown-option" value="${memberObj.id}" data-gender="${memberObj.gender}" >${memberObj.name}</option>
   `;
   dropdown.insertAdjacentHTML("beforeend", option);
 }
@@ -153,6 +157,10 @@ async function saveResultClicked(event) {
       resultType === "Ja"
         ? document.querySelector("#competition-placement").value
         : "",
+    team: document.querySelector("#choose-team").value,
+    gender: document
+      .querySelector("#add-result-dialog")
+      .getAttribute("data-gender"),
   };
   await createResult(resultObj);
   document.querySelector("#add-result-dialog").close();
