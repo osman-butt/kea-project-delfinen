@@ -188,3 +188,32 @@
 .hidden {
   display: none;
 }
+
+/*Notification When User Is Created*/
+.notification {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 9999;
+  top: 20px;
+  right: 20px;
+  padding: 20px;
+  background-color: #4caf50;
+  color: white;
+  font-size: 40px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+  animation: slidein 0.5s forwards;
+}
+
+@keyframes slidein {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

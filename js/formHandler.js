@@ -1,13 +1,14 @@
 import { createMember } from "./rest-services.js";
+import { displayMembers } from "./view-members.js";
 
 export function attachCreateMemberListener() {
-  const opretMedlemButton = document.getElementById("opret-medlem");
   const createMemberButton = document.getElementById("create-member");
   const formModal = document.getElementById("member-form-modal");
-  const adminMessages = document.getElementById("admin-messages");
+  const formContent = document.getElementById("member-form-content");
 
   createMemberButton.addEventListener("click", async function (event) {
     event.preventDefault();
+    event.stopPropagation();
 
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
@@ -23,7 +24,7 @@ export function attachCreateMemberListener() {
     ).map((checkbox) => checkbox.value);
     const profileImage = document.getElementById("profileImage").files[0];
 
-    console.log("Checked activities: ", activities); // Add this line
+    console.log("Checked activities: ", activities);
 
     console.log(
       name,
@@ -49,22 +50,25 @@ export function attachCreateMemberListener() {
     console.log(`New Member: ${JSON.stringify(newMember)}`);
 
     // Show the success message
-    adminMessages.textContent = `New Member: ${JSON.stringify(newMember)}`;
-    adminMessages.classList.remove("hidden");
+    createNotification("Ny bruger oprettet");
 
-    // Hide the message after 5 seconds
-    setTimeout(() => {
-      adminMessages.textContent = "";
-      adminMessages.classList.add("hidden");
-    }, 5000);
+    // Reset the form and Close it
+    formContent.reset();
+    document.getElementById("member-form-modal").style.display = "none";
 
-    // Close the form
-    formModal.style.display = "none";
-
-    // Reset the form
-    formModal.querySelector("form").reset();
-
-    // Force page reload
-    location.reload();
+    // Call the function to update the member display
+    displayMembers();
   });
+}
+
+function createNotification(message) {
+  const notification = document.createElement("div");
+  notification.textContent = message;
+  notification.classList.add("notification");
+  document.body.appendChild(notification);
+
+  // Hide the notification after 5 seconds
+  setTimeout(() => {
+    notification.remove();
+  }, 5000);
 }
