@@ -81,6 +81,9 @@ input:read-only {
   }
 }
 @media screen and (min-width: 600px) {
+  #results {
+    margin: 0 1em 1em;
+  }
   .col4-result {
     display: table-cell;
   }

@@ -1,6 +1,7 @@
 "use strict";
 //import modules
 import { initViews, setDefaultView } from "./view-controller.js";
+import { auth } from "./authentication.js";
 
 function displaySignedInUserPage() {
   console.log("---displaySignedInUserPage()---");
@@ -15,6 +16,7 @@ function displaySignedInUserPage() {
   loginForm.value = "";
   passwordForm.value = "";
   document.querySelector("#error-response").textContent = "";
+  document.querySelector("#user-signedin").textContent = auth.currentUser.email;
   setDefaultView();
   initViews();
   // displayMembers();

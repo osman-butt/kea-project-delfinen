@@ -52,11 +52,16 @@
   }
 }
 
-#members-container,
+#members-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 1em auto auto auto;
+}
+
 #payments-container {
   display: grid;
   grid-template-columns: 1fr;
-  margin: auto;
+  margin: 0 auto auto auto;
 }
 
 #table {
@@ -127,7 +132,7 @@ tr:hover > td {
 }
 
 main {
-  margin-top: 1em;
+  /* margin-top: 1em; */
   background: linear-gradient(
     to right,
     #0066ff,
@@ -142,9 +147,9 @@ main {
   display: none;
 }
 
-.view-content {
+/* .view-content {
   margin: 1em;
-}
+} */
 
 @media screen and (min-width: 600px) {
   .col2 {
