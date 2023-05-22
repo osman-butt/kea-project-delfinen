@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./assets/styles/admin-page-styles.css" />
     <link rel="stylesheet" href="./assets/styles/dialog.css" />
     <link rel="stylesheet" href="./assets/styles/results-page-styles.css" />
+    <link rel="stylesheet" href="./assets/styles/payment-page-styles.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
@@ -63,6 +64,9 @@
           <a class="nav-link view-link" href="#results"
             ><i class="fas fa-trophy"></i>Resultater</a
           >
+          <div>
+            <p style="color: white; font-size: 14px;">Logget ind som: <span style="color: white;" id="user-signedin"></span></p>
+          </div>
           <button id="signout-btn" class="button">
             <i class="fas fa-sign-out-alt"></i>Log ud
           </button>
@@ -130,10 +134,92 @@
         </dialog>
       </section>
       <section id="payments" class="view-content">
-        <section id="payments-container">
-          <table id="payments-table">
-            <!-------- MEMBER DATA GOES HERE -------->
-          </table>
+        <nav class="navbar-payments">
+          <a class="nav-link view-link" href="#overview"
+            ><i class="fas fa-dollar-sign"></i>Forventet indtjening</a
+          >
+          <!-- <a class="nav-link view-link" href="#arrears"
+          ><i class="fas fa-file-invoice-dollar"></i>Restance</a
+          > -->
+          <a class="nav-link view-link" href="#acc-balance"
+            ><i class="fas fa-receipt"></i>Kontoudtog</a>
+        </nav>
+        <section id="overview" class="view-content hidden">
+          <section id="overview-container">
+            <div class="payment-text" style="padding: 1em;">
+              <h3 style="margin-left: 1em;"><i class="fas fa-lightbulb"></i> Forventet indtjening pr år</h3>
+              <p style="margin-left: 2em; margin-top: 0 ;">- Herunder ses en forventet indtjening pr. år baseret på nuværende medlemmer og deres valgte medlemsskab.</p>
+              <p style="margin-left: 2em; margin-top: 0 ;">- For aktive medlemmer er kontingentet for ungdomssvømmere (under 18 år) 1000 kr. årligt, for seniorsvømmere (18 år og over) 1600 kr. årligt. For medlemmer over 60 år gives der 25 % rabat af seniortaksten. For passivt medlemskab er taksten 500 kr. årligt.</p>
+            </div>
+            <table id="overview-table">
+              <tbody>
+                   <tr>
+                    <th>Type af Medlemsskab</th>
+                    <th>Pris</th>
+                    <th>Antal</th>
+                    <th>Beløb</th>
+                  </tr>
+              </tbody>
+               <tbody>
+                   <tr>
+                    <td>Inaktiv</td>
+                    <td class="currency-format">500</td>
+                    <td id="inactive-number"></td>
+                    <td id="inactive-amount" class="currency-format"></th>
+              </tbody>
+               <tbody>
+                   <tr>
+                    <td>Ungdom</td>
+                    <td class="currency-format">1000</td>
+                    <td id="ungdom-number"></td>
+                    <td id="ungdom-amount" class="currency-format"></th>
+                  </tr>
+              </tbody>
+               <tbody>
+                   <tr>
+                    <td>Senior</td>
+                    <td class="currency-format">1600</td>
+                    <td id="senior-number"></td>
+                    <td id="senior-amount" class="currency-format"></th>
+                  </tr>
+              </tbody>
+               <tbody>
+                   <tr>
+                    <td>Senior +60</td>
+                    <td class="currency-format">1200</td>
+                    <td id="old-number"></td>
+                    <td id="old-amount" class="currency-format"></th>
+                  </tr>
+              </tbody>
+               <tbody>
+                   <tr style="font-weight: bold;">
+                    <td></td>
+                    <td>SUM</td>
+                    <td id="all-number"></td>
+                    <td id="all-amount" class="currency-format"></th>
+                  </tr>
+              </tbody>
+            </table>
+          </section>
+        </section>
+        <!-- <section id="arrears" class="view-content">
+          RESTANCE OVERBLIK
+        </section> -->
+        <!-- <section id="arrears" class="view-content"></section> -->
+        <section id="acc-balance" class="view-content">
+          <section id="payments-container" class="view-content">
+            <div class="payment-text">
+               <h3 style="margin-left: 1em;"><i class="fas fa-lightbulb"></i></h3>
+               <p style="margin-left: 2em; margin-top: 0 ;">- Herunder ses en liste af alle klubbens medlemmer og tilhørende saldo.</p>
+            <p style="margin-left: 2em; margin-top: 0 ;">- En positiv saldo er ens betydende med at medlemmet mangler betaling, og dermed skylder til klubben.</p>
+            <p style="margin-left: 2em; margin-top: 0 ;">- Samlet set er der restancer for <span id="arrears-total"></span> kr.</p>
+            <p style="margin-left: 2em; margin-top: 0 ;">- Regning bliver automatisk tilføjet hvert år d. 1. januar.</p>
+            <p style="margin-left: 2em; margin-top: 0 ;">- Betalinger registreres ved at klikke på et medlem.</p>
+            </div>
+            <table id="payments-table">
+              <!-------- MEMBER DATA GOES HERE -------->
+            </table>
+          </section>
         </section>
         <dialog id="dialog-read-payment">
           <form method="dialog">

@@ -4,6 +4,7 @@
 import { displayMembers } from "./view-members.js";
 import { displayPayments } from "./view-payments.js";
 import { displayResults } from "./view-results.js";
+import { displayPaymentOverview } from "./overview-payments.js";
 
 function initViews() {
   window.addEventListener("hashchange", viewChange); // whenever the hash changes (you hit a link or change the hash)
@@ -18,18 +19,32 @@ function viewChange() {
     hashLink = location.hash;
   }
 
-  if (hashLink == "#members") {
-    displayMembers();
-  } else if (hashLink == "#payments") {
-    displayPayments();
-  } else if (hashLink == "#results") {
-    displayResults();
+  if (hashLink !== "#overview" && hashLink !== "#acc-balance") {
+    if (hashLink == "#members") {
+      displayMembers();
+    } else if (hashLink == "#results") {
+      displayResults();
+    }
+
+    hideAllViews(); // hide all views
+
+    document.querySelector(hashLink).classList.add("active"); // add .active to the view you want to show
+    setActiveLink(hashLink); // set active link in nav bar
+  } else {
+    hideAllViews(); // hide all views
+    if (hashLink === "#overview") {
+      displayPaymentOverview();
+    } else if (hashLink === "#acc-balance") {
+      displayPayments();
+    }
+    document.querySelector("#overview").classList.add("hidden");
+    document.querySelector("#acc-balance").classList.add("hidden");
+    document.querySelector(hashLink).offsetHeight;
+    document.querySelector(hashLink).classList.remove("hidden");
+    document.querySelector(hashLink).classList.add("active"); // add .active to the view you want to show
+    document.querySelector("#payments").classList.add("active"); // add .active to the view you want to show
+    setActiveLink(hashLink); // set active link in nav bar
   }
-
-  hideAllViews(); // hide all views
-
-  document.querySelector(hashLink).classList.add("active"); // add .active to the view you want to show
-  setActiveLink(hashLink); // set active link in nav bar
 }
 
 function setActiveLink(view) {

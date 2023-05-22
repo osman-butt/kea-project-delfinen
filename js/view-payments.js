@@ -22,6 +22,25 @@ async function displayPayments() {
     "SUM OF ALL " +
       mergedList.reduce((partialSum, obj) => partialSum + obj.sum, 0)
   );
+  const sum = /*html*/ `
+    <tr class="payment-table-sum" style="font-weight: bold;">
+      <td></td>
+      <td class="col1"></td>
+      <td class="col3"></td>
+      <td class="col3">SUM</td>
+      <td class="currency-format">${mergedList.reduce(
+        (partialSum, obj) => partialSum + obj.sum,
+        0
+      )}</td>
+    </tr>
+    `;
+  document
+    .querySelector("#payments-table")
+    .insertAdjacentHTML("beforeend", sum);
+  document.querySelector("#arrears-total").textContent = mergedList.reduce(
+    (partialSum, obj) => partialSum + obj.sum,
+    0
+  );
 }
 
 async function displayPaymentsUpdated() {
@@ -37,6 +56,25 @@ async function displayPaymentsUpdated() {
     "SUM OF ALL " +
       mergedList.reduce((partialSum, obj) => partialSum + obj.sum, 0)
   );
+  const sum = /*html*/ `
+    <tr class="payment-table-sum" style="font-weight: bold;">
+      <td></td>
+      <td class="col1"></td>
+      <td class="col3"></td>
+      <td class="col3">SUM</td>
+      <td class="currency-format">${mergedList.reduce(
+        (partialSum, obj) => partialSum + obj.sum,
+        0
+      )}</td>
+    </tr>
+    `;
+  document
+    .querySelector("#payments-table")
+    .insertAdjacentHTML("beforeend", sum);
+  document.querySelector("#arrears-total").textContent = mergedList.reduce(
+    (partialSum, obj) => partialSum + obj.sum,
+    0
+  );
 }
 
 async function displayPayment(paymentObj) {
@@ -48,7 +86,7 @@ async function displayPayment(paymentObj) {
       <td class="col1">${paymentObj.member.name}</td>
       <td class="col3">${paymentObj.member.membershipActive}</td>
       <td class="col3">${paymentObj.member.membershipDate}</td>
-      <td class="col2 currency-format">${paymentObj.sum}</td>
+      <td class="currency-format">${paymentObj.sum}</td>
     </tr>
   </article>
   `;
@@ -102,7 +140,7 @@ function addPayment() {
           <option value="Regning">Regning</option>
         </select>
       </td>
-      <td class="col2 currency-format" style="font-weight: bold;"><input type="number"
+      <td class="currency-format" style="font-weight: bold;"><input type="number"
       id="inputAmount" placeholder="Indtast beløb" required/></td>
     </tr>
   `;
@@ -146,7 +184,7 @@ async function addPaymentClicked(event) {
     <tr id="sumRow">
       <td></td>
       <td style="font-weight: bold;">Saldo</td>
-      <td class="col2 currency-format" style="font-weight: bold;">${sum}</td>
+      <td class="currency-format" style="font-weight: bold;">${sum}</td>
     </tr>
   `;
     table.insertAdjacentHTML("beforeend", sumRow);
@@ -162,7 +200,7 @@ function closeInputPayment(date, amount) {
     <tr>
       <td>${date}</td>
       <td>${amount >= 0 ? "Regning" : "Betaling"}</td>
-      <td class="col2 currency-format">${amount}</td>
+      <td class="currency-format">${amount}</td>
     </tr>
     `;
   // Remove input row
@@ -177,7 +215,7 @@ function closeInputPayment(date, amount) {
     <tr id="sumRow">
       <td></td>
       <td style="font-weight: bold;">Saldo</td>
-      <td class="col2 currency-format" style="font-weight: bold;">${newSum}</td>
+      <td class="currency-format" style="font-weight: bold;">${newSum}</td>
     </tr>
   `;
   table.insertAdjacentHTML("beforeend", sumRow);
@@ -206,7 +244,7 @@ function displayPaymentMovements(paymentObj) {
     <tr>
       <td>${key.substring(0, 10)}</td>
       <td>${paymentObj.payments[key] >= 0 ? "Regning" : "Betaling"}</td>
-      <td class="col2 currency-format">${paymentObj.payments[key]}</td>
+      <td class="currency-format">${paymentObj.payments[key]}</td>
     </tr>
   `;
       table.insertAdjacentHTML("beforeend", row);
@@ -216,7 +254,7 @@ function displayPaymentMovements(paymentObj) {
     <tr id="sumRow">
       <td></td>
       <td style="font-weight: bold;">Saldo</td>
-      <td class="col2 currency-format" style="font-weight: bold;">${paymentObj.sum}</td>
+      <td class="currency-format" style="font-weight: bold;">${paymentObj.sum}</td>
     </tr>
   `;
   table.insertAdjacentHTML("beforeend", sumRow);

@@ -14,13 +14,15 @@
   text-decoration: none;
   font-size: 16px;
   border-radius: 20px;
-  background: linear-gradient(to right, #0066ff, #33ccff);
+  /* background: linear-gradient(to right, #0066ff, #33ccff); */
+  background: blue;
+  border: none;
   transition: background 0.5s ease, transform 0.5s ease;
 }
 
 /* Button hover state */
 .button:hover {
-  background: linear-gradient(to right, #33ccff, #0066ff);
+  /* background: linear-gradient(to right, #33ccff, #0066ff); */
   transform: scale(1.1);
 }
 

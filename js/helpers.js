@@ -35,9 +35,27 @@ function paymentsUI() {
     <th class="col1">Navn</th>
     <th class="col3">Aktivt medlem</th>
     <th class="col4">Medlem siden</th>
-    <th class="col2">Skyldigt beløb</th>
+    <th>Saldo</th>
   </tr>`;
   table.insertAdjacentHTML("beforeend", tableHeader);
 }
 
-export { getAge, membersUI, paymentsUI };
+function getPrice(memberObj) {
+  const prices = {
+    inaktiv: 500,
+    ungdom: 1000,
+    senior: 1600,
+    old: 1200,
+  };
+  memberObj.price = prices.inaktiv;
+  const active = memberObj.membershipActive === "Ja";
+  if (memberObj.age > 60 && active) {
+    memberObj.price = prices.old;
+  } else if (memberObj.age <= 60 && memberObj.age >= 18 && active) {
+    memberObj.price = prices.senior;
+  } else if (memberObj.age < 18 && active) {
+    memberObj.price = prices.ungdom;
+  }
+}
+
+export { getAge, membersUI, paymentsUI, getPrice };

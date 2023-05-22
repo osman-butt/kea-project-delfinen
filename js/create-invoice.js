@@ -7,14 +7,7 @@ import {
   createPayment,
   setCreatedInvoice,
 } from "./rest-services.js";
-import { getAge } from "./helpers.js";
-
-const prices = {
-  inaktiv: 500,
-  ungdom: 1000,
-  senior: 1600,
-  old: 1200,
-};
+import { getAge, getPrice } from "./helpers.js";
 
 // Each year on 1. january, invoices are created.
 // The function checks if the invoices has already been created.
@@ -42,18 +35,6 @@ async function createAutomaticInvoice() {
     console.log(todayDate);
     await setCreatedInvoice(today.getFullYear().toString());
     // await createPayment(members[0].id, todayDate, members[0].price);
-  }
-}
-
-function getPrice(memberObj) {
-  memberObj.price = prices.inaktiv;
-  const active = memberObj.membershipActive === "Ja";
-  if (memberObj.age > 60 && active) {
-    memberObj.price = prices.old;
-  } else if (memberObj.age <= 60 && memberObj.age >= 18 && active) {
-    memberObj.price = prices.senior;
-  } else if (memberObj.age < 18 && active) {
-    memberObj.price = prices.ungdom;
   }
 }
 
