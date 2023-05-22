@@ -7,9 +7,9 @@ function showUpdateDialog() {
   console.log("---showUpdateDialog()---");
 
   document.querySelector("#dialog-update-member").showModal();
-  document
-    .querySelector("#open-update-member-dialog")
-    .removeEventListener("click", showUpdateDialog);
+  //   document
+  //     .querySelector("#open-update-member-dialog")
+  //     .removeEventListener("click", showUpdateDialog);
   document
     .querySelector("#update-member-btn")
     .addEventListener("click", updateMemberClicked);

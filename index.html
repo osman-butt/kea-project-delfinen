@@ -145,15 +145,23 @@
             <label for="update-mail">E-mail:</label>
             <input type="mail" name="update-mail" id="update-mail">
             <label for="update-active">Aktiv medlem:</label>
-            <input type="text" name="update-active" id="update-active">
+            <select name="update-active" id="update-active">
+              <option value="Ja">Ja</option>
+              <option value="Nej">Nej</option>
+            </select>
+            <!-- <input type="text" name="update-active" id="update-active"> -->
             <label for="update-membershipdate">Medlem siden:</label>
             <input type="text" name="update-membershipdate" id="update-membershipdate" readonly>
             <label for="update-gender">Køn:</label>
-            <input type="text" name="update-gender" id="update-gender">
+            <select name="update-gender" id="update-gender">
+              <option value="Mand">Mand</option>
+              <option value="Kvinde">Kvinde</option>
+            </select>
+            <!-- <input type="text" name="update-gender" id="update-gender"> -->
             <label for="update-membershiplevel">Medlemsniveau:</label>
             <input type="text" name="update-membershiplevel" id="update-membershiplevel">
             <p style="margin-top: 0;">Disciplin:</p>
-            <div>
+            <div id="update-activity">
               <input type="checkbox" id="activity-breast" name="activity-breast" value="brystsvømning">
               <label for="activity-breast">Brystsvømning</label>
               <input type="checkbox" id="activity-butterfly" name="activity-butterfly" value="butterfly">
@@ -165,7 +173,7 @@
             </div>
             <label for="update-img">Profilbillede:</label>
             <input type="url" name="update-img" id="update-img">
-            <div>
+            <div style="text-align: center; grid-column: span 2;">
                <button type="submit" class="dialog-btn" id="update-member-btn">Gem</button>
             </div>
           </form>

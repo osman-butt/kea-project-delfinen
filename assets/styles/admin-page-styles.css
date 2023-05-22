@@ -217,3 +217,8 @@ main {
 .col-right {
   text-align: right;
 }
+
+#update-activity {
+  display: grid;
+  grid-template-columns: 2em auto;
+}
