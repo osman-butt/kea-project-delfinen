@@ -147,10 +147,21 @@ main {
   display: none;
 }
 
-/* .view-content {
-  margin: 1em;
-} */
+#update-form {
+  display: grid;
+  grid-template-columns: auto;
+  row-gap: 1em;
+}
 
+#dialog-update-member {
+  width: 400px;
+}
+
+@media screen and (min-width: 450px) {
+  #update-form {
+    grid-template-columns: 2fr 3fr;
+  }
+}
 @media screen and (min-width: 600px) {
   .col2 {
     display: table-cell;
