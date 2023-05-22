@@ -87,7 +87,11 @@
         <div class="form-header">Opret Ny Bruger</div>
         <input type="text" id="name" name="name" placeholder="Navn"/>
         <input type="email" id="email" name="email" placeholder="Email"/>
+        
+        <label for="dob">Fødeselsdato:</label>
         <input type="date" id="dob" name="dob" placeholder="Fødselsdag"/>
+        <label for="membershipDate">Medlemskabsdato:</label>
+        <input type="date" id="membershipDate" name="membershipDate" placeholder="Medlemskabsdato"/>
        <select id="gender" name="gender">
     <option value="">Vælg køn</option>
     <option value="male">Mand</option>
@@ -107,9 +111,9 @@
       <fieldset id="Activities">
         <legend>Activities</legend>
         <label><input type="checkbox" name="activities" value="butterfly"> Butterfly</label>
-        <label><input type="checkbox" name="activities" value="fri"> Fri</label>
+        <label><input type="checkbox" name="activities" value="crawl"> Fri</label>
         <label><input type="checkbox" name="activities" value="brystsvømning"> Brystsvømning</label>
-        <label><input type="checkbox" name="activities" value="rygsvømning"> Rygsvømning</label>
+        <label><input type="checkbox" name="activities" value="rygcrawl"> Rygsvømning</label>
       </fieldset>
      <input type="file" id="profileImage" name="profileImage" accept="image/*" />
         <button id="create-member">Opret Medlem</button>
