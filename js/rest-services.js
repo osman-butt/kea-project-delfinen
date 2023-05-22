@@ -83,8 +83,8 @@ async function createMember(
   membershipActive,
   membershipLevel,
   activity,
-  profileImage = "https://www.pngitem.com/pimgs/m/30-307416_profile-icon-png-image-free-download-searchpng-employee.png",
-  membershipDate
+  membershipDate,
+  profileImage = "https://www.pngitem.com/pimgs/m/30-307416_profile-icon-png-image-free-download-searchpng-employee.png"
 ) {
   console.log("---createMember()---");
 
@@ -99,6 +99,7 @@ async function createMember(
     membershipLevel,
     activity,
     profileImage,
+    membershipDate,
   };
 
   console.log(`Creating member: ${JSON.stringify(newMember)}`);

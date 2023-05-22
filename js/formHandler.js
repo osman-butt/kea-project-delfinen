@@ -44,8 +44,8 @@ export function attachCreateMemberListener() {
       membershipActive,
       membershipLevel,
       activities,
-      profileImage,
-      mebershipDate
+      membershipDate,
+      profileImage
     );
 
     console.log(`New Member: ${JSON.stringify(newMember)}`);
