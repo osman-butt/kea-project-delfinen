@@ -11,11 +11,15 @@ import {
 } from "./rest-services.js";
 import { getAge, membersUI } from "./helpers.js";
 import { showUpdateDialog } from "./update-member.js";
+import { openCreateMemberDialog } from "./create-member.js";
 
 async function displayMembers() {
   membersUI();
   const data = await getMembers();
   data.forEach(displayMember);
+  document
+    .querySelector("#open-create-member-dialog")
+    .addEventListener("click", openCreateMemberDialog);
 }
 
 async function displayMembersUpdated() {

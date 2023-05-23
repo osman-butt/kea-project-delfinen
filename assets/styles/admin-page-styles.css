@@ -147,18 +147,21 @@ main {
   display: none;
 }
 
-#update-form {
+#update-form,
+#create-form {
   display: grid;
   grid-template-columns: auto;
   row-gap: 1em;
 }
 
-#dialog-update-member {
+#dialog-update-member,
+#dialog-create-member {
   width: 400px;
 }
 
 @media screen and (min-width: 450px) {
-  #update-form {
+  #update-form,
+  #create-form {
     grid-template-columns: 2fr 3fr;
   }
 }
@@ -218,7 +221,8 @@ main {
   text-align: right;
 }
 
-#update-activity {
+#update-activity,
+#create-activity {
   display: grid;
   grid-template-columns: 2em auto;
 }

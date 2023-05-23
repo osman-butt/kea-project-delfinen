@@ -18,6 +18,7 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Work+Sans:wght@100..900&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" type="image/x-icon" href="assets/images/Delfinen-logo.png">
     <title>Svømmeklubben Delfinen</title>
   </head>
 
@@ -25,7 +26,7 @@
     <section id="login-page" class="hidden">
       <div id="login-body">
         <div class="login-container">
-          <img src="images/Delfinen-logo.png" alt="Logo" class="logo" />
+          <img src="assets/images/Delfinen-logo.png" alt="Logo" class="logo" />
           <p id="error-response"></p>
           <h2 class="login-title">Admin Login</h2>
           <form class="login-form">
@@ -81,7 +82,7 @@
           <!-- <h2>Medlems data</h2> -->
           <section id="member-admin-container">
             <div class="button-container">
-              <button class="admin-button">Opret medlem</button>
+              <button id="open-create-member-dialog" class="admin-button">Opret medlem</button>
             </div>
             <div class="search-container">
               <input
@@ -129,7 +130,7 @@
           <p>Alt data (stamdata, betalinger og resultater) vil blive slettet, og kan ikke genskabes!</p>
           <form id="delete-form" method="dialog">
             <button class="dialog-btn cancel">Nej</button>
-            <button class="dialog-btn" >Ja</button>
+            <button class="dialog-btn" id="delete-member">Ja</button>
           </form>
         </dialog>
         <dialog id="dialog-update-member">
@@ -175,6 +176,56 @@
             <input type="url" name="update-img" id="update-img">
             <div style="text-align: center; grid-column: span 2;">
                <button type="submit" class="dialog-btn" id="update-member-btn">Gem</button>
+            </div>
+          </form>
+        </dialog>
+         <dialog id="dialog-create-member">
+              <form method="dialog">
+            <button class="close-btn"><i class="fas fa-times"></i></button>
+            <h2>Opret medlem</h2>
+          </form>
+          <form id="create-form">
+            <label for="create-name">Navn:</label>
+            <input type="text" name="create-name" id="create-name">
+            <label for="create-dob">Fødselsdato:</label>
+            <input type="date" name="create-dob" id="create-dob">
+            <label for="create-mail">E-mail:</label>
+            <input type="mail" name="create-mail" id="create-mail">
+            <label for="create-active">Aktiv medlem:</label>
+            <select name="create-active" id="create-active">
+              <option value="Ja">Ja</option>
+              <option value="Nej">Nej</option>
+            </select>
+            <!-- <input type="text" name="create-active" id="create-active"> -->
+            <label for="create-membershipdate">Indmeldings dato:</label>
+            <input type="date" name="create-membershipdate" id="create-membershipdate">
+            <label for="create-gender">Køn:</label>
+            <select name="create-gender" id="create-gender">
+              <option value="Mand">Mand</option>
+              <option value="Kvinde">Kvinde</option>
+            </select>
+            <!-- <input type="text" name="create-gender" id="create-gender"> -->
+            <label for="create-membershiplevel">Medlemsniveau:</label>
+            <select name="create-membershiplevel" id="create-membershiplevel">
+              <option value="Motionist">Motionist</option>
+              <option value="Konkurrence">Konkurrence</option>
+            </select>
+            <!-- <input type="text" name="create-membershiplevel" id="create-membershiplevel"> -->
+            <p style="margin-top: 0;">Disciplin:</p>
+            <div id="create-activity">
+              <input type="checkbox" id="create-activity-breast" name="create-activity-breast" value="brystsvømning">
+              <label for="create-activity-breast">Brystsvømning</label>
+              <input type="checkbox" id="create-activity-butterfly" name="create-activity-butterfly" value="butterfly">
+              <label for="create-activity-butterfly">Butterfly</label>
+              <input type="checkbox" id="create-activity-crawl" name="create-activity-crawl" value="crawl">
+              <label for="create-activity-crawl">Crawl</label>
+              <input type="checkbox" id="create-activity-rygcrawl" name="create-activity-rygcrawl" value="rygcrawl ">
+              <label for="create-activity-rygcrawl">Rygcrawl </label>
+            </div>
+            <label for="create-img">Profilbillede:</label>
+            <input type="url" name="create-img" id="create-img">
+            <div style="text-align: center; grid-column: span 2;">
+               <button type="submit" class="dialog-btn" id="create-member-btn">Gem</button>
             </div>
           </form>
         </dialog>
@@ -295,7 +346,7 @@
             <button id="add-result-btn" class="admin-button">Tilføj resultat</button>
           </div>
           <div id="team-filter-container">
-            <label for="team-filter">Vælg hold:</label>
+            <label style="color: white;" for="team-filter">Vælg hold:</label>
             <select name="team-filter" id="team-filter" class="result-filter">
               <option value="">Vælg</option>
               <option value="senior">Senior</option>
@@ -303,7 +354,7 @@
             </select>
           </div>
           <div id="gender-filter-container">
-            <label for="gender-filter">Vælg køn:</label>
+            <label  style="color: white;" for="gender-filter">Vælg køn:</label>
             <select name="gender-filter" id="gender-filter" class="result-filter">
               <option value="">Vælg</option>
               <option value="Kvinde">Kvinde</option>

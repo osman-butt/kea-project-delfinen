@@ -271,6 +271,28 @@ async function updateMember(id, body) {
   }
 }
 
+async function createMember(newMember) {
+  console.log("---updateMember()---");
+  const token = auth.currentUser.stsTokenManager.accessToken;
+  const url = `${endpoint}/members/.json?auth=${token}`;
+  const response = await fetch(url, {
+    method: "POST",
+    body: JSON.stringify(newMember),
+  });
+  if (response.ok) {
+    console.log("Member was created succesfully");
+    const data = await response.json();
+    return data.name;
+  } else {
+    console.log(
+      "Creating member gave an error: " +
+        response.status +
+        " " +
+        response.statusText
+    );
+  }
+}
+
 export {
   getMembers,
   getMembersUpdate,
@@ -286,4 +308,5 @@ export {
   deletePayments,
   deleteResults,
   updateMember,
+  createMember,
 };
