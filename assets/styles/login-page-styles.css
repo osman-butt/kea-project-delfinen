@@ -15,7 +15,7 @@
   font-size: 16px;
   border-radius: 20px;
   /* background: linear-gradient(to right, #0066ff, #33ccff); */
-  background: blue;
+  background: #193044;
   border: none;
   transition: background 0.5s ease, transform 0.5s ease;
 }
@@ -58,7 +58,7 @@
 /* Login title */
 .login-title {
   font-size: 1.5rem;
-  color: #0066ff; /* Adjust color as needed */
+  color: #051e34; /* Adjust color as needed */
   margin: 1rem;
 }
 
@@ -80,7 +80,7 @@
   text-decoration: none;
   font-size: 16px;
   border-radius: 20px;
-  background: linear-gradient(to right, #0066ff, #33ccff);
+  background: #193044;
   transition: background 0.5s ease, transform 0.5s ease;
   margin-top: 20px;
   width: 100%;
@@ -88,7 +88,7 @@
 
 /* Button hover state */
 .login-form .button:hover {
-  background: linear-gradient(to right, #33ccff, #0066ff);
+  background: #193044;
   transform: scale(1.1);
 }
 
