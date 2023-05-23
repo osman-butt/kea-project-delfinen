@@ -7,11 +7,10 @@
   /* left: 0; */
   width: 100%;
   padding: 0.4em;
-  background: #0066ff;
+  background: #051e34;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
   z-index: 100;
   box-sizing: border-box;
-  border-radius: 1em;
 }
 
 #overview-container {
@@ -32,7 +31,7 @@
 }
 
 .payment-text {
-  background-color: #0066ff;
+  background-color: #051e34;
   color: white;
   margin: 1em;
   border-radius: 1em;

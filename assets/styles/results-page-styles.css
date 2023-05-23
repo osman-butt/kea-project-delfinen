@@ -1,16 +1,11 @@
 #results-filter-container {
-  background-color: #0066ff;
+  background-color: #051e34;
   padding: 2em;
   border-radius: 1em;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   text-align: center;
   justify-items: center;
-}
-
-#team-filter {
-  /* color: white;
-  background-color: #0066ff; */
 }
 
 #results-filter-container {
@@ -34,13 +29,13 @@ select {
 }
 
 .result-grid-item {
-  background-color: #0066ff;
+  /* background-color: #0066ff; */
   padding: 1em;
   border-radius: 1em;
 }
 
 .result-grid-item > h3 {
-  color: white;
+  color: #051e34;
 }
 
 #butterfly-table,
