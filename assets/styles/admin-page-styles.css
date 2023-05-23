@@ -128,9 +128,15 @@ tr:hover > td {
   gap: 1em;
 }
 
-#member-search {
+.search-box {
   padding: 0.7em;
   border-radius: 1em 0 0 1em;
+  border: none;
+}
+
+.search-box2 {
+  padding: 0.7em;
+  border-radius: 1em;
   border: none;
 }
 
