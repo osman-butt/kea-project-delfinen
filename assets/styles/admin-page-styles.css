@@ -110,21 +110,36 @@ tr:hover > td {
 
 .search-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 5fr 1fr;
+  gap: 1em;
+  margin: 1em;
+}
+
+#search-box-container {
+  display: grid;
+  grid-template-columns: 5fr 1fr;
   align-items: left;
 }
 
 #member-admin-container {
   padding-bottom: 1em;
   display: grid;
-  grid-template-columns: 2fr 1fr 2fr;
+  grid-template-columns: 1fr;
+  gap: 1em;
 }
 
 #member-search {
   padding: 0.7em;
-  border-radius: 1em;
+  border-radius: 1em 0 0 1em;
   border: none;
 }
+
+#filter-member {
+  border-radius: 0 1em 1em 0;
+  background-color: #193044;
+  color: white;
+}
+
 .col2,
 .col3,
 .col4,
@@ -171,6 +186,12 @@ tr:hover > td {
 @media screen and (min-width: 900px) {
   .col4 {
     display: table-cell;
+  }
+  #member-admin-container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .search-container {
+    margin: 0;
   }
 }
 @media screen and (min-width: 1000px) {

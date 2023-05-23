@@ -85,11 +85,18 @@
               <button id="open-create-member-dialog" class="admin-button">Opret medlem</button>
             </div>
             <div class="search-container">
-              <input
-                id="member-search"
-                type="search"
-                placeholder="Søg efter medlem"
-              />
+              <div id="search-box-container">
+                <input id="member-search" type="search" placeholder="Søg" />
+              <select name="filter-member" id="filter-member">
+                <option value="">Alle</option>
+                <option value="">Navn</option>
+                <option value="">Køn</option>
+                <option value="">Alder</option>
+                <option value="">Medlemstype</option>
+                <option value="">Medlemsniveau</option>
+                <option value="">Disciplin</option>
+              </select>
+              </div>
               <div class="button-container">
                 <button class="admin-button">Søg</button>
               </div>
