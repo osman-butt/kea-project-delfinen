@@ -12,6 +12,7 @@ import {
 import { getAge, membersUI } from "./helpers.js";
 import { showUpdateDialog } from "./update-member.js";
 import { openCreateMemberDialog } from "./create-member.js";
+import { getSearchMemberList } from "./search-member.js";
 
 async function displayMembers() {
   membersUI();
@@ -20,12 +21,25 @@ async function displayMembers() {
   document
     .querySelector("#open-create-member-dialog")
     .addEventListener("click", openCreateMemberDialog);
+  document
+    .querySelector("#search-members-btn")
+    .addEventListener("click", searchMember);
+  document.querySelector("#showing-members").textContent = data.length;
+  document.querySelector("#total-members").textContent = data.length;
+}
+
+async function searchMember() {
+  membersUI();
+  const membersList = await getSearchMemberList();
+  membersList.forEach(displayMember);
 }
 
 async function displayMembersUpdated() {
   membersUI();
   const data = await getMembersUpdate();
   data.forEach(displayMember);
+  document.querySelector("#showing-members").textContent = data.length;
+  document.querySelector("#total-members").textContent = data.length;
 }
 
 async function displayMember(memberObj) {

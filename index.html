@@ -85,19 +85,33 @@
               <button id="open-create-member-dialog" class="admin-button">Opret medlem</button>
             </div>
             <div class="search-container">
-              <input
-                id="member-search"
-                type="search"
-                placeholder="Søg efter medlem"
-              />
+              <div id="search-box-container">
+                <input class="search-box" id="member-search" type="search" placeholder="Søg" />
+              <select name="filter-member" id="filter-member">
+                <option value="">Alle</option>
+                <option value="name">Navn</option>
+                <option value="email">E-mail</option>
+                <option value="age">Alder</option>
+                <option value="senior">Senior 18+</option>
+                <option value="junior">Junior</option>
+                <option value="Konkurrence">Konkurrence Svømmer</option>
+                <option value="Motionist">Motionist svømmer</option>
+                <option value="butterfly">Disciplin - Butterfly</option>
+                <option value="brystsvømning">Disciplin - Brystsvømning</option>
+                <option value="crawl">Disciplin - Crawl</option>
+                <option value="rygcrawl">Disciplin - Rygcrawl</option>
+              </select>
+              </div>
               <div class="button-container">
-                <button class="admin-button">Søg</button>
+                <button class="admin-button" id="search-members-btn">Søg</button>
               </div>
             </div>
             <div class="button-container">
-              <!-- <button class="admin-button">Opret medlem</button> -->
             </div>
           </section>
+          <div style="text-align: center;">
+            <p>Viser <span id="showing-members"></span> ud af <span id="total-members"></span> medlemmer.</p>
+          </div>
           <table id="member-table">
             <!-------- MEMBER DATA GOES HERE -------->
           </table>
@@ -312,6 +326,15 @@
             <p style="margin-left: 2em; margin-top: 0 ;">- Samlet set er der restancer for <span id="arrears-total"></span> kr.</p>
             <p style="margin-left: 2em; margin-top: 0 ;">- Regning bliver automatisk tilføjet hvert år d. 1. januar.</p>
             <p style="margin-left: 2em; margin-top: 0 ;">- Betalinger registreres ved at klikke på et medlem.</p>
+            </div>
+            <div class="search-payments-container">
+              <div id="search-box-payments-container">
+                <input class="search-box2" id="member-search-payments" type="search" placeholder="Søg" />
+                <div class="button-container">
+                <button class="admin-button" id="search-members-payments-btn">Søg</button>
+              </div>
+              </div>
+              
             </div>
             <table id="payments-table">
               <!-------- MEMBER DATA GOES HERE -------->

@@ -36,3 +36,17 @@
   margin: 1em;
   border-radius: 1em;
 }
+
+.search-payments-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1em;
+  margin: 1em;
+}
+
+#search-box-payments-container {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  align-items: left;
+}

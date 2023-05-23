@@ -8,6 +8,7 @@ import {
   getPaymentsUpdate,
 } from "./rest-services.js";
 import { paymentsUI } from "./helpers.js";
+import { getSearchPaymentsList } from "./search-payments.js";
 
 async function displayPayments() {
   paymentsUI();
@@ -15,13 +16,35 @@ async function displayPayments() {
   const members = await getMembers();
   const mergedList = calcSum(mergeArrays(payments, members));
   mergedList.sort((a, b) => b.sum - a.sum);
-  console.log("MERGED LIST");
-  console.log(mergedList);
   mergedList.forEach(displayPayment);
-  console.log(
-    "SUM OF ALL " +
-      mergedList.reduce((partialSum, obj) => partialSum + obj.sum, 0)
+  const sum = /*html*/ `
+    <tr class="payment-table-sum" style="font-weight: bold;">
+      <td></td>
+      <td class="col1"></td>
+      <td class="col3"></td>
+      <td class="col3">SUM</td>
+      <td class="currency-format">${mergedList.reduce(
+        (partialSum, obj) => partialSum + obj.sum,
+        0
+      )}</td>
+    </tr>
+    `;
+  document
+    .querySelector("#payments-table")
+    .insertAdjacentHTML("beforeend", sum);
+  document.querySelector("#arrears-total").textContent = mergedList.reduce(
+    (partialSum, obj) => partialSum + obj.sum,
+    0
   );
+  document
+    .querySelector("#search-members-payments-btn")
+    .addEventListener("click", searchPayments);
+}
+
+async function searchPayments() {
+  paymentsUI();
+  const mergedList = await getSearchPaymentsList();
+  mergedList.forEach(displayPayment);
   const sum = /*html*/ `
     <tr class="payment-table-sum" style="font-weight: bold;">
       <td></td>
