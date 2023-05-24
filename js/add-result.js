@@ -7,9 +7,16 @@ import {
   getMembersUpdate,
   getResults,
   getResultsUpdate,
+  getUser,
 } from "./rest-services.js";
 import { updateDisplayResults } from "./view-results.js";
 import { getAge } from "./helpers.js";
+
+// let userInfo = {};
+// let team = "";
+
+// const userInfo = await getUser();
+// const team = userInfo.team;
 
 function openAddResultDialog() {
   document
@@ -87,9 +94,14 @@ function toggleTypeChange() {
 
 async function membersDropdown() {
   console.log("---membersDropdown()---");
+  const userInfo = await getUser();
+  const team = userInfo.team;
   const allMembers = await getMembers();
+  allMembers.forEach(row => (row.age = getAge(row.dob).toString()));
+  allMembers.forEach(row => (row.team = row.age < 18 ? "junior" : "senior"));
+  console.log(allMembers);
   const competitionMembers = allMembers.filter(
-    row => row.membershipLevel === "Konkurrence"
+    row => row.membershipLevel === "Konkurrence" && row.team === team
   );
   competitionMembers.forEach(memberDropdownOption);
 }
