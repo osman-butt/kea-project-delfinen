@@ -8,19 +8,41 @@ import {
   deleteMember,
   deletePayments,
   deleteResults,
+  getUser,
 } from "./rest-services.js";
 import { getAge, membersUI } from "./helpers.js";
 import { showUpdateDialog } from "./update-member.js";
 import { openCreateMemberDialog } from "./create-member.js";
 import { getSearchMemberList } from "./search-member.js";
 
+let userRole = "";
+
 async function displayMembers() {
+  const user = await getUser();
+  userRole = user.role;
   membersUI();
   const data = await getMembers();
   data.forEach(displayMember);
-  document
-    .querySelector("#open-create-member-dialog")
-    .addEventListener("click", openCreateMemberDialog);
+  if (userRole === "admin") {
+    document.querySelector("#open-create-member-dialog").offsetHeight;
+    document
+      .querySelector("#open-create-member-dialog")
+      .classList.add("admin-button");
+    document
+      .querySelector("#open-create-member-dialog")
+      .classList.remove("hidden");
+    document
+      .querySelector("#open-create-member-dialog")
+      .addEventListener("click", openCreateMemberDialog);
+  } else {
+    document.querySelector("#open-create-member-dialog").offsetHeight;
+    document
+      .querySelector("#open-create-member-dialog")
+      .classList.add("hidden");
+    document
+      .querySelector("#open-create-member-dialog")
+      .classList.remove("admin-button");
+  }
   document
     .querySelector("#search-members-btn")
     .addEventListener("click", searchMember);
@@ -102,12 +124,43 @@ function showReadMemberDialog(memberObj) {
   document
     .querySelector("#dialog-update-member")
     .setAttribute("data-id", memberObj.id);
-  document
-    .querySelector("#open-delete-member-dialog")
-    .addEventListener("click", showDeleteDialog);
-  document
-    .querySelector("#open-update-member-dialog")
-    .addEventListener("click", showUpdateDialog);
+  if (userRole === "admin") {
+    document.querySelector("#open-delete-member-dialog").offsetHeight;
+    document.querySelector("#open-update-member-dialog").offsetHeight;
+    document
+      .querySelector("#open-delete-member-dialog")
+      .classList.add("dialog-btn");
+    document
+      .querySelector("#open-update-member-dialog")
+      .classList.add("dialog-btn");
+    document
+      .querySelector("#open-delete-member-dialog")
+      .classList.remove("hidden");
+    document
+      .querySelector("#open-update-member-dialog")
+      .classList.remove("hidden");
+    document
+      .querySelector("#open-delete-member-dialog")
+      .addEventListener("click", showDeleteDialog);
+    document
+      .querySelector("#open-update-member-dialog")
+      .addEventListener("click", showUpdateDialog);
+  } else {
+    document.querySelector("#open-delete-member-dialog").offsetHeight;
+    document.querySelector("#open-update-member-dialog").offsetHeight;
+    document
+      .querySelector("#open-delete-member-dialog")
+      .classList.remove("dialog-btn");
+    document
+      .querySelector("#open-update-member-dialog")
+      .classList.remove("dialog-btn");
+    document
+      .querySelector("#open-delete-member-dialog")
+      .classList.add("hidden");
+    document
+      .querySelector("#open-update-member-dialog")
+      .classList.add("hidden");
+  }
   document.querySelector("#dialog-read-member-img").src =
     memberObj.profileImage;
   document.querySelector("#dialog-read-member-name").textContent =

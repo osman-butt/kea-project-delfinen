@@ -296,7 +296,6 @@ async function createMember(newMember) {
 async function getUser() {
   const token = auth.currentUser.stsTokenManager.accessToken;
   const uid = auth.currentUser.uid;
-  console.log(uid);
   const response = await fetch(`${endpoint}/users/${uid}.json?auth=${token}`);
   if (response.ok) {
     console.log("getUser status " + response.status);

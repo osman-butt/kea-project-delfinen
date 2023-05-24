@@ -95,7 +95,7 @@ function toggleTypeChange() {
 async function membersDropdown() {
   console.log("---membersDropdown()---");
   const userInfo = await getUser();
-  const team = userInfo.team;
+  const team = userInfo.team ? userInfo.team : "";
   const allMembers = await getMembers();
   allMembers.forEach(row => (row.age = getAge(row.dob).toString()));
   allMembers.forEach(row => (row.team = row.age < 18 ? "junior" : "senior"));
