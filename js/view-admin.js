@@ -26,7 +26,7 @@ async function displayAdminPage() {
   const members = await getMembers();
   members.forEach(row => (row.age = getAge(row.dob).toString()));
   members.forEach(getPrice);
-  if (userInfo.role === "admin") {
+  if (userInfo.role === "chairman" || userInfo.role === "admin") {
     buildAdminUserUI();
     const membersThisYear = members.filter(
       row => row.membershipDate.substring(0, 4) === thisYear.toString()

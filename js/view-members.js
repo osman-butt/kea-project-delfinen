@@ -23,7 +23,7 @@ async function displayMembers() {
   membersUI();
   const data = await getMembers();
   data.forEach(displayMember);
-  if (userRole === "admin") {
+  if (userRole === "chairman" || userRole === "admin") {
     document.querySelector("#open-create-member-dialog").offsetHeight;
     document
       .querySelector("#open-create-member-dialog")
@@ -124,7 +124,7 @@ function showReadMemberDialog(memberObj) {
   document
     .querySelector("#dialog-update-member")
     .setAttribute("data-id", memberObj.id);
-  if (userRole === "admin") {
+  if (userRole === "chairman" || userRole === "admin") {
     document.querySelector("#open-delete-member-dialog").offsetHeight;
     document.querySelector("#open-update-member-dialog").offsetHeight;
     document

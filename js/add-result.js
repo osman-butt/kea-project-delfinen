@@ -100,10 +100,17 @@ async function membersDropdown() {
   allMembers.forEach(row => (row.age = getAge(row.dob).toString()));
   allMembers.forEach(row => (row.team = row.age < 18 ? "junior" : "senior"));
   console.log(allMembers);
-  const competitionMembers = allMembers.filter(
-    row => row.membershipLevel === "Konkurrence" && row.team === team
-  );
-  competitionMembers.forEach(memberDropdownOption);
+  if (userInfo.role === "admin") {
+    const competitionMembers = allMembers.filter(
+      row => row.membershipLevel === "Konkurrence"
+    );
+    competitionMembers.forEach(memberDropdownOption);
+  } else {
+    const competitionMembers = allMembers.filter(
+      row => row.membershipLevel === "Konkurrence" && row.team === team
+    );
+    competitionMembers.forEach(memberDropdownOption);
+  }
 }
 
 function memberDropdownOption(memberObj) {
