@@ -6,11 +6,16 @@ import {
   getMembers,
   createPayment,
   getPaymentsUpdate,
+  getUser,
 } from "./rest-services.js";
 import { paymentsUI } from "./helpers.js";
 import { getSearchPaymentsList } from "./search-payments.js";
 
+let userRole = "";
+
 async function displayPayments() {
+  const user = await getUser();
+  userRole = user.role;
   paymentsUI();
   const payments = await getPayments();
   const members = await getMembers();
@@ -124,9 +129,18 @@ async function displayPayment(paymentObj) {
 function showReadPaymentDialog(paymentObj) {
   // Set uid attribute
   // Add payment
-  document
-    .querySelector("#add-payment-btn")
-    .addEventListener("click", addPayment);
+  if (userRole === "cashier" || userRole === "admin") {
+    document.querySelector("#add-payment-btn").offsetHeight;
+    document.querySelector("#add-payment-btn").classList.add("dialog-btn");
+    document.querySelector("#add-payment-btn").classList.remove("hidden");
+    document
+      .querySelector("#add-payment-btn")
+      .addEventListener("click", addPayment);
+  } else {
+    document.querySelector("#add-payment-btn").offsetHeight;
+    document.querySelector("#add-payment-btn").classList.remove("dialog-btn");
+    document.querySelector("#add-payment-btn").classList.add("hidden");
+  }
   console.log("Show read payments");
   document.querySelector("#dialog-read-payment-img").src =
     paymentObj.member.profileImage;

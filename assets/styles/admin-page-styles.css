@@ -117,7 +117,7 @@ tr:hover > td {
 
 #search-box-container {
   display: grid;
-  grid-template-columns: 5fr 1fr;
+  grid-template-columns: 5fr 100px;
   align-items: left;
 }
 
@@ -237,4 +237,8 @@ tr:hover > td {
 #create-activity {
   display: grid;
   grid-template-columns: 2em auto;
+}
+
+#admin-info-container {
+  margin-top: 1em;
 }
