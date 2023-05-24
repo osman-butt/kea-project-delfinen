@@ -10,7 +10,6 @@ async function displayAdminPage() {
   buildUserUI();
   const uid = auth.uid;
   const userInfo = await getUser();
-  console.log(userInfo);
   const lastLogin = new Date(userInfo.lastLogin);
   document.querySelector("#admin-image").src = userInfo.profileImage;
   document.querySelector("#admin-name").textContent = userInfo.name;
