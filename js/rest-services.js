@@ -293,6 +293,21 @@ async function createMember(newMember) {
   }
 }
 
+async function getUser() {
+  const token = auth.currentUser.stsTokenManager.accessToken;
+  const uid = auth.currentUser.uid;
+  console.log(uid);
+  const response = await fetch(`${endpoint}/users/${uid}.json?auth=${token}`);
+  if (response.ok) {
+    console.log("getUser status " + response.status);
+    const data = await response.json();
+    // const user = prepareData(data);
+    return data;
+  } else {
+    console.log(response.status, response.statusText);
+  }
+}
+
 export {
   getMembers,
   getMembersUpdate,
@@ -309,4 +324,5 @@ export {
   deleteResults,
   updateMember,
   createMember,
+  getUser,
 };

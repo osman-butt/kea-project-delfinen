@@ -4,6 +4,7 @@
 import { displayMembers } from "./view-members.js";
 import { displayPayments } from "./view-payments.js";
 import { displayResults } from "./view-results.js";
+import { displayAdminPage } from "./view-admin.js";
 import { displayPaymentOverview } from "./overview-payments.js";
 
 function initViews() {
@@ -20,7 +21,9 @@ function viewChange() {
   }
 
   if (hashLink !== "#overview" && hashLink !== "#acc-balance") {
-    if (hashLink == "#members") {
+    if (hashLink == "#home") {
+      displayAdminPage();
+    } else if (hashLink == "#members") {
       displayMembers();
     } else if (hashLink == "#results") {
       displayResults();
