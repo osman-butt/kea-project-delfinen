@@ -67,11 +67,11 @@ function hideAllViews() {
     .forEach(link => link.classList.remove("active"));
 }
 
-function setDefaultView() {
-  if (location.hash) {
-    // if there's a hash value, use as link
-    location.hash = "home";
-  }
-}
+// function setDefaultView() {
+//   if (location.hash) {
+//     // if there's a hash value, use as link
+//     location.hash = "home";
+//   }
+// }
 
-export { initViews, setDefaultView };
+export { initViews };

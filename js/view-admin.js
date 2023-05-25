@@ -5,13 +5,10 @@ import { getAge, getPrice } from "./helpers.js";
 const endpoint =
   "https://kea-delfinen-default-rtdb.europe-west1.firebasedatabase.app/";
 
-function displayAdminPage() {
+async function displayAdminPage() {
   resetUI();
-  displayContent();
-}
-
-async function displayContent() {
-  const uid = auth.uid;
+  console.log("displayContent()");
+  const uid = await auth.uid;
   const userInfo = await getUser();
   const lastLogin = new Date(userInfo.lastLogin);
   buildUserUI(
@@ -91,6 +88,7 @@ async function displayContent() {
   }
 }
 function buildUserUI(img, name, mail, role, lastLogin) {
+  console.log("buildUserUI()");
   const home = document.querySelector("#home");
   const user = /*html*/ `
         <div id="admin-info-container">
@@ -116,6 +114,7 @@ function buildUserUI(img, name, mail, role, lastLogin) {
 }
 
 function buildAdminUserUI(thisMonth, lastMonth, thisYear, lastYear) {
+  console.log("buildAdminUserUI()");
   const home = document.querySelector("#home");
   const admin = /*html*/ `
         <div id="user-content" style="margin: 1em; border-radius: 1em;">
@@ -141,6 +140,7 @@ function buildAdminUserUI(thisMonth, lastMonth, thisYear, lastYear) {
 }
 
 function buildTrainerUserUI(team, members, addedMembers) {
+  console.log("buildTrainerUserUI()");
   const home = document.querySelector("#home");
   const trainer = /*html*/ `
         <div id="user-content" style="margin: 1em; border-radius: 1em;">
@@ -162,6 +162,7 @@ function buildTrainerUserUI(team, members, addedMembers) {
 }
 
 function buildCashierUserUI(expIncome, unpaid) {
+  console.log("buildCashierUserUI()");
   const home = document.querySelector("#home");
   const cashier = /*html*/ `
         <div id="user-content" style="margin: 1em; border-radius: 1em;">
@@ -183,12 +184,6 @@ async function cashierExpectedIncome(members) {
   const mergedList = calcSum(mergeArrays(payments, members));
   const total = mergedList.reduce((partialSum, obj) => partialSum + obj.sum, 0);
 }
-function resetUI() {
-  document.querySelector("#home").textContent = "";
-  if (document.querySelector("#user-content")) {
-    document.querySelector("#user-content").textContent = "";
-  }
-}
 
 function calcSum(list) {
   for (const obj of list) {
@@ -198,6 +193,14 @@ function calcSum(list) {
     );
   }
   return list;
+}
+
+function resetUI() {
+  console.log("resetUI()");
+  document.querySelector("#home").textContent = "";
+  if (document.querySelector("#user-content")) {
+    document.querySelector("#user-content").textContent = "";
+  }
 }
 
 function mergeArrays(arr1, arr2) {
