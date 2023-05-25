@@ -153,11 +153,11 @@
           </form>
           <form id="update-form">
             <label for="update-name">Navn:</label>
-            <input type="text" name="update-name" id="update-name">
+            <input type="text" name="update-name" id="update-name" required>
             <label for="update-dob">Fødselsdato:</label>
-            <input type="date" name="update-dob" id="update-dob">
+            <input type="date" name="update-dob" id="update-dob" required>
             <label for="update-mail">E-mail:</label>
-            <input type="mail" name="update-mail" id="update-mail">
+            <input type="mail" name="update-mail" id="update-mail" required>
             <label for="update-active">Aktiv medlem:</label>
             <select name="update-active" id="update-active">
               <option value="Ja">Ja</option>
@@ -173,7 +173,7 @@
             </select>
             <!-- <input type="text" name="update-gender" id="update-gender"> -->
             <label for="update-membershiplevel">Medlemsniveau:</label>
-            <input type="text" name="update-membershiplevel" id="update-membershiplevel">
+            <input type="text" name="update-membershiplevel" id="update-membershiplevel" required>
             <p style="margin-top: 0;">Disciplin:</p>
             <div id="update-activity">
               <input type="checkbox" id="activity-breast" name="activity-breast" value="brystsvømning">
@@ -199,11 +199,11 @@
           </form>
           <form id="create-form">
             <label for="create-name">Navn:</label>
-            <input type="text" name="create-name" id="create-name">
+            <input type="text" name="create-name" id="create-name" required>
             <label for="create-dob">Fødselsdato:</label>
-            <input type="date" name="create-dob" id="create-dob">
+            <input type="date" name="create-dob" id="create-dob" required>
             <label for="create-mail">E-mail:</label>
-            <input type="mail" name="create-mail" id="create-mail">
+            <input type="mail" name="create-mail" id="create-mail" required>
             <label for="create-active">Aktiv medlem:</label>
             <select name="create-active" id="create-active">
               <option value="Ja">Ja</option>
@@ -211,7 +211,7 @@
             </select>
             <!-- <input type="text" name="create-active" id="create-active"> -->
             <label for="create-membershipdate">Indmeldings dato:</label>
-            <input type="date" name="create-membershipdate" id="create-membershipdate">
+            <input type="date" name="create-membershipdate" id="create-membershipdate" required>
             <label for="create-gender">Køn:</label>
             <select name="create-gender" id="create-gender">
               <option value="Mand">Mand</option>
