@@ -10,7 +10,7 @@ As a backend, Firebase Realtime Database is used to store and retrieve data, and
 ## Users and access
 There are 5 different predefined users. Only authenticated and authorized users are able to see the content. 
 
-Communication with the database is done via an API endpoint, which only authenticated and authorized users can consume.
+Communication with the database is done via an API endpoint. The API can only be consumed by authenticated and authorized users.
 
 ## Preview
 See a live demonstration [here](https://osman-butt.github.io/kea-project-delfinen/)
