@@ -5,19 +5,22 @@ import { getAge, getPrice } from "./helpers.js";
 const endpoint =
   "https://kea-delfinen-default-rtdb.europe-west1.firebasedatabase.app/";
 
-async function displayAdminPage() {
-  //   resetUI();
-  buildUserUI();
+function displayAdminPage() {
+  resetUI();
+  displayContent();
+}
+
+async function displayContent() {
   const uid = auth.uid;
   const userInfo = await getUser();
   const lastLogin = new Date(userInfo.lastLogin);
-  document.querySelector("#admin-image").src = userInfo.profileImage;
-  document.querySelector("#admin-name").textContent = userInfo.name;
-  document.querySelector("#admin-mail").textContent = userInfo.email;
-  document.querySelector("#admin-role").textContent = userInfo.role;
-  document.querySelector("#admin-lastlogin").textContent =
-    lastLogin.toLocaleDateString() + " kl." + lastLogin.toLocaleTimeString();
-
+  buildUserUI(
+    userInfo.profileImage,
+    userInfo.name,
+    userInfo.email,
+    userInfo.role,
+    lastLogin.toLocaleDateString() + " kl." + lastLogin.toLocaleTimeString()
+  );
   const today = new Date();
   const thisYear = today.getFullYear();
   const thisMonth = today.getMonth() + 1;
@@ -27,7 +30,6 @@ async function displayAdminPage() {
   members.forEach(row => (row.age = getAge(row.dob).toString()));
   members.forEach(getPrice);
   if (userInfo.role === "chairman" || userInfo.role === "admin") {
-    buildAdminUserUI();
     const membersThisYear = members.filter(
       row => row.membershipDate.substring(0, 4) === thisYear.toString()
     );
@@ -45,16 +47,13 @@ async function displayAdminPage() {
         lastMonth.toString().padStart(2, "0")
     );
 
-    document.querySelector("#admin-member-month").textContent =
-      membersThisMonth.length;
-    document.querySelector("#admin-member-year").textContent =
-      membersThisYear.length;
-    document.querySelector("#admin-member-lastmonth").textContent =
-      membersLastMonth.length;
-    document.querySelector("#admin-member-lastyear").textContent =
-      membersLastYear.length;
+    buildAdminUserUI(
+      membersThisMonth.length,
+      membersLastMonth.length,
+      membersThisYear.length,
+      membersLastYear.length
+    );
   } else if (userInfo.role === "trainer") {
-    buildTrainerUserUI();
     const team = userInfo.team;
     if (team === "junior") {
       const teamMembers = members.filter(
@@ -65,11 +64,7 @@ async function displayAdminPage() {
           row.membershipDate.substring(5, 7) ===
           thisMonth.toString().padStart(2, "0")
       );
-      document.querySelector("#trainer-team").textContent = team;
-      document.querySelector("#trainer-members").textContent =
-        teamMembers.length;
-      document.querySelector("#trainer-members-month").textContent =
-        teamMembersThisMonth.length;
+      buildTrainerUserUI(team, teamMembers.length, teamMembersThisMonth.length);
     } else {
       const teamMembers = members.filter(
         row => row.age >= 18 && row.membershipLevel === "Konkurrence"
@@ -79,14 +74,9 @@ async function displayAdminPage() {
           row.membershipDate.substring(5, 7) ===
           thisMonth.toString().padStart(2, "0")
       );
-      document.querySelector("#trainer-team").textContent = team;
-      document.querySelector("#trainer-members").textContent =
-        teamMembers.length;
-      document.querySelector("#trainer-members-month").textContent =
-        teamMembersThisMonth.length;
+      buildTrainerUserUI(team, teamMembers.length, teamMembersThisMonth.length);
     }
   } else if (userInfo.role === "cashier") {
-    buildCashierUserUI();
     const expIncome = members.reduce(
       (partialSum, obj) => partialSum + obj.price,
       0
@@ -97,99 +87,91 @@ async function displayAdminPage() {
       (partialSum, obj) => partialSum + obj.sum,
       0
     );
-    document.querySelector("#cashier-income").textContent = expIncome + " kr.";
-    document.querySelector("#cashier-total").textContent = total + " kr.";
+    buildCashierUserUI(expIncome + " kr.", total + " kr.");
   }
 }
-function buildUserUI() {
+function buildUserUI(img, name, mail, role, lastLogin) {
   const home = document.querySelector("#home");
-  home.textContent = "";
   const user = /*html*/ `
         <div id="admin-info-container">
           <div style=" padding: 1em; display: flex; justify-content:center; column-gap: 1em; background-color: #051e34; color: white; width: 350px; margin: auto;">
-            <img id="admin-image" src="" alt="" style="width: 3em; height: 3em; border-radius: 3em;">
-            <p id="admin-name" style="font-size: 18px; font-weight: bold;">USER NAME</p>
+            <img id="admin-image" src="${img}" alt="" style="width: 3em; height: 3em; border-radius: 3em;">
+            <p id="admin-name" style="font-size: 18px; font-weight: bold;">${name}</p>
           </div>
           <div style="padding: 1em 1em 0 1em; display: flex; justify-content:center; column-gap: 1em; background-color: #051e34; color: white; width: 350px; margin: auto;">
             <p>E-mail:</p>
-            <p id="admin-mail"></p>
+            <p id="admin-mail">${mail}</p>
           </div>
           <div style="padding: 0 1em 0 1em; display: flex; justify-content:center; column-gap: 1em; background-color: #051e34; color: white; width: 350px; margin: auto;">
             <p>Bruger type:</p>
-            <p id="admin-role"></p>
+            <p id="admin-role">${role}</p>
           </div>
           <div style="padding: 0 1em 1em 1em; display: flex; justify-content:center; column-gap: 1em; background-color: #051e34; color: white; width: 350px; margin: auto;">
             <p>Sidst logget ind:</p>
-            <p id="admin-lastlogin"></p>
+            <p id="admin-lastlogin">${lastLogin}</p>
           </div>
         </div>
     `;
   home.insertAdjacentHTML("beforeend", user);
 }
 
-function buildAdminUserUI() {
+function buildAdminUserUI(thisMonth, lastMonth, thisYear, lastYear) {
   const home = document.querySelector("#home");
   const admin = /*html*/ `
-        <div style="margin: 1em; border-radius: 1em;">
+        <div id="user-content" style="margin: 1em; border-radius: 1em;">
           <div style="padding:1em 1em 0 1em; display: flex; justify-content:center; column-gap: 1em; background-color: #051e34; color: white; width: 350px; margin: auto;">
             <p>Medlems tilgang denne måned: </p>
-            <p id="admin-member-month"></p>
+            <p id="admin-member-month">${thisMonth}</p>
           </div>
           <div style="padding:0 1em 0 1em; display: flex; justify-content:center; column-gap: 1em; background-color: #051e34; color: white; width: 350px; margin: auto;">
             <p>Medlems tilgang sidste måned: </p>
-            <p id="admin-member-lastmonth"></p>
+            <p id="admin-member-lastmonth">${lastMonth}</p>
           </div>
           <div style="padding:0 1em 0 1em; display: flex; justify-content:center; column-gap: 1em; background-color: #051e34; color: white; width: 350px; margin: auto;">
             <p>Medlems tilgang i år: </p>
-            <p id="admin-member-year"></p>
+            <p id="admin-member-year">${thisYear}</p>
           </div>
           <div style="padding:0 1em 1em 1em; display: flex; justify-content:center; column-gap: 1em; background-color: #051e34; color: white; width: 350px; margin: auto;">
             <p>Medlems tilgang sidste år: </p>
-            <p id="admin-member-lastyear"></p>
+            <p id="admin-member-lastyear">${lastYear}</p>
           </div>
         </div>
     `;
   home.insertAdjacentHTML("beforeend", admin);
 }
 
-function buildTrainerUserUI() {
+function buildTrainerUserUI(team, members, addedMembers) {
   const home = document.querySelector("#home");
   const trainer = /*html*/ `
-        <div style="margin: 1em; border-radius: 1em;">
+        <div id="user-content" style="margin: 1em; border-radius: 1em;">
           <div style="padding:1em 1em 0 1em; display: flex; justify-content:center; column-gap: 1em; background-color: #051e34; color: white; width: 350px; margin: auto;">
             <p>Team: </p>
-            <p id="trainer-team"></p>
+            <p id="trainer-team">${team}</p>
           </div>
           <div style="padding:0 1em 0 1em; display: flex; justify-content:center; column-gap: 1em; background-color: #051e34; color: white; width: 350px; margin: auto;">
             <p>Medlemmer i teamet: </p>
-            <p id="trainer-members"></p>
+            <p id="trainer-members">${members}</p>
           </div>
           <div style="padding:0 1em 0 1em; display: flex; justify-content:center; column-gap: 1em; background-color: #051e34; color: white; width: 350px; margin: auto;">
             <p>Tilføjet til team denne måned: </p>
-            <p id="trainer-members-month"></p>
+            <p id="trainer-members-month">${addedMembers}</p>
           </div>
         </div>
     `;
   home.insertAdjacentHTML("beforeend", trainer);
 }
 
-function buildCashierUserUI() {
+function buildCashierUserUI(expIncome, unpaid) {
   const home = document.querySelector("#home");
   const cashier = /*html*/ `
-        <div style="margin: 1em; border-radius: 1em;">
+        <div id="user-content" style="margin: 1em; border-radius: 1em;">
           <div style="padding:1em 1em 0 1em; display: flex; justify-content:center; column-gap: 1em; background-color: #051e34; color: white; width: 350px; margin: auto;">
             <p>Forventet kontingent i år: </p>
-            <p id="cashier-income"></p>
+            <p id="cashier-income">${expIncome}</p>
           </div>
-          <!-- 
-          <div style="padding:0 1em 0 1em; display: flex; justify-content:center; column-gap: 1em; background-color: #051e34; color: white; width: 350px; margin: auto;">
-            <p>Restancer i år: </p>
-            <p id="cashier-total-thisyear"></p>
-          </div>
-          -->
           <div style="padding:0 1em 1em 1em; display: flex; justify-content:center; column-gap: 1em; background-color: #051e34; color: white; width: 350px; margin: auto;">
             <p>Restancer i alt: </p>
-            <p id="cashier-total"></p>
+            <p id="cashier-total">${unpaid}</p>
           </div>
         </div>
     `;
@@ -201,17 +183,12 @@ async function cashierExpectedIncome(members) {
   const mergedList = calcSum(mergeArrays(payments, members));
   const total = mergedList.reduce((partialSum, obj) => partialSum + obj.sum, 0);
 }
-// function resetUI() {
-//   document.querySelector("#admin-image").src;
-//   document.querySelector("#admin-name").textContent = "";
-//   document.querySelector("#admin-mail").textContent = "";
-//   document.querySelector("#admin-role").textContent = "";
-//   document.querySelector("#admin-lastlogin").textContent = "";
-//   document.querySelector("#admin-member-month").textContent = "";
-//   document.querySelector("#admin-member-year").textContent = "";
-//   document.querySelector("#admin-member-lastmonth").textContent = "";
-//   document.querySelector("#admin-member-lastyear").textContent = "";
-// }
+function resetUI() {
+  document.querySelector("#home").textContent = "";
+  if (document.querySelector("#user-content")) {
+    document.querySelector("#user-content").textContent = "";
+  }
+}
 
 function calcSum(list) {
   for (const obj of list) {
