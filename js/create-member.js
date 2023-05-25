@@ -5,7 +5,6 @@ import { displayMembersUpdated } from "./view-members.js";
 import { getAge, getPrice } from "./helpers.js";
 
 function openCreateMemberDialog() {
-  console.log("---openCreateMemberDialog()---");
   document.querySelector("#dialog-create-member").showModal();
   document
     .querySelector("#create-member-btn")

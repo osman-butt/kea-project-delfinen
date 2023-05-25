@@ -105,7 +105,6 @@ async function deleteMemberClicked() {
   const id = document
     .querySelector(".dialog-delete-member")
     .getAttribute("data-id");
-  console.log("MEMBER WITH ID=" + id + " IS DELETED");
   await deleteMember(id);
   await deletePayments(id);
   const results = await getResults();

@@ -19,7 +19,6 @@ async function getMembers() {
     await fetchMembers(auth);
     console.log("FETCHED Members data");
   }
-  console.log(listOfMembers);
   return listOfMembers;
 }
 
@@ -30,7 +29,6 @@ async function getMembersUpdate() {
     await fetchMembers(auth);
     console.log("FETCHED Members data");
   }
-  console.log(listOfMembers);
   return listOfMembers;
 }
 
@@ -42,7 +40,6 @@ async function getPayments() {
     await fetchPayments(auth);
     console.log("FETCHED Payments data");
   }
-  console.log(listOfPayments);
   return listOfPayments;
 }
 
@@ -53,7 +50,6 @@ async function getPaymentsUpdate() {
     await fetchPayments(auth);
     console.log("FETCHED Payments data");
   }
-  console.log(listOfPayments);
   return listOfPayments;
 }
 // Caching data - fetch can be performed every 10sec
@@ -64,7 +60,6 @@ async function getResults() {
     await fetchResults(auth);
     console.log("FETCHED Results data");
   }
-  console.log(listOfResults);
   return listOfResults;
 }
 
@@ -75,17 +70,15 @@ async function getResultsUpdate() {
     await fetchResults(auth);
     console.log("FETCHED Results data");
   }
-  console.log(listOfResults);
   return listOfResults;
 }
 
 // READ
 async function fetchMembers(auth) {
-  console.log("---getMembers()---");
   const token = auth.currentUser.stsTokenManager.accessToken;
   const response = await fetch(`${endpoint}/members.json?auth=${token}`);
   if (response.ok) {
-    console.log("getMembers status " + response.status);
+    // console.log("getMembers status " + response.status);
     const data = await response.json();
     listOfMembers = prepareData(data);
     lastMemberFetch = Date.now();
@@ -96,11 +89,10 @@ async function fetchMembers(auth) {
 }
 
 async function fetchPayments(auth) {
-  console.log("---fetchPayments()---");
   const token = auth.currentUser.stsTokenManager.accessToken;
   const response = await fetch(`${endpoint}/payments.json?auth=${token}`);
   if (response.ok) {
-    console.log("getPayments status " + response.status);
+    // console.log("getPayments status " + response.status);
     const data = await response.json();
     listOfPayments = prepareData(data);
     lastPaymentFetch = Date.now();
@@ -111,11 +103,10 @@ async function fetchPayments(auth) {
 }
 
 async function fetchResults(auth) {
-  console.log("---fetchPayments()---");
   const token = auth.currentUser.stsTokenManager.accessToken;
   const response = await fetch(`${endpoint}/results.json?auth=${token}`);
   if (response.ok) {
-    console.log("getResults status " + response.status);
+    // console.log("getResults status " + response.status);
     const data = await response.json();
     listOfResults = prepareData(data);
     lastResultFetch = Date.now();
@@ -126,13 +117,12 @@ async function fetchResults(auth) {
 }
 
 async function fetchCreatedInvoices() {
-  console.log("---fetchCreatedInvoices()---");
   const token = auth.currentUser.stsTokenManager.accessToken;
   const response = await fetch(
     `${endpoint}/createdInvoices.json?auth=${token}`
   );
   if (response.ok) {
-    console.log("getResults status " + response.status);
+    // console.log("getResults status " + response.status);
     const data = await response.json();
     return data;
   } else {
@@ -141,7 +131,6 @@ async function fetchCreatedInvoices() {
 }
 
 async function setCreatedInvoice(year) {
-  console.log("---setCreatedInvoice()---");
   const token = auth.currentUser.stsTokenManager.accessToken;
   const body = {};
   body[year] = true;
@@ -153,14 +142,13 @@ async function setCreatedInvoice(year) {
     }
   );
   if (response.ok) {
-    console.log(response.status, response.statusText);
+    // console.log(response.status, response.statusText);
   } else {
     console.log(response.status, response.statusText);
   }
 }
 
 function prepareData(dataObject) {
-  console.log("---prepareData---");
   const dataList = [];
   for (const key in dataObject) {
     const data = dataObject[key];
@@ -187,7 +175,7 @@ async function createPayment(uid, date, amount) {
     }
   );
   if (response.ok) {
-    console.log(response.status, response.statusText);
+    // console.log(response.status, response.statusText);
   } else {
     console.log(response.status, response.statusText);
   }
@@ -195,36 +183,33 @@ async function createPayment(uid, date, amount) {
 
 // delete
 async function deleteMember(id) {
-  console.log("---deleteMember()---");
   const token = auth.currentUser.stsTokenManager.accessToken;
   const url = `${endpoint}/members/${id}.json?auth=${token}`;
   const response = await fetch(url, { method: "DELETE" });
   if (response.ok) {
-    console.log("deleteMember status " + response.status);
+    // console.log("deleteMember status " + response.status);
   } else {
     console.log(response.status, response.statusText);
   }
 }
 
 async function deletePayments(id) {
-  console.log("---deleteMember()---");
   const token = auth.currentUser.stsTokenManager.accessToken;
   const url = `${endpoint}/payments/${id}.json?auth=${token}`;
   const response = await fetch(url, { method: "DELETE" });
   if (response.ok) {
-    console.log("deletePayments status " + response.status);
+    // console.log("deletePayments status " + response.status);
   } else {
     console.log(response.status, response.statusText);
   }
 }
 
 async function deleteResults(id) {
-  console.log("---deleteResults()---");
   const token = auth.currentUser.stsTokenManager.accessToken;
   const url = `${endpoint}/results/${id}.json?auth=${token}`;
   const response = await fetch(url, { method: "DELETE" });
   if (response.ok) {
-    console.log("deleteResults status " + response.status);
+    // console.log("deleteResults status " + response.status);
   } else {
     console.log(response.status, response.statusText);
   }
@@ -232,7 +217,6 @@ async function deleteResults(id) {
 
 // create
 async function createResult(resultObj) {
-  console.log("---createResult()---");
   const token = auth.currentUser.stsTokenManager.accessToken;
   const url = `${endpoint}/results.json?auth=${token}`;
   const response = await fetch(url, {
@@ -240,7 +224,7 @@ async function createResult(resultObj) {
     body: JSON.stringify(resultObj),
   });
   if (response.ok) {
-    console.log("The Result was saved succesfully");
+    // console.log("The Result was saved succesfully");
   } else {
     console.log(
       "Saving RESULT gave an error: " +
@@ -252,7 +236,6 @@ async function createResult(resultObj) {
 }
 
 async function updateMember(id, body) {
-  console.log("---updateMember()---");
   const token = auth.currentUser.stsTokenManager.accessToken;
   const url = `${endpoint}/members/${id}.json?auth=${token}`;
   const response = await fetch(url, {
@@ -260,7 +243,7 @@ async function updateMember(id, body) {
     body: JSON.stringify(body),
   });
   if (response.ok) {
-    console.log("Member was updated succesfully");
+    // console.log("Member was updated succesfully");
   } else {
     console.log(
       "Updating member gave an error: " +
@@ -272,7 +255,6 @@ async function updateMember(id, body) {
 }
 
 async function createMember(newMember) {
-  console.log("---updateMember()---");
   const token = auth.currentUser.stsTokenManager.accessToken;
   const url = `${endpoint}/members/.json?auth=${token}`;
   const response = await fetch(url, {
@@ -280,7 +262,7 @@ async function createMember(newMember) {
     body: JSON.stringify(newMember),
   });
   if (response.ok) {
-    console.log("Member was created succesfully");
+    // console.log("Member was created succesfully");
     const data = await response.json();
     return data.name;
   } else {
@@ -298,7 +280,7 @@ async function getUser() {
   const uid = auth.currentUser.uid;
   const response = await fetch(`${endpoint}/users/${uid}.json?auth=${token}`);
   if (response.ok) {
-    console.log("getUser status " + response.status);
+    // console.log("getUser status " + response.status);
     const data = await response.json();
     // const user = prepareData(data);
     return data;

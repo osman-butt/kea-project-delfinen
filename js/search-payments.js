@@ -5,7 +5,6 @@ import { getMembers, getPayments } from "./rest-services.js";
 import { getAge } from "./helpers.js";
 
 async function getSearchPaymentsList() {
-  console.log("---searchMemberList()---");
   const searchKeyword = document.querySelector("#member-search-payments").value;
 
   const membersList = await getMembers();

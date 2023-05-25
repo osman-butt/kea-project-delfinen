@@ -14,7 +14,6 @@ import { getAge, getPrice } from "./helpers.js";
 // If they are not created the function creates invoices, and sets
 // createdInvoice year to true.
 async function createAutomaticInvoice() {
-  console.log("---createAutomaticInvoice()---");
   const createdInvoices = await fetchCreatedInvoices();
   const today = new Date(Date.now());
   const todayFormatted =
@@ -28,7 +27,6 @@ async function createAutomaticInvoice() {
     members.forEach(member => (member.age = getAge(member.dob)));
     members.forEach(getPrice);
     members.forEach(async function (member) {
-      console.log("---CREATE PAYMENT---");
       await createPayment(member.id, todayDate, member.price);
     });
 

@@ -4,8 +4,6 @@ import { getMembers, updateMember } from "./rest-services.js";
 import { displayMembersUpdated } from "./view-members.js";
 
 function showUpdateDialog() {
-  console.log("---showUpdateDialog()---");
-
   document.querySelector("#dialog-update-member").showModal();
   //   document
   //     .querySelector("#open-update-member-dialog")
@@ -22,7 +20,6 @@ async function displayMemberData() {
     .getAttribute("data-id");
   const members = await getMembers();
   const member = members.find(row => row.id === id);
-  console.log(member);
 
   document.querySelector("#update-name").value = member.name;
   document.querySelector("#update-dob").value = member.dob;
@@ -69,7 +66,6 @@ async function updateMemberClicked(event) {
     profileImage: document.querySelector("#update-img").value,
     activity: activity,
   };
-  console.log(updatedMember);
   await updateMember(id, updatedMember);
   document.querySelector("#dialog-update-member").close();
   document.querySelector("#dialog-read-member").close();

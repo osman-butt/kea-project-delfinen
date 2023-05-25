@@ -93,13 +93,11 @@ function toggleTypeChange() {
 }
 
 async function membersDropdown() {
-  console.log("---membersDropdown()---");
   const userInfo = await getUser();
   const team = userInfo.team ? userInfo.team : "";
   const allMembers = await getMembers();
   allMembers.forEach(row => (row.age = getAge(row.dob).toString()));
   allMembers.forEach(row => (row.team = row.age < 18 ? "junior" : "senior"));
-  console.log(allMembers);
   if (userInfo.role === "admin") {
     const competitionMembers = allMembers.filter(
       row => row.membershipLevel === "Konkurrence"
@@ -122,7 +120,6 @@ function memberDropdownOption(memberObj) {
 }
 
 async function activityDropdown() {
-  console.log("---activityDropdown()---");
   const dialog = document.querySelector("#add-result-dialog");
   const allMembers = await getMembers();
   const id = dialog.getAttribute("data-id");
@@ -139,7 +136,6 @@ function activityDropdownOption(activity) {
 }
 
 async function teamDropdown() {
-  console.log("---teamDropdown()---");
   const dialog = document.querySelector("#add-result-dialog");
   const dropdown = document.querySelector("#choose-team");
   const allMembers = await getMembers();

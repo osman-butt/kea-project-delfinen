@@ -53,13 +53,11 @@ async function updateDisplayResults() {
 }
 
 function showFilteredResults(mergedList) {
-  console.log(mergedList);
   const team = document.querySelector("#team-filter").value;
   const gender = document.querySelector("#gender-filter").value;
   const filteredList = mergedList.filter(row => {
     return row.team.includes(team) && row.member.gender.includes(gender);
   });
-  console.log(filteredList);
   document.querySelectorAll(".result-table-row").forEach(row => row.remove());
   displayButterflyResults(filteredList);
   displayCrawlResults(filteredList);
