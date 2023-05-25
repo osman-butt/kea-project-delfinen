@@ -77,13 +77,9 @@ async function displayPaymentsUpdated() {
   const members = await getMembers();
   const mergedList = calcSum(mergeArrays(payments, members));
   mergedList.sort((a, b) => b.sum - a.sum);
-  console.log("MERGED LIST");
-  console.log(mergedList);
+
   mergedList.forEach(displayPayment);
-  console.log(
-    "SUM OF ALL " +
-      mergedList.reduce((partialSum, obj) => partialSum + obj.sum, 0)
-  );
+
   const sum = /*html*/ `
     <tr class="payment-table-sum" style="font-weight: bold;">
       <td></td>
@@ -141,7 +137,7 @@ function showReadPaymentDialog(paymentObj) {
     document.querySelector("#add-payment-btn").classList.remove("dialog-btn");
     document.querySelector("#add-payment-btn").classList.add("hidden");
   }
-  console.log("Show read payments");
+
   document.querySelector("#dialog-read-payment-img").src =
     paymentObj.member.profileImage;
   document.querySelector("#dialog-read-payment-name").textContent =
@@ -182,7 +178,7 @@ function addPayment() {
     </tr>
   `;
   table.insertAdjacentHTML("beforeend", addNewRow);
-  console.log("ONE ROW ADDED");
+
   document
     .querySelector("#inputAmount")
     .addEventListener("keypress", addPaymentClicked);
@@ -206,7 +202,7 @@ async function addPaymentClicked(event) {
         : "-" + inputAmount.value;
     const date = inputDate.value;
     await createPayment(id, date, amount);
-    console.log("CREATED PAYMENT");
+
     document
       .querySelector("#add-payment-btn")
       .addEventListener("click", addPayment);

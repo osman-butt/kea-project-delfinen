@@ -13,12 +13,11 @@ async function initApp() {
   document.querySelector("#signout-btn").addEventListener("click", signOutUser);
   onAuthStateChanged(auth, user => {
     if (user) {
-      console.log(user);
-      console.log("USER IS LOGGED IN");
+      console.log("USER IS SIGNED IN");
       createAutomaticInvoice();
       displaySignedInUserPage();
     } else {
-      console.log("USER IS NOT LOGGED IN");
+      console.log("USER IS SIGNED OUT");
       displaySignedOutPage();
     }
   });

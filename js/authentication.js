@@ -27,7 +27,6 @@ async function signInUser(event) {
   const password = form.loginPassword.value;
   const now = new Date(Date.now()).toISOString();
 
-  console.log("---signInWithEmailAndPassword---");
   signInWithEmailAndPassword(auth, email, password)
     .then(userCredential => {
       // Signed in
@@ -75,11 +74,11 @@ async function signInUser(event) {
 function signOutUser() {
   signOut(auth)
     .then(() => {
-      console.log("USER LOGGED OUT, auth = " + auth.currentUser);
+      console.log("USER LOGGED OUT");
       // Sign-out successful.
     })
     .catch(error => {
-      console.log("USER DID NOT LOG OUT, auth = " + auth.currentUser);
+      console.log("USER IS STILL SIGNED IN, auth = " + auth.currentUser);
       // An error happened.
     });
   alert("You signed out!");

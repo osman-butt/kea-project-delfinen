@@ -5,12 +5,8 @@ import { getMembers } from "./rest-services.js";
 import { getAge } from "./helpers.js";
 
 async function getSearchMemberList() {
-  console.log("---searchMemberList()---");
   const searchKeyword = document.querySelector("#member-search").value;
   const filterKeyword = document.querySelector("#filter-member").value;
-
-  console.log(searchKeyword);
-  console.log(filterKeyword);
 
   const membersList = await getMembers();
   membersList.forEach(row => (row.age = getAge(row.dob).toString()));
@@ -23,7 +19,6 @@ async function getSearchMemberList() {
         obj.email.includes(searchKeyword) ||
         obj.age.includes(searchKeyword)
     );
-    console.log(filteredMembersList);
   } else if (filterKeyword === "name") {
     filteredMembersList = membersList.filter(obj =>
       obj.name.includes(searchKeyword)

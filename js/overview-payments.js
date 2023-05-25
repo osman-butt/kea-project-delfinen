@@ -46,8 +46,6 @@ async function displayPaymentOverview() {
     0
   );
 
-  console.log("displayPaymentOverview");
-  console.log(members);
   // add to DOM
   document.querySelector("#inactive-number").textContent = inactiveNumber;
   document.querySelector("#inactive-amount").textContent = inactiveAmount;
